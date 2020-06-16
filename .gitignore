@@ -12,4 +12,9 @@
 /captures
 .externalNativeBuild
 .cxx
+
+# google-services.json
+/app/google-services.json
+
+# VIM files
 *.sw*
