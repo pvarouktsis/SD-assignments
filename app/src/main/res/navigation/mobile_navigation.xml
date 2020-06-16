@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_my_order"
         android:name="com.example.shopsmart.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="my order"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_on_sale"
         android:name="com.example.shopsmart.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="on sale"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_my_account"
+        android:name="com.example.shopsmart.ui.notifications.NotificationsFragment"
+        android:label="my account"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

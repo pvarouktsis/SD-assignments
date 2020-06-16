@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ShopSmart</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">home</string>
+    <string name="title_my_order">my order</string>
+    <string name="title_on_sale">on sale</string>
+    <string name="title_my_account">my account</string>
 </resources>
