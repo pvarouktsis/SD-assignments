@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_bag"
+        android:id="@+id/navigation_my_order"
         android:icon="@drawable/ic_my_order"
         android:title="@string/title_my_order" />
 

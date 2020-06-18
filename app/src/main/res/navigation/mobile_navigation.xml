@@ -13,19 +13,20 @@
 
     <fragment
         android:id="@+id/navigation_my_order"
-        android:name="com.example.shopsmart.ui.dashboard.DashboardFragment"
-        android:label="my order"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.shopsmart.ui.my_order.MyOrderFragment"
+        android:label="@string/title_my_order"
+        tools:layout="@layout/fragment_my_order" />
 
     <fragment
         android:id="@+id/navigation_on_sale"
-        android:name="com.example.shopsmart.ui.notifications.NotificationsFragment"
-        android:label="on sale"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.shopsmart.ui.on_sale.OnSaleFragment"
+        android:label="@string/title_on_sale"
+        tools:layout="@layout/fragment_on_sale" />
 
     <fragment
         android:id="@+id/navigation_my_account"
-        android:name="com.example.shopsmart.ui.notifications.NotificationsFragment"
-        android:label="my account"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.shopsmart.ui.my_account.MyAccountFragment"
+        android:label="@string/title_my_account"
+        tools:layout="@layout/fragment_my_account" />
+
 </navigation>
