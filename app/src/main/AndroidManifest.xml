@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/ShopSmartTheme" >
         <activity
-            android:name="com.example.shopsmart.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.example.shopsmart.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
