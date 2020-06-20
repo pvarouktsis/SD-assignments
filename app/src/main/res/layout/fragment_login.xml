@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/login_form"
+    android:id="@+id/register_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,15 +22,6 @@
             android:text="username" />
 
         <EditText
-            android:id="@+id/input_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="email" />
-
-        <EditText
             android:id="@+id/input_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,22 +31,22 @@
             android:text="password" />
 
         <Button
-            android:id="@+id/button_register"
+            android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:background="@color/white"
             android:ems="10"
-            android:text="sign up" />
+            android:text="sign in" />
 
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/button_register"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:ems="10"
-            android:text="sign in" />
+            android:text="sign up" />
 
     </LinearLayout>
 
