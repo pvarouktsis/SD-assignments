@@ -18,5 +18,5 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp" />
-    
+
 </RelativeLayout>

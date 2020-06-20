@@ -1,14 +1,20 @@
 package com.example.shopsmart;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.shopsmart.ui.home.*;
+import com.example.shopsmart.ui.my_order.*;
+import com.example.shopsmart.ui.on_sale.*;
+import com.example.shopsmart.ui.my_account.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,15 +22,51 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home,
-                R.id.navigation_my_order,
-                R.id.navigation_on_sale,
-                R.id.navigation_my_account
-        ).build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(navView, navController);
+        replace(R.id.main_container, new HomeFragment());
+
+        BottomNavigationView bnv = findViewById(R.id.nav_view);
+        bnv.setOnNavigationItemSelectedListener(navigationListener);
+
     }
+
+    private void add(int currentID, Fragment fragment) {
+        Fragment f = new HomeFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(currentID, fragment).commit();
+    }
+
+    private void replace(int currentID, Fragment fragment) {
+        Fragment f = new HomeFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(currentID, fragment).commit();
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                Fragment f = null;
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.navigation_home:
+                            f = new HomeFragment();
+                            break;
+                        case R.id.navigation_my_order:
+                            f = new MyOrderFragment();
+                            break;
+                        case R.id.navigation_on_sale:
+                            f = new OnSaleFragment();
+                            break;
+                        case R.id.navigation_my_account:
+                            f = new MyAccountFragment();
+                            break;
+                        default:
+                            return false;
+                    }
+                    replace(R.id.main_container, f);
+                    return true;
+                }
+            };
 
 }
