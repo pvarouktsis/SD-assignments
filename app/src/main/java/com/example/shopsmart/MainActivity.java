@@ -15,6 +15,7 @@ import com.example.shopsmart.ui.home.*;
 import com.example.shopsmart.ui.my_order.*;
 import com.example.shopsmart.ui.on_sale.*;
 import com.example.shopsmart.ui.my_account.*;
+import com.example.shopsmart.ui.register.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        add(R.id.main_container, new HomeFragment());
+        add(R.id.main_container, new RegisterFragment());
 
-        BottomNavigationView bnv = findViewById(R.id.nav_view);
+        BottomNavigationView bnv = findViewById(R.id.navigation_container);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
 
     }
