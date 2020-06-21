@@ -2,6 +2,7 @@ package com.example.shopsmart;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.ui.home.HomeFragment;
-import com.example.shopsmart.ui.login.LoginFragment;
 import com.example.shopsmart.ui.my_account.MyAccountFragment;
 import com.example.shopsmart.ui.my_order.MyOrderFragment;
 import com.example.shopsmart.ui.on_sale.OnSaleFragment;
@@ -23,11 +23,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        add(R.id.main_container, new LoginFragment());
+
+        goToLoginActivity();
+
+        // TODO
+        // if session is expired or there is no
+        // session go to sign in activity
 
         BottomNavigationView bnv = findViewById(R.id.navigation_container);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
 
+    }
+
+    private void goToLoginActivity() {
+        startActivity(new Intent(this, RegisterActivity.class));
+        finish();
     }
 
     private void add(int currentID, Fragment fragment) {

@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.shopsmart.LoginActivity" />
+        <activity android:name="com.example.shopsmart.RegisterActivity" />
     </application>
 
 </manifest>
