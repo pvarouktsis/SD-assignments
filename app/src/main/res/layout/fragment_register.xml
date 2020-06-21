@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="username" />
+            android:hint="username" />
 
         <EditText
             android:id="@+id/input_email"
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="email" />
+            android:inputType="textEmailAddress"
+            android:hint="email" />
 
         <EditText
             android:id="@+id/input_password"
@@ -37,7 +37,7 @@
             android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="password" />
+            android:hint="password" />
 
         <Button
             android:id="@+id/button_register"
