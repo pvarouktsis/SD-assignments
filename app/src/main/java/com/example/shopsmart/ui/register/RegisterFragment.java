@@ -24,25 +24,28 @@ public class RegisterFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View register_view = inflater.inflate(R.layout.fragment_register, container, false);
-        etUsername = register_view.findViewById(R.id.input_username);
-        etEmail = register_view.findViewById(R.id.input_email);
-        etPassword = register_view.findViewById(R.id.input_password);
 
-        // Register button action
+        // register button
         btnRegister = register_view.findViewById(R.id.button_register);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-            }
-        });
-
-        // Login button action
+        btnRegister.setOnClickListener(registerListener);
+        // login button
         btnLogin = register_view.findViewById(R.id.button_login);
         btnLogin.setOnClickListener(loginListener);
 
         return register_view;
     }
+
+
+    /*
+     * Register's button OnClickListener
+     */
+    private View.OnClickListener registerListener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO
+                }
+            };
 
 
     /*
@@ -57,6 +60,6 @@ public class RegisterFragment extends Fragment {
                             .replace(R.id.main_container, new LoginFragment())
                             .commit();
                 }
-    };
+            };
 
 }

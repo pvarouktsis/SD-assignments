@@ -3,20 +3,19 @@ package com.example.shopsmart;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.shopsmart.ui.home.*;
-import com.example.shopsmart.ui.my_order.*;
-import com.example.shopsmart.ui.on_sale.*;
-import com.example.shopsmart.ui.my_account.*;
-import com.example.shopsmart.ui.register.*;
-import com.example.shopsmart.ui.login.*;
+import com.example.shopsmart.ui.home.HomeFragment;
+import com.example.shopsmart.ui.login.LoginFragment;
+import com.example.shopsmart.ui.my_account.MyAccountFragment;
+import com.example.shopsmart.ui.my_order.MyOrderFragment;
+import com.example.shopsmart.ui.on_sale.OnSaleFragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
