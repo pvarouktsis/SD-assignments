@@ -1,16 +1,16 @@
-package com.example.shopsmart.ui.home;
+package com.example.shopsmart.fragments.my_account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class MyAccountViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public MyAccountViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is \"home\" fragment");
+        mText.setValue("This is \"my account\" fragment");
     }
 
     public LiveData<String> getText() {

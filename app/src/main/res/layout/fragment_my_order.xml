@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.my_order.MyOrderFragment">
+    tools:context=".fragments.my_order.MyOrderFragment">
 
     <TextView
         android:id="@+id/text_my_order"
@@ -16,6 +16,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:textAlignment="center"
         android:textSize="20sp" />
 

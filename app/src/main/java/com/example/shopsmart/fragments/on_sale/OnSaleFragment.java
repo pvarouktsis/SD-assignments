@@ -1,4 +1,4 @@
-package com.example.shopsmart.ui.my_account;
+package com.example.shopsmart.fragments.on_sale;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.shopsmart.R;
 
-public class MyAccountFragment extends Fragment {
+public class OnSaleFragment extends Fragment {
 
-    private MyAccountViewModel myAccountViewModel;
+    private OnSaleViewModel onSaleViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        myAccountViewModel =
-                ViewModelProviders.of(this).get(MyAccountViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_my_account, container, false);
-        final TextView textView = root.findViewById(R.id.text_my_account);
-        myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        onSaleViewModel =
+                ViewModelProviders.of(this).get(OnSaleViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_on_sale, container, false);
+        final TextView textView = root.findViewById(R.id.text_on_sale);
+        onSaleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

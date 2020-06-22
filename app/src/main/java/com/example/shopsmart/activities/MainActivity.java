@@ -1,4 +1,4 @@
-package com.example.shopsmart;
+package com.example.shopsmart.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.shopsmart.ui.home.HomeFragment;
-import com.example.shopsmart.ui.my_account.MyAccountFragment;
-import com.example.shopsmart.ui.my_order.MyOrderFragment;
-import com.example.shopsmart.ui.on_sale.OnSaleFragment;
+import com.example.shopsmart.R;
+import com.example.shopsmart.fragments.home.HomeFragment;
+import com.example.shopsmart.fragments.my_account.MyAccountFragment;
+import com.example.shopsmart.fragments.my_order.MyOrderFragment;
+import com.example.shopsmart.fragments.on_sale.OnSaleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

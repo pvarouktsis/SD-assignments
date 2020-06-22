@@ -15,7 +15,7 @@
 
     <!-- top -->
     <item
-        android:bottom="2dp" >
+        android:bottom="3dp" >
         <shape
             android:shape="rectangle" >
             <size
