@@ -14,12 +14,12 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/input_username"
+            android:id="@+id/input_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="username" />
+            android:hint="email" />
 
         <EditText
             android:id="@+id/input_password"

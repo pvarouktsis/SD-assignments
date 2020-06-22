@@ -1,8 +1,8 @@
 package com.example.shopsmart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,29 +14,41 @@ import com.example.shopsmart.ui.home.HomeFragment;
 import com.example.shopsmart.ui.my_account.MyAccountFragment;
 import com.example.shopsmart.ui.my_order.MyOrderFragment;
 import com.example.shopsmart.ui.on_sale.OnSaleFragment;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // initialize layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        goToLoginActivity();
-
-        // TODO
-        // if session is expired or there is no
-        // session go to sign in activity
-
+        replace(R.id.main_container, new HomeFragment());
+        // initialize bottom navigation bar
         BottomNavigationView bnv = findViewById(R.id.navigation_container);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
+        // initialize Firebase
+        fa = FirebaseAuth.getInstance();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser fu = fa.getCurrentUser();
+        updateUI(fu);
+    }
+
+    private void updateUI(FirebaseUser fu) {
+        if (fu == null) {
+            goToLoginActivity();
+        }
     }
 
     private void goToLoginActivity() {
-        startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 

@@ -6,12 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shopsmart.classes.User;
-import com.example.shopsmart.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,8 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-//import android.widget.Toast;
-
 public class RegisterActivity extends AppCompatActivity {
     private String TAG = "TAG_REGISTER";
     private User user;
@@ -33,16 +31,24 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnLogin;
     private FirebaseAuth fa;
-    private FirebaseUser fu;
     private FirebaseFirestore ffdb;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        // initialize layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        initializeUIComponents();
+        // initialize Firebase
         fa = FirebaseAuth.getInstance();
         ffdb = FirebaseFirestore.getInstance();
-        initializeUIComponents();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser fu = fa.getCurrentUser();
+        updateUI(fu);
     }
 
     private void initializeUIComponents() {
@@ -59,23 +65,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser() {
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "createUserWithEmailAndPassword:success");
+                            FirebaseUser fu = fa.getCurrentUser();
                             writeUser();
-                            // fu = fa.getCurrentUser();
-                            // dismissLoading();
-                            // updateUI();
-                            getSupportFragmentManager().
-                                    beginTransaction().
-                                    replace(R.id.main_container, new HomeFragment())
-                                    .commit();
+                            updateUI(fu);
                         } else {
                             Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
-                            // dismissLoading();
-                            // Toast.makeText(RegisterActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "register failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -83,7 +83,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void writeUser() {
-        createUser();
         ffdb.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -102,16 +101,29 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createUser() {
         user = new User(
-                etUsername.getText().toString(),
-                etEmail.getText().toString(),
-                etPassword.getText().toString()
+                etUsername.getText().toString().trim(),
+                etEmail.getText().toString().trim(),
+                etPassword.getText().toString().trim()
         );
+
+    }
+
+    private void updateUI(FirebaseUser fu) {
+        if (fu != null) {
+            goToMainActivity();
+        }
+    }
+
+    private void goToMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     private void goToLoginActivity() {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
+
 
     /*
      * Register's button OnClickListener
@@ -120,10 +132,10 @@ public class RegisterActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    createUser();
                     registerUser();
                 }
             };
-
 
     /*
      * Login's button OnClickListener
