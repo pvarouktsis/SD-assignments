@@ -22,7 +22,7 @@
             android:background="@drawable/shape_active"
             android:ems="10"
             android:gravity="center_vertical"
-            android:hint="password"
+            android:hint="username"
             android:inputType="textPersonName"
             android:paddingLeft="30dp" />
 
