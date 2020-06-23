@@ -5,18 +5,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.my_account.MyAccountFragment">
+    tools:context=".fragments.my_account.MyAccountFragment">
 
-    <TextView
-        android:id="@+id/text_my_account"
+    <LinearLayout
+        android:id="@+id/list_my_account_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title_my_account_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_active"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="my account" />
+
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_active"
+            android:gravity="center_vertical"
+            android:paddingLeft="40dp"
+            android:textAllCaps="false"
+            android:textStyle="normal"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="sign out"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

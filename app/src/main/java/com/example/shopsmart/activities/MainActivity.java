@@ -1,9 +1,8 @@
-package com.example.shopsmart;
+package com.example.shopsmart.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,24 +10,47 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.shopsmart.ui.home.*;
-import com.example.shopsmart.ui.my_order.*;
-import com.example.shopsmart.ui.on_sale.*;
-import com.example.shopsmart.ui.my_account.*;
-import com.example.shopsmart.ui.register.*;
-import com.example.shopsmart.ui.login.*;
+import com.example.shopsmart.R;
+import com.example.shopsmart.fragments.home.HomeFragment;
+import com.example.shopsmart.fragments.my_account.MyAccountFragment;
+import com.example.shopsmart.fragments.my_order.MyOrderFragment;
+import com.example.shopsmart.fragments.on_sale.OnSaleFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        add(R.id.main_container, new LoginFragment());
-
+        replace(R.id.main_container, new HomeFragment());
+        // initialize bottom navigation bar
         BottomNavigationView bnv = findViewById(R.id.navigation_container);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
+        // initialize Firebase
+        fa = FirebaseAuth.getInstance();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser fu = fa.getCurrentUser();
+        updateUI(fu);
+    }
+
+    private void updateUI(FirebaseUser fu) {
+        if (fu == null) {
+            goToLoginActivity();
+        }
+    }
+
+    private void goToLoginActivity() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 
     private void add(int currentID, Fragment fragment) {

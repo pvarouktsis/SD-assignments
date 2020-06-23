@@ -1,4 +1,4 @@
-package com.example.shopsmart.ui.home;
+package com.example.shopsmart.fragments.on_sale;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,16 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.shopsmart.R;
 
-public class HomeFragment extends Fragment {
+public class OnSaleFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private OnSaleViewModel onSaleViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        onSaleViewModel =
+                ViewModelProviders.of(this).get(OnSaleViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_on_sale, container, false);
+        final TextView textView = root.findViewById(R.id.text_on_sale);
+        onSaleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

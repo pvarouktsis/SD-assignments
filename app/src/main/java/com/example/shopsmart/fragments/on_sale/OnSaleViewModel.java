@@ -1,4 +1,4 @@
-package com.example.shopsmart.ui.on_sale;
+package com.example.shopsmart.fragments.on_sale;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
