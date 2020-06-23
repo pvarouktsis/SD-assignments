@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // initialize layout
+        // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initializeUIComponents();

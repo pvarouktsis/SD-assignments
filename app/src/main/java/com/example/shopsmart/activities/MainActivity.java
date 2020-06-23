@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // initialize layout
+        // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         replace(R.id.main_container, new HomeFragment());
