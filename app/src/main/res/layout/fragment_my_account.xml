@@ -20,9 +20,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_active"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="@color/black"
-            android:text="my account" />
+            android:text="@string/title_my_account" />
 
         <Button
             android:id="@+id/button_logout"
@@ -32,11 +32,12 @@
             android:background="@drawable/shape_active"
             android:gravity="center_vertical"
             android:paddingLeft="40dp"
+            android:paddingRight="40dp"
             android:textAllCaps="false"
             android:textStyle="normal"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="@color/black"
-            android:text="sign out"/>
+            android:text="@string/title_logout" />
 
     </LinearLayout>
 

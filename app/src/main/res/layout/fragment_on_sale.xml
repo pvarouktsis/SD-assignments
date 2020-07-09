@@ -37,7 +37,7 @@
             android:gravity="center_vertical"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="product_title"
+            android:text="@string/product_title"
             android:textSize="16sp" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:gravity="center_vertical"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="product_price"
+            android:text="@string/product_price"
             android:textSize="16sp" />
 
         <Button
