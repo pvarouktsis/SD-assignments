@@ -5,7 +5,7 @@
     android:id="@+id/my_order_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.my_order.MyOrderFragment">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/text_my_order"

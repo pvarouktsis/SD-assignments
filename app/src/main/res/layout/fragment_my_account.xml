@@ -5,7 +5,7 @@
     android:id="@+id/my_account_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.my_account.MyAccountFragment">
+    tools:context=".activities.MainActivity">
 
     <LinearLayout
         android:id="@+id/list_my_account_fragment"
