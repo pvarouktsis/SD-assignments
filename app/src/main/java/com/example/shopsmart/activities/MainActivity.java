@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replace(R.id.main_container, new HomeFragment());
+        replace(R.id.main_frame_container, new HomeFragment());
         // initialize bottom navigation bar
         BottomNavigationView bnv = findViewById(R.id.navigation_container);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         default:
                             return false;
                     }
-                    replace(R.id.main_container, f);
+                    replace(R.id.main_frame_container, f);
                     return true;
                 }
             };
