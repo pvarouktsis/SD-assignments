@@ -24,7 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
-    private String TAG = "TAG_REGISTER";
+    private static final String TAG = "TAG_REGISTER_ACTIVITY";
     private User user;
     private EditText etUsername;
     private EditText etEmail;

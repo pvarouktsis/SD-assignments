@@ -16,6 +16,7 @@ import com.example.shopsmart.activities.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MyAccountFragment extends Fragment {
+    //private static final String TAG = "TAG_MY_ACCOUNT_FRAGMENT";
     private Button btnLogout;
     private FirebaseAuth fa;
 

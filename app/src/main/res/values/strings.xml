@@ -18,7 +18,7 @@
     <string name="input_search">search</string>
 
     <!-- product's attributes -->
-    <string name="product_title">product_title</string>
+    <string name="product_name">product_name</string>
     <string name="product_price">product_price</string>
 
 </resources>

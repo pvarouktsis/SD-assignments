@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import com.example.shopsmart.R;
 
 public class HomeFragment extends Fragment {
+    //private static final String TAG = "TAG_HOME_FRAGMENT";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {

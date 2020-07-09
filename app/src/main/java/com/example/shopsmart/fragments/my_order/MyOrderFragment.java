@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.shopsmart.R;
 
 public class MyOrderFragment extends Fragment {
-
+    //private static final String TAG = "TAG_MY_ORDER";
     private MyOrderViewModel myOrderViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

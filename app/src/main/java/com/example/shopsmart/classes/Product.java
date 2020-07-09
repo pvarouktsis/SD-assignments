@@ -1,9 +1,10 @@
 package com.example.shopsmart.classes;
 
-// import java.net.URL;
+//import java.net.URL;
 
 public class Product {
     private String productID;
+    //private URL productImageURL;
     private String productImageURL;
     private String productName;
     private double productPrice;

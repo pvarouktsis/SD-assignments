@@ -20,6 +20,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_active"
             android:gravity="center"
+            android:paddingBottom="5dp"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:text="@string/title_my_account" />
@@ -31,6 +32,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_active"
             android:gravity="center_vertical"
+            android:paddingBottom="5dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
             android:textAllCaps="false"

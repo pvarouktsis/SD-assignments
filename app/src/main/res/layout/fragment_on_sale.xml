@@ -4,73 +4,23 @@
     android:id="@+id/on_sale_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/transparent"
     tools:context=".activities.MainActivity">
 
     <RelativeLayout
-        android:id="@+id/frame_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="top"
-        android:background="@drawable/shape_active"
-        android:padding="20dp" >
+        android:gravity="top" >
 
-        <ImageView
-            android:id="@+id/icon_product"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_launcher_background" />
-
-        <TextView
-            android:id="@+id/product_title"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_toRightOf="@id/icon_product"
-            android:layout_toEndOf="@id/icon_product"
-            android:gravity="center_vertical"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="@string/product_title"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/product_price"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/product_title"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_toRightOf="@id/icon_product"
-            android:layout_toEndOf="@id/icon_product"
-            android:gravity="center_vertical"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="@string/product_price"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/button_extend"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/product_price"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_down_arrow"
-            android:gravity="center"
-            android:padding="20dp" />
+        <ListView
+            android:id="@+id/product_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/transparent"
+            android:dividerHeight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false" />
 
     </RelativeLayout>
 

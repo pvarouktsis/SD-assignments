@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class MyOrderViewModel extends ViewModel {
-
+    //private static final String TAG = "TAG_MY_ORDER_VIEW";
     private MutableLiveData<String> mText;
 
     public MyOrderViewModel() {
