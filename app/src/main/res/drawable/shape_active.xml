@@ -6,6 +6,10 @@
     <item>
         <shape
             android:shape="rectangle" >
+            <!-- size relative to actual -->
+            <size
+                android:width="260dp"
+                android:height="60dp" />
             <solid
                 android:color="@color/shadow" />
             <corners
@@ -15,7 +19,7 @@
 
     <!-- top -->
     <item
-        android:bottom="3dp" >
+        android:bottom="5dp" >
         <shape
             android:shape="rectangle" >
             <size
