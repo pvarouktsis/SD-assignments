@@ -70,12 +70,12 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmailAndPassword:success");
+                            Log.d(TAG, "createUserWithEmailAndPassword: success");
                             FirebaseUser fu = fa.getCurrentUser();
                             writeUser();
                             updateUI(fu);
                         } else {
-                            Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
+                            Log.w(TAG, "createUserWithEmailAndPassword: failure", task.getException());
                             Toast.makeText(RegisterActivity.this, "register failed", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -89,13 +89,13 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        Log.d(TAG, "user added " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
+                        Log.w(TAG, "error adding user", e);
                     }
                 });
     }

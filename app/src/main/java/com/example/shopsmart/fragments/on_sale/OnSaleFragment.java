@@ -46,13 +46,13 @@ public class OnSaleFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            Log.d(TAG, "data retrieved");
                             for (QueryDocumentSnapshot d : task.getResult()) {
                                 if (!d.getId().equals("prototype")) { // if it is NOT the prototype document
                                     addProduct(d);
                                 }
                             }
                             showProducts(onSaleView);
-                            Log.d(TAG, "data retrieved");
                         } else {
                             Log.w(TAG, "error retrieving data", task.getException());
                         }

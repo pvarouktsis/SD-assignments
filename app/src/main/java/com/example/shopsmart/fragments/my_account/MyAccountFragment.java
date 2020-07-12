@@ -2,6 +2,7 @@ package com.example.shopsmart.fragments.my_account;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import com.example.shopsmart.activities.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MyAccountFragment extends Fragment {
-    //private static final String TAG = "TAG_MY_ACCOUNT_FRAGMENT";
+    private static final String TAG = "TAG_MY_ACCOUNT_FRAGMENT";
     private Button btnLogout;
     private FirebaseAuth fa;
 
@@ -40,6 +41,7 @@ public class MyAccountFragment extends Fragment {
     }
 
     private void logoutUser() {
+        Log.d(TAG, "logout successful");
         fa.signOut();
         Toast.makeText(getContext(), "logout successful", Toast.LENGTH_SHORT).show();
         updateUI();

@@ -9,13 +9,12 @@
     android:padding="20dp" >
 
         <ImageView
-            android:id="@+id/icon_product"
+            android:id="@+id/image_product"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:id="@+id/product_name"
@@ -27,12 +26,13 @@
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_toRightOf="@id/icon_product"
-            android:layout_toEndOf="@id/icon_product"
+            android:layout_toRightOf="@id/image_product"
+            android:layout_toEndOf="@id/image_product"
             android:ellipsize="marquee"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="@string/product_name"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
@@ -46,12 +46,13 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/icon_product"
-                android:layout_toEndOf="@id/icon_product"
+                android:layout_toRightOf="@id/image_product"
+                android:layout_toEndOf="@id/image_product"
                 android:gravity="center_vertical"
                 android:ellipsize="marquee"
                 android:singleLine="true"
                 android:text="@string/product_price"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
         <Button

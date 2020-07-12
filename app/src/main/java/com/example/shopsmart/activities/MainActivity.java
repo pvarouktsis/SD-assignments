@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    //private static final String TAG = "TAG_MAIN_ACTIVITY";
-    FirebaseAuth fa;
+    private static final String TAG = "TAG_MAIN_ACTIVITY";
+    private FirebaseAuth fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -62,11 +62,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmailAndPassword:success");
+                            Log.d(TAG, "signInWithEmailAndPassword: success");
                             FirebaseUser fu = fa.getCurrentUser();
                             updateUI(fu);
                         } else {
-                            Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
+                            Log.w(TAG, "signInWithEmailAndPassword: failure", task.getException());
                             Toast.makeText(LoginActivity.this, "login failed", Toast.LENGTH_SHORT).show();
                         }
 

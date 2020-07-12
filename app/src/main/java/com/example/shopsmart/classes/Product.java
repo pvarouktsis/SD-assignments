@@ -1,14 +1,10 @@
 package com.example.shopsmart.classes;
 
-//import java.net.URL;
-
 public class Product {
     private String productID;
     private String productName;
     private double productPrice;
-    //private URL productImageURL;
     private String productImageURL;
-
 
     public Product() {
         // Required
