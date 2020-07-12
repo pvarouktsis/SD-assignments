@@ -24,12 +24,12 @@ public class MyAccountFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         // initialize ui
-        View myAccount_view = inflater.inflate(R.layout.fragment_my_account, container, false);
-        initializeUIComponents(myAccount_view);
+        View myAccountView = inflater.inflate(R.layout.fragment_my_account, container, false);
+        initializeUIComponents(myAccountView);
         // initialize Firebase
         fa = FirebaseAuth.getInstance();
 
-        return myAccount_view;
+        return myAccountView;
     }
 
     private void initializeUIComponents(View v) {

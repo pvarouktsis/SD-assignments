@@ -17,12 +17,12 @@ public class HomeFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         // initialize ui
-        View home_view = inflater.inflate(R.layout.fragment_home, container, false);
+        View homeView = inflater.inflate(R.layout.fragment_home, container, false);
 
         // TODO
         // ImageButton
 
-        return home_view;
+        return homeView;
     }
 
 }

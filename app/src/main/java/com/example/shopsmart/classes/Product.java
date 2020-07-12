@@ -4,23 +4,24 @@ package com.example.shopsmart.classes;
 
 public class Product {
     private String productID;
-    //private URL productImageURL;
-    private String productImageURL;
     private String productName;
     private double productPrice;
+    //private URL productImageURL;
+    private String productImageURL;
+
 
     public Product() {
         // Required
     }
 
     public Product(String productID,
-                   String productImageURL,
                    String productName,
-                   double productPrice) {
+                   double productPrice,
+                   String productImageURL) {
         this.productID = productID;
-        this.productImageURL = productImageURL;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productImageURL = productImageURL;
     }
 
     public String getProductID() {
@@ -29,14 +30,6 @@ public class Product {
 
     public void setProductID(String productID) {
         this.productID = productID;
-    }
-
-    public String getProductImageURL() {
-        return productImageURL;
-    }
-
-    public void setProductImageURL(String productImageURL) {
-        this.productImageURL = productImageURL;
     }
 
     public String getProductName() {
@@ -54,4 +47,13 @@ public class Product {
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
+
+    public String getProductImageURL() {
+        return productImageURL;
+    }
+
+    public void setProductImageURL(String productImageURL) {
+        this.productImageURL = productImageURL;
+    }
+
 }
