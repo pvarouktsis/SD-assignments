@@ -52,4 +52,7 @@ public class Product {
         this.productImageURL = productImageURL;
     }
 
+    public String getProductPriceToString() {
+        return Double.toString(productPrice) + " \u20ac"; // \u20ac is for euro sign
+    }
 }

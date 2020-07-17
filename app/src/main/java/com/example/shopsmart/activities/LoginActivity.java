@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private final static String TAG = "TAG_LOGIN_ACTIVITY";
+    private final static String TAG = "LOGIN_ACTIVITY";
     private String sEmail;
     private String sPassword;
     private EditText etEmail;
@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: called");
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -40,12 +41,14 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart: called");
         super.onStart();
         FirebaseUser fu = fa.getCurrentUser();
         updateUI(fu);
     }
 
     private void initializeUIComponents() {
+        Log.d(TAG, "initializeComponents: called");
         // initialize components
         etEmail = findViewById(R.id.input_email);
         etPassword = findViewById(R.id.input_password);
@@ -57,17 +60,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
+        Log.d(TAG, "loginUser: called");
         fa.signInWithEmailAndPassword(sEmail, sPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmailAndPassword: success");
+                            Log.d(TAG, "signInWithEmailAndPasswordTask: succeeded");
                             FirebaseUser fu = fa.getCurrentUser();
                             updateUI(fu);
                         } else {
-                            Log.w(TAG, "signInWithEmailAndPassword: failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "login failed", Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "signInWithEmailAndPasswordTask: failed", task.getException());
+                            Toast.makeText(LoginActivity.this, "sign in failed", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -75,22 +79,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void convertEditTextToString() {
+        Log.d(TAG, "convertEditTextToString: called");
         sEmail = etEmail.getText().toString().trim();
         sPassword = etPassword.getText().toString().trim();
     }
 
     private void updateUI(FirebaseUser fu) {
+        Log.d(TAG, "updateUI: called");
         if (fu != null) {
+            Log.d(TAG, "signInWithEmailAndPassword: succeeded");
+            Toast.makeText(LoginActivity.this, "sign in succeeded", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }
 
     private void goToMainActivity() {
+        Log.d(TAG, "goToMainActivity: called");
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
     private void goToRegisterActivity() {
+        Log.d(TAG, "goToRegisterActivity: called");
         startActivity(new Intent(this, RegisterActivity.class));
         finish();
     }
@@ -102,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "loginListener: called");
                     convertEditTextToString();
                     loginUser();
                 }
@@ -114,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "registerListener: called");
                     goToRegisterActivity();
                 }
             };

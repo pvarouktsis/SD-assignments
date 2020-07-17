@@ -7,22 +7,13 @@
     android:background="@color/transparent"
     tools:context=".activities.MainActivity">
 
-    <!-- main frame -->
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/product_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top" >
-
-        <ListView
-            android:id="@+id/product_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/transparent"
-            android:dividerHeight="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="80dp"
-            android:clipToPadding="false" />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false" />
 
 </RelativeLayout>

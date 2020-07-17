@@ -24,7 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String TAG = "TAG_REGISTER_ACTIVITY";
+    private static final String TAG = "REGISTER_ACTIVITY";
     private User user;
     private EditText etUsername;
     private EditText etEmail;
@@ -36,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: called");
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -47,12 +48,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        Log.d(TAG, "onStart: called");
         super.onStart();
         FirebaseUser fu = fa.getCurrentUser();
         updateUI(fu);
     }
 
     private void initializeUIComponents() {
+        Log.d(TAG, "initializeUIComponents: called");
         // initialize components
         etUsername = findViewById(R.id.input_username);
         etEmail = findViewById(R.id.input_email);
@@ -65,18 +68,19 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
+        Log.d(TAG, "registerUser: called");
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmailAndPassword: success");
+                            Log.d(TAG, "createUserWithEmailAndPasswordTask: succeeded");
                             FirebaseUser fu = fa.getCurrentUser();
                             writeUser();
                             updateUI(fu);
                         } else {
-                            Log.w(TAG, "createUserWithEmailAndPassword: failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "register failed", Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "createUserWithEmailAndPasswordTask: failure", task.getException());
+                            Toast.makeText(RegisterActivity.this, "sign up failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -84,43 +88,49 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void writeUser() {
+        Log.d(TAG, "writeUser: called");
         ffdb.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "user added " + documentReference.getId());
+                        Log.d(TAG, "writeUser: succeeded" + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "error adding user", e);
+                        Log.w(TAG, "writeUser: failure");
                     }
                 });
     }
 
     private void createUser() {
+        Log.d(TAG, "createUser: called");
         user = new User(
                 etUsername.getText().toString().trim(),
                 etEmail.getText().toString().trim(),
                 etPassword.getText().toString().trim()
         );
-
     }
 
     private void updateUI(FirebaseUser fu) {
+        Log.d(TAG, "updateUI: called");
         if (fu != null) {
+            Log.d(TAG, "signInWithEmailAndPassword: succeeded");
+            Toast.makeText(RegisterActivity.this, "sign up succeeded", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }
 
     private void goToMainActivity() {
+        Log.d(TAG, "goToMainActivity: called");
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
     private void goToLoginActivity() {
+        Log.d(TAG, "goToLoginActivity: called");
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
@@ -133,6 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "registerListener: called");
                     createUser();
                     registerUser();
                 }
@@ -145,6 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "loginListener: called");
                     goToLoginActivity();
                 }
             };
