@@ -1,51 +1,51 @@
 package com.example.shopsmart.fragments.on_sale;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.classes.Product;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ProductListAdapter extends ArrayAdapter<Product> {
-    //private static final String TAG = "TAG_PRODUCT_LIST_ADAPTER";
-    private Context plaContext;
-    private int plaResource;
-    private StorageReference sr = FirebaseStorage.getInstance().getReference();
+public class ProductListAdapter  extends RecyclerView.Adapter<ProductViewHolder> {
+    private static final String TAG = "PRODUCT_LIST_ADAPTER";
+    private Context context;
+    private ArrayList<Product> products = new ArrayList<>();
 
-    public ProductListAdapter(Context context, int resource, List<Product> objects) {
-        super(context, resource, objects);
-        plaContext = context;
-        plaResource = resource;
+    public ProductListAdapter(Context context, ArrayList<Product> products) {
+        this.context = context;
+        this.products = products;
+    }
+
+    @NonNull
+    @Override
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder: called");
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.layout_product, parent, false);
+        ProductViewHolder pvh = new ProductViewHolder(view);
+        return pvh;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) throws NullPointerException {
-        String productName = getItem(position).getProductName();
-        double productPrice = getItem(position).getProductPrice();
-        String productImageURL = getItem(position).getProductImageURL();
-
-        LayoutInflater inflater = LayoutInflater.from(plaContext);
-        convertView = inflater.inflate(plaResource, parent, false);
-
-        TextView tvProductName = convertView.findViewById(R.id.product_name);
-        TextView tvProductPrice = convertView.findViewById(R.id.product_price);
-        ImageView ivProductImageURL = convertView.findViewById(R.id.image_product);
-
-        tvProductName.setText(productName);
-        tvProductPrice.setText(Double.toString(productPrice) + " \u20ac"); // \u20ac stands for euro
-        Picasso.get().load(productImageURL).into(ivProductImageURL);
-
-        return convertView;
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder: called");
+        Picasso.get().load(products.get(position).getProductImageURL()).into(holder.getIVProductImageURL()); // printing image
+        holder.getTVProductName().setText(products.get(position).getProductName());
+        holder.getTVProductPrice().setText(products.get(position).getProductPriceToString());
     }
 
+    @Override
+    public int getItemCount() {
+        Log.d(TAG, "getItemCount: called");
+        return products.size();
+    }
 }
