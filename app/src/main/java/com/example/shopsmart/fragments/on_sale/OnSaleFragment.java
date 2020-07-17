@@ -31,9 +31,9 @@ public class OnSaleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: called");
         // initialize ui
         View onSaleView = inflater.inflate(R.layout.fragment_on_sale, container, false);
-
         // read and show products
         readProducts(onSaleView);
 
@@ -53,10 +53,10 @@ public class OnSaleFragment extends Fragment {
                                     addProduct(d);
                                 }
                             }
-                            Log.d(TAG, "onComplete: data retrieved");
+                            Log.d(TAG, "retrieveProductsFromFirestore: succeeded");
                             showProducts(onSaleView);
                         } else {
-                            Log.w(TAG, "onComplete: error retrieving data", task.getException());
+                            Log.w(TAG, "retrieveProductsFromFirestore: failed", task.getException());
                         }
                     }
                 });

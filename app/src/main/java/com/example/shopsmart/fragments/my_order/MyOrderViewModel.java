@@ -1,11 +1,13 @@
 package com.example.shopsmart.fragments.my_order;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class MyOrderViewModel extends ViewModel {
-    //private static final String TAG = "TAG_MY_ORDER_VIEW";
+    private static final String TAG = "MY_ORDER_VIEW_MODEL";
     private MutableLiveData<String> mText;
 
     public MyOrderViewModel() {
@@ -14,6 +16,7 @@ public class MyOrderViewModel extends ViewModel {
     }
 
     public LiveData<String> getText() {
+        Log.d(TAG, "getText: called");
         return mText;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.shopsmart.fragments.my_order;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,12 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.shopsmart.R;
 
 public class MyOrderFragment extends Fragment {
-    //private static final String TAG = "TAG_MY_ORDER";
+    private static final String TAG = "MY_ORDER";
     private MyOrderViewModel myOrderViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: called");
         myOrderViewModel =
                 ViewModelProviders.of(this).get(MyOrderViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my_order, container, false);
