@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/shape_active"
     android:gravity="top"
-    android:padding="20dp">
+    android:padding="20dp" >
 
     <ImageView
         android:id="@+id/product_image"
@@ -56,7 +56,6 @@
 
     <Button
         android:id="@+id/button_extend"
-        android:visibility="visible"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_below="@id/product_price"
@@ -68,50 +67,51 @@
         android:layout_marginBottom="0dp"
         android:background="@drawable/ic_down_arrow"
         android:gravity="center"
-        android:padding="20dp" />
+        android:padding="20dp"
+        android:visibility="visible" />
 
     <!-- expanded layout, default not visible-->
     <RelativeLayout
         android:id="@+id/product_expanded"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/product_price"
-        android:layout_marginTop="35dp" >
+        android:layout_marginTop="35dp"
+        android:visibility="gone" >
 
-            <TextView
-                android:id="@+id/product_supermarket"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="110dp"
-                android:layout_marginLeft="110dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:ellipsize="marquee"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="@string/product_supermarket"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/product_supermarket"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="110dp"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/product_supermarket"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/product_button_add"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/product_supermarket"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="0dp"
-                android:background="@drawable/shape_add_button"
-                android:paddingTop="0dp"
-                android:paddingBottom="7dp"
-                android:textAllCaps="false"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:text="@string/product_button_add"/>
+        <Button
+            android:id="@+id/product_button_add"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/product_supermarket"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/shape_add_button"
+            android:paddingTop="0dp"
+            android:paddingBottom="7dp"
+            android:text="@string/product_button_add"
+            android:textAllCaps="false"
+            android:textColor="@color/green"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

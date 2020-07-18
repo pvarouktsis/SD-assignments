@@ -45,23 +45,23 @@ public class OnSaleFragment extends Fragment {
     private void readProducts(final View onSaleView) {
         Log.d(TAG, "readProducts: called");
         ffdb.collection("products")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot d : task.getResult()) {
-                                if (!d.getId().equals("prototype")) { // if it is NOT the prototype document
-                                    addProduct(d);
-                                }
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot d : task.getResult()) {
+                            if (!d.getId().equals("prototype")) { // if it is NOT the prototype document
+                                addProduct(d);
                             }
-                            Log.d(TAG, "retrieveProductsFromFirestore: succeeded");
-                            showProducts(onSaleView);
-                        } else {
-                            Log.w(TAG, "retrieveProductsFromFirestore: failed", task.getException());
                         }
+                        Log.d(TAG, "retrieveProductsFromFirestore: succeeded");
+                        showProducts(onSaleView);
+                    } else {
+                        Log.w(TAG, "retrieveProductsFromFirestore: failed", task.getException());
                     }
-                });
+                }
+            });
     }
 
     private void showProducts(final View onSaleView) {

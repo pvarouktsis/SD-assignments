@@ -79,30 +79,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                Fragment f = null;
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    Log.d(TAG, "navigationListener: called");
-                    switch (menuItem.getItemId()) {
-                        case R.id.navigation_home:
-                            f = new HomeFragment();
-                            break;
-                        case R.id.navigation_my_order:
-                            f = new MyOrderFragment();
-                            break;
-                        case R.id.navigation_on_sale:
-                            f = new OnSaleFragment();
-                            break;
-                        case R.id.navigation_my_account:
-                            f = new MyAccountFragment();
-                            break;
-                        default:
-                            return false;
-                    }
-                    replace(R.id.main_frame_container, f);
-                    return true;
+        new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Fragment f = null;
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Log.d(TAG, "navigationListener: called");
+                switch (menuItem.getItemId()) {
+                    case R.id.navigation_home:
+                        f = new HomeFragment();
+                        break;
+                    case R.id.navigation_my_order:
+                        f = new MyOrderFragment();
+                        break;
+                    case R.id.navigation_on_sale:
+                        f = new OnSaleFragment();
+                        break;
+                    case R.id.navigation_my_account:
+                        f = new MyAccountFragment();
+                        break;
+                    default:
+                        return false;
                 }
-            };
+                replace(R.id.main_frame_container, f);
+                return true;
+            }
+        };
 
 }

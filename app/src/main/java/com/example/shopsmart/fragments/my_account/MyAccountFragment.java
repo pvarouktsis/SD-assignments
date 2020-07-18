@@ -69,11 +69,11 @@ public class MyAccountFragment extends Fragment {
     }
 
     private View.OnClickListener logoutListener =
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "logoutListener: called");
-                    logoutUser();
-                }
-            };
+        new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "logoutListener: called");
+                logoutUser();
+            }
+        };
 }

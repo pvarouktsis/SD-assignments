@@ -66,20 +66,20 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         Log.d(TAG, "loginUser: called");
         fa.signInWithEmailAndPassword(sEmail, sPassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmailAndPasswordTask: succeeded");
-                            FirebaseUser fu = fa.getCurrentUser();
-                            updateUI(fu);
-                        } else {
-                            Log.w(TAG, "signInWithEmailAndPasswordTask: failed", task.getException());
-                            Toast.makeText(LoginActivity.this, "sign in failed", Toast.LENGTH_SHORT).show();
-                        }
-
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInWithEmailAndPasswordTask: succeeded");
+                        FirebaseUser fu = fa.getCurrentUser();
+                        updateUI(fu);
+                    } else {
+                        Log.w(TAG, "signInWithEmailAndPasswordTask: failed", task.getException());
+                        Toast.makeText(LoginActivity.this, "sign in failed", Toast.LENGTH_SHORT).show();
                     }
-                });
+
+                }
+            });
     }
 
     private void convertEditTextToString() {
@@ -113,25 +113,25 @@ public class LoginActivity extends AppCompatActivity {
      * Login's button OnClickListener
      */
     private View.OnClickListener loginListener =
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "loginListener: called");
-                    convertEditTextToString();
-                    loginUser();
-                }
-            };
+        new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "loginListener: called");
+                convertEditTextToString();
+                loginUser();
+            }
+        };
 
     /*
      * Register's button OnClickListener
      */
     private View.OnClickListener registerListener =
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "registerListener: called");
-                    goToRegisterActivity();
-                }
-            };
+        new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "registerListener: called");
+                goToRegisterActivity();
+            }
+        };
 
 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/aqua"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".activities.RegisterActivity" >
 
     <!-- main frame -->
@@ -15,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp" >
 
         <!-- ShopSmart logo -->
         <LinearLayout
@@ -35,12 +34,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
-                android:layout_marginLeft="25dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
                 android:gravity="center"
-                android:textSize="30sp"
+                android:text="@string/app_name"
                 android:textColor="@color/black"
-                android:text="@string/app_name"/>
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -51,7 +50,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/input_username"
@@ -63,11 +62,11 @@
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_username"
-                android:paddingTop="0dp"
-                android:paddingBottom="5dp"
+                android:inputType="textPersonName"
                 android:paddingLeft="30dp"
+                android:paddingTop="0dp"
                 android:paddingRight="30dp"
-                android:inputType="textPersonName" />
+                android:paddingBottom="5dp" />
 
             <EditText
                 android:id="@+id/input_email"
@@ -79,11 +78,11 @@
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_email"
-                android:paddingTop="0dp"
-                android:paddingBottom="5dp"
+                android:inputType="textEmailAddress"
                 android:paddingLeft="30dp"
+                android:paddingTop="0dp"
                 android:paddingRight="30dp"
-                android:inputType="textEmailAddress" />
+                android:paddingBottom="5dp" />
 
             <EditText
                 android:id="@+id/input_password"
@@ -95,11 +94,11 @@
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_password"
-                android:paddingTop="0dp"
-                android:paddingBottom="5dp"
+                android:inputType="textPassword"
                 android:paddingLeft="30dp"
+                android:paddingTop="0dp"
                 android:paddingRight="30dp"
-                android:inputType="textPassword" />
+                android:paddingBottom="5dp" />
 
             <Button
                 android:id="@+id/button_register"
@@ -113,9 +112,9 @@
                 android:gravity="center"
                 android:paddingTop="0dp"
                 android:paddingBottom="5dp"
+                android:text="@string/title_register"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:text="@string/title_register" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button_login"
@@ -129,9 +128,9 @@
                 android:gravity="center"
                 android:paddingTop="0dp"
                 android:paddingBottom="5dp"
+                android:text="@string/title_login"
                 android:textAllCaps="false"
-                android:textSize="18sp"
-                android:text="@string/title_login" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

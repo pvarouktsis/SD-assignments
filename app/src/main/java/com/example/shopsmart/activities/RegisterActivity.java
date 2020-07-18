@@ -74,47 +74,47 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser() {
         Log.d(TAG, "registerUser: called");
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
-                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmailAndPasswordTask: succeeded");
-                            FirebaseUser fu = fa.getCurrentUser();
-                            writeUser();
-                            updateUI(fu);
-                        } else {
-                            Log.w(TAG, "createUserWithEmailAndPasswordTask: failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "sign up failed", Toast.LENGTH_SHORT).show();
-                        }
+            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "createUserWithEmailAndPasswordTask: succeeded");
+                        FirebaseUser fu = fa.getCurrentUser();
+                        writeUser();
+                        updateUI(fu);
+                    } else {
+                        Log.w(TAG, "createUserWithEmailAndPasswordTask: failure", task.getException());
+                        Toast.makeText(RegisterActivity.this, "sign up failed", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
+            });
 
     }
 
     private void writeUser() {
         Log.d(TAG, "writeUser: called");
         ffdb.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "writeUser: succeeded" + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "writeUser: failure");
-                    }
-                });
+            .add(user)
+            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.d(TAG, "writeUser: succeeded" + documentReference.getId());
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "writeUser: failure");
+                }
+            });
     }
 
     private void createUser() {
         Log.d(TAG, "createUser: called");
         user = new User(
-                etUsername.getText().toString().trim(),
-                etEmail.getText().toString().trim(),
-                etPassword.getText().toString().trim()
+            etUsername.getText().toString().trim(),
+            etEmail.getText().toString().trim(),
+            etPassword.getText().toString().trim()
         );
     }
 
@@ -144,25 +144,25 @@ public class RegisterActivity extends AppCompatActivity {
      * Register's button OnClickListener
      */
     private View.OnClickListener registerListener =
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "registerListener: called");
-                    createUser();
-                    registerUser();
-                }
-            };
+        new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "registerListener: called");
+                createUser();
+                registerUser();
+            }
+        };
 
     /*
      * Login's button OnClickListener
      */
     private View.OnClickListener loginListener =
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "loginListener: called");
-                    goToLoginActivity();
-                }
-            };
+        new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "loginListener: called");
+                goToLoginActivity();
+            }
+        };
 
 }
