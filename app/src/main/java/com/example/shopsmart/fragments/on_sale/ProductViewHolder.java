@@ -13,26 +13,38 @@ import com.example.shopsmart.R;
 public class ProductViewHolder extends RecyclerView.ViewHolder {
     //private static final String TAG="PRODUCT_VIEW_HOLDER";
     private RelativeLayout rlProduct;
+    private RelativeLayout rlProductExpanded;
     private ImageView ivProductImageURL;
     private TextView tvProductName;
     private TextView tvProductPrice;
-    private Button btnExtend;
+    private TextView tvProductSupermarket;
+    private Button buttonExtend;
 
     public ProductViewHolder(View productView) {
         super(productView);
         rlProduct = productView.findViewById(R.id.product);
-        ivProductImageURL = productView.findViewById(R.id.image_product);
+        rlProductExpanded = productView.findViewById(R.id.product_expanded);
+        ivProductImageURL = productView.findViewById(R.id.product_image);
         tvProductName = productView.findViewById(R.id.product_name);
         tvProductPrice = productView.findViewById(R.id.product_price);
-        btnExtend = productView.findViewById(R.id.button_extend);
+        tvProductSupermarket = productView.findViewById(R.id.product_supermarket);
+        buttonExtend = productView.findViewById(R.id.button_extend);
     }
 
-    public RelativeLayout getRLFrameProduct() {
+    public RelativeLayout getRLProduct() {
         return rlProduct;
     }
 
-    public void setRLFrameProduct(RelativeLayout rlFrameProduct) {
-        this.rlProduct = rlFrameProduct;
+    public void setRLProduct(RelativeLayout rlProduct) {
+        this.rlProduct = rlProduct;
+    }
+
+    public RelativeLayout getRLProductExpanded() {
+        return rlProductExpanded;
+    }
+
+    public void setRLProductExpanded(RelativeLayout rlProductExpanded) {
+        this.rlProductExpanded = rlProductExpanded;
     }
 
     public ImageView getIVProductImageURL() {
@@ -59,11 +71,19 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         this.tvProductPrice = tvProductPrice;
     }
 
-    public Button getBtnExtend() {
-        return btnExtend;
+    public TextView getTvProductSupermarket() {
+        return tvProductSupermarket;
     }
 
-    public void setBtnExtend(Button btnExtend) {
-        this.btnExtend = btnExtend;
+    public void setTvProductSupermarket(TextView tvProductSupermarket) {
+        this.tvProductSupermarket = tvProductSupermarket;
+    }
+
+    public Button getButtonExtend() {
+        return buttonExtend;
+    }
+
+    public void setButtonExtend(Button btnExtend) {
+        this.buttonExtend = btnExtend;
     }
 }

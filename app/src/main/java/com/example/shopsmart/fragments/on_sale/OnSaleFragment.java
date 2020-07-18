@@ -32,8 +32,10 @@ public class OnSaleFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: called");
+
         // initialize ui
         View onSaleView = inflater.inflate(R.layout.fragment_on_sale, container, false);
+
         // read and show products
         readProducts(onSaleView);
 

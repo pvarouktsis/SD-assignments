@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: called");
+
         // initialize ui
         View homeView = inflater.inflate(R.layout.fragment_home, container, false);
 

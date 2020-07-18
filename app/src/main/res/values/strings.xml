@@ -20,5 +20,7 @@
     <!-- product's attributes -->
     <string name="product_name">product_name</string>
     <string name="product_price">product_price</string>
+    <string name="product_supermarket">product_supermarket</string>
+    <string name="product_button_add">add +</string>
 
 </resources>

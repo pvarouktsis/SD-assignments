@@ -37,10 +37,12 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: called");
+
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initializeUIComponents();
+
         // initialize Firebase
         fa = FirebaseAuth.getInstance();
         ffdb = FirebaseFirestore.getInstance();
@@ -56,12 +58,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initializeUIComponents() {
         Log.d(TAG, "initializeUIComponents: called");
+
         // initialize components
         etUsername = findViewById(R.id.input_username);
         etEmail = findViewById(R.id.input_email);
         etPassword = findViewById(R.id.input_password);
         btnRegister = findViewById(R.id.button_register);
         btnLogin = findViewById(R.id.button_login);
+
         // on click
         btnRegister.setOnClickListener(registerListener);
         btnLogin.setOnClickListener(loginListener);

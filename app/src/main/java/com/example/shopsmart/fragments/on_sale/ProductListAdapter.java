@@ -19,6 +19,8 @@ public class ProductListAdapter  extends RecyclerView.Adapter<ProductViewHolder>
     private static final String TAG = "PRODUCT_LIST_ADAPTER";
     private Context context;
     private ArrayList<Product> products = new ArrayList<>();
+    private int expandedPosition = -1;
+    private int previousExpandedPosition = -1;
 
     public ProductListAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
@@ -36,11 +38,32 @@ public class ProductListAdapter  extends RecyclerView.Adapter<ProductViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
+
+        // initialize view of product
         Picasso.get().load(products.get(position).getProductImageURL()).into(holder.getIVProductImageURL()); // printing image
         holder.getTVProductName().setText(products.get(position).getProductName());
         holder.getTVProductPrice().setText(products.get(position).getProductPriceToString());
+
+        // expand view of product
+        final boolean isExpanded = (expandedPosition == position);
+        holder.getRLProductExpanded().setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand product based on current state
+        holder.getButtonExtend().setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
+        holder.getRLProduct().setActivated(isExpanded);
+
+        if (isExpanded) {
+            previousExpandedPosition = position;
+        }
+
+        holder.getRLProduct().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expandedPosition = isExpanded ? -1 : position;
+                notifyItemChanged(previousExpandedPosition);
+                notifyItemChanged(position);
+            }
+        });
     }
 
     @Override

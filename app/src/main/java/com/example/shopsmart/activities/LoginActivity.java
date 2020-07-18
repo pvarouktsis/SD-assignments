@@ -31,10 +31,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: called");
+
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initializeUIComponents();
+
         // initialize Firebase
         fa = FirebaseAuth.getInstance();
     }
@@ -49,11 +51,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initializeUIComponents() {
         Log.d(TAG, "initializeComponents: called");
+
         // initialize components
         etEmail = findViewById(R.id.input_email);
         etPassword = findViewById(R.id.input_password);
         btnLogin = findViewById(R.id.button_login);
         btnRegister = findViewById(R.id.button_register);
+
         // on click
         btnLogin.setOnClickListener(loginListener);
         btnRegister.setOnClickListener(registerListener);

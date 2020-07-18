@@ -27,13 +27,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: called");
+
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         replace(R.id.main_frame_container, new HomeFragment());
+
         // initialize bottom navigation bar
         BottomNavigationView bnv = findViewById(R.id.navigation_container);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
+
         // initialize Firebase
         fa = FirebaseAuth.getInstance();
     }

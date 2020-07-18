@@ -26,9 +26,11 @@ public class MyAccountFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: called");
+
         // initialize ui
         View myAccountView = inflater.inflate(R.layout.fragment_my_account, container, false);
         initializeUIComponents(myAccountView);
+
         // initialize Firebase
         fa = FirebaseAuth.getInstance();
 
@@ -37,8 +39,10 @@ public class MyAccountFragment extends Fragment {
 
     private void initializeUIComponents(View v) {
         Log.d(TAG, "initializeUIComponents: called");
+
         // initialize components
         btnLogout = v.findViewById(R.id.button_logout);
+
         // on click
         btnLogout.setOnClickListener(logoutListener);
     }
