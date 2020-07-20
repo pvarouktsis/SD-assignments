@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.classes.Product;
+import com.example.shopsmart.helpers.ProductListAdapter;
+import com.example.shopsmart.helpers.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,6 +28,7 @@ public class OnSaleFragment extends Fragment {
     private static final String TAG = "ON_SALE_FRAGMENT";
     private static final int VERTICAL_SPACE = 20;
     private ArrayList<Product> products = new ArrayList<>();
+    private RecyclerView rvProductList;
     private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,11 +38,19 @@ public class OnSaleFragment extends Fragment {
 
         // initialize ui
         View onSaleView = inflater.inflate(R.layout.fragment_on_sale, container, false);
+        initializeUIComponents(onSaleView);
 
         // read and show products
         readProducts(onSaleView);
 
         return onSaleView;
+    }
+
+    private void initializeUIComponents(View onSaleView) {
+        Log.d(TAG, "initializeUIComponents: called");
+
+        // initialize components
+        rvProductList = onSaleView.findViewById(R.id.product_list);
     }
 
     private void readProducts(final View onSaleView) {
@@ -64,24 +75,23 @@ public class OnSaleFragment extends Fragment {
             });
     }
 
-    private void showProducts(final View onSaleView) {
+    private void showProducts(View onSaleView) {
         Log.d(TAG, "showProducts: called");
-        RecyclerView rv = onSaleView.findViewById(R.id.product_list);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(llm);
+        rvProductList.setLayoutManager(llm);
         VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
-        rv.addItemDecoration(vsid);
+        rvProductList.addItemDecoration(vsid);
         ProductListAdapter plrv = new ProductListAdapter(getContext(), products);
-        rv.setAdapter(plrv);
+        rvProductList.setAdapter(plrv);
     }
 
     private void addProduct(DocumentSnapshot d) {
         Log.d(TAG, "addProduct: called");
         Product p = new Product();
         p.setProductID(d.getId());
-        p.setProductName(d.getString("productName"));
-        p.setProductPrice(d.getDouble("productPrice"));
-        p.setProductImageURL(d.getString("productImageURL"));
+        p.setProductName(d.getString("name"));
+        p.setProductPrice(d.getDouble("price"));
+        p.setProductImageURL(d.getString("image_url"));
         products.add(p);
     }
 

@@ -10,6 +10,7 @@
     <!-- main frame -->
     <LinearLayout
         android:id="@+id/frame_search"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
@@ -74,9 +75,10 @@
                 android:id="@+id/button_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
+                android:layout_marginTop="-2dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginRight="0dp"
                 android:background="#00000000"
@@ -86,5 +88,15 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/product_list"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="80dp"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>

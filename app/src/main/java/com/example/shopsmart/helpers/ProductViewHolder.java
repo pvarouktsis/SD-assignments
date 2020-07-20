@@ -1,4 +1,4 @@
-package com.example.shopsmart.fragments.on_sale;
+package com.example.shopsmart.helpers;
 
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +18,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     private TextView tvProductName;
     private TextView tvProductPrice;
     private TextView tvProductSupermarket;
-    private Button buttonExtend;
+    private Button btnExtend;
 
     public ProductViewHolder(View productView) {
         super(productView);
@@ -28,7 +28,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         tvProductName = productView.findViewById(R.id.product_name);
         tvProductPrice = productView.findViewById(R.id.product_price);
         tvProductSupermarket = productView.findViewById(R.id.product_supermarket);
-        buttonExtend = productView.findViewById(R.id.button_extend);
+        btnExtend = productView.findViewById(R.id.button_extend);
     }
 
     public RelativeLayout getRLProduct() {
@@ -80,10 +80,10 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     public Button getButtonExtend() {
-        return buttonExtend;
+        return btnExtend;
     }
 
     public void setButtonExtend(Button btnExtend) {
-        this.buttonExtend = btnExtend;
+        this.btnExtend = btnExtend;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.shopsmart.fragments.on_sale;
+package com.example.shopsmart.helpers;
 
 import android.content.Context;
 import android.util.Log;
