@@ -2,26 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_container"
+    android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/aqua"
-    tools:context=".activities.MainActivity" >
+    tools:context=".views.activities.MainActivity" >
 
     <!-- frame layout -->
     <FrameLayout
-        android:id="@+id/main_frame_container"
+        android:id="@+id/layout_main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <!-- bottom navbar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation_container"
+        android:id="@+id/layout_bottom_navbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="false"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/shape_bottom_navbar"
+        android:background="@drawable/ll_bottom_navbar"
         app:itemTextColor="@color/aqua"
         app:menu="@menu/bottom_navigation_menu" />
 

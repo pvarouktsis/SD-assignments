@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_account_fragment"
+    android:id="@+id/layout_my_account"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity" >
+    tools:context=".views.activities.MainActivity" >
 
     <!-- main frame -->
     <LinearLayout
-        android:id="@+id/list_my_account_fragment"
+        android:id="@+id/layout_main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/title_my_account_fragment"
+            android:id="@+id/title_my_account"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/shape_active"
+            android:background="@drawable/ll_active"
             android:gravity="center"
             android:paddingTop="0dp"
             android:paddingBottom="5dp"
@@ -33,7 +33,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/shape_active"
+            android:background="@drawable/ll_active"
             android:gravity="center_vertical"
             android:paddingLeft="40dp"
             android:paddingTop="0dp"

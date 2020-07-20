@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_fragment"
+    android:id="@+id/layout_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".activities.MainActivity" >
+    tools:context=".views.activities.MainActivity" >
 
     <!-- main frame -->
     <LinearLayout
-        android:id="@+id/frame_search"
+        android:id="@+id/layout_main_container"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +24,7 @@
 
         <!-- ShopSmart logo -->
         <LinearLayout
+            android:id="@+id/shopsmart_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -31,35 +32,25 @@
             android:gravity="center"
             android:orientation="horizontal" >
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_logo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginLeft="25dp"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+            <include
+                layout="@layout/layout_shopsmart_logo" />
 
         </LinearLayout>
 
         <!-- search form -->
         <RelativeLayout
+            android:id="@+id/search_form"
             android:layout_width="350dp"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp" >
+            android:layout_marginBottom="0dp"
+            android:padding="5dp" >
 
             <EditText
                 android:id="@+id/input_search"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="@drawable/shape_active"
+                android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_search"

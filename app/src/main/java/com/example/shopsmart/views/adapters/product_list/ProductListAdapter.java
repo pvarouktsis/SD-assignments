@@ -1,4 +1,4 @@
-package com.example.shopsmart.helpers;
+package com.example.shopsmart.views.adapters.product_list;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.classes.Product;
+import com.example.shopsmart.model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,14 +42,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
         Log.d(TAG, "onBindViewHolder: called");
 
         // initialize view of product
-        Picasso.get().load(products.get(position).getProductImageURL()).into(holder.getIVProductImageURL()); // printing image
-        holder.getTVProductName().setText(products.get(position).getProductName());
-        holder.getTVProductPrice().setText(products.get(position).getProductPriceToString());
+        Picasso.get().load(products.get(position).getImageURL()).into(holder.getIVProductImageURL()); // printing image
+        holder.getTVProductName().setText(products.get(position).getName());
+        holder.getTVProductPrice().setText(products.get(position).getPriceToString());
 
         // expand view of product
         final boolean isExpanded = (expandedPosition == position);
         holder.getRLProductExpanded().setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand product based on current state
-        holder.getButtonExtend().setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
+        holder.getBtnExtend().setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
         holder.getRLProduct().setActivated(isExpanded);
 
         if (isExpanded) {

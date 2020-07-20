@@ -11,14 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/ShopSmartTheme" >
         <activity
-            android:name="com.example.shopsmart.activities.MainActivity" >
+            android:name=".views.activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.shopsmart.activities.LoginActivity" />
-        <activity android:name="com.example.shopsmart.activities.RegisterActivity" />
+        <activity android:name=".views.activities.LoginActivity" />
+        <activity android:name=".views.activities.RegisterActivity" />
     </application>
 
 </manifest>

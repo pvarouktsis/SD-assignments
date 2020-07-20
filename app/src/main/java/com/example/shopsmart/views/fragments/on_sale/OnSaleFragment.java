@@ -1,4 +1,4 @@
-package com.example.shopsmart.fragments.on_sale;
+package com.example.shopsmart.views.fragments.on_sale;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.classes.Product;
-import com.example.shopsmart.helpers.ProductListAdapter;
-import com.example.shopsmart.helpers.VerticalSpaceItemDecoration;
+import com.example.shopsmart.model.Product;
+import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
+import com.example.shopsmart.utils.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -88,10 +88,10 @@ public class OnSaleFragment extends Fragment {
     private void addProduct(DocumentSnapshot d) {
         Log.d(TAG, "addProduct: called");
         Product p = new Product();
-        p.setProductID(d.getId());
-        p.setProductName(d.getString("name"));
-        p.setProductPrice(d.getDouble("price"));
-        p.setProductImageURL(d.getString("image_url"));
+        p.setId(d.getId());
+        p.setName(d.getString("name"));
+        p.setPrice(d.getDouble("price"));
+        p.setImageURL(d.getString("image_url"));
         products.add(p);
     }
 

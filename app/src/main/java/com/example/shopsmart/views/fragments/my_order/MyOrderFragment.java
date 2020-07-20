@@ -1,4 +1,4 @@
-package com.example.shopsmart.fragments.my_order;
+package com.example.shopsmart.views.fragments.my_order;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +25,7 @@ public class MyOrderFragment extends Fragment {
         myOrderViewModel =
             ViewModelProviders.of(this).get(MyOrderViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my_order, container, false);
-        final TextView textView = root.findViewById(R.id.text_my_order);
+        final TextView textView = root.findViewById(R.id.title_my_order);
         myOrderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

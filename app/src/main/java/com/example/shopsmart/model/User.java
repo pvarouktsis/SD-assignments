@@ -1,4 +1,4 @@
-package com.example.shopsmart.classes;
+package com.example.shopsmart.model;
 
 public class User {
     private String username;

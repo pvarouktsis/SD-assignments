@@ -1,4 +1,4 @@
-package com.example.shopsmart.activities;
+package com.example.shopsmart.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.fragments.home.HomeFragment;
-import com.example.shopsmart.fragments.my_account.MyAccountFragment;
-import com.example.shopsmart.fragments.my_order.MyOrderFragment;
-import com.example.shopsmart.fragments.on_sale.OnSaleFragment;
+import com.example.shopsmart.views.fragments.home.HomeFragment;
+import com.example.shopsmart.views.fragments.my_account.MyAccountFragment;
+import com.example.shopsmart.views.fragments.my_order.MyOrderFragment;
+import com.example.shopsmart.views.fragments.on_sale.OnSaleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replace(R.id.main_frame_container, new HomeFragment());
+        replace(R.id.layout_main_container, new HomeFragment());
 
         // initialize bottom navigation bar
-        BottomNavigationView bnv = findViewById(R.id.navigation_container);
+        BottomNavigationView bnv = findViewById(R.id.layout_bottom_navbar);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
 
         // initialize Firebase
@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void add(int currentID, Fragment fragment) {
         Log.d(TAG, "add: called");
-        Fragment f = new HomeFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(currentID, fragment).commit();
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void replace(int currentID, Fragment fragment) {
         Log.d(TAG, "replace: called");
-        Fragment f = new HomeFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(currentID, fragment).commit();
@@ -81,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
         new BottomNavigationView.OnNavigationItemSelectedListener() {
             Fragment f = null;
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Log.d(TAG, "navigationListener: called");
@@ -101,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         return false;
                 }
-                replace(R.id.main_frame_container, f);
+                replace(R.id.layout_main_container, f);
                 return true;
             }
         };

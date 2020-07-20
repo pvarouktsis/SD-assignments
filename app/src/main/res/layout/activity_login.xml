@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_form"
+    android:id="@+id/layout_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/aqua"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.LoginActivity" >
+    tools:context=".views.activities.LoginActivity" >
 
     <!-- main frame -->
     <LinearLayout
+        android:id="@+id/layout_main_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -19,6 +20,7 @@
 
         <!-- ShopSmart logo -->
         <LinearLayout
+            android:id="@+id/shopsmart_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -26,25 +28,14 @@
             android:gravity="center"
             android:orientation="horizontal" >
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_logo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginLeft="25dp"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+            <include
+                layout="@layout/layout_shopsmart_logo" />
 
         </LinearLayout>
 
         <!-- login form -->
         <LinearLayout
+            android:id="@+id/login_form"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -58,7 +49,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
-                android:background="@drawable/shape_active"
+                android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_email"
@@ -74,7 +65,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="0dp"
-                android:background="@drawable/shape_active"
+                android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_password"
@@ -91,7 +82,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="0dp"
-                android:background="@drawable/shape_active"
+                android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center"
                 android:paddingTop="0dp"
@@ -107,7 +98,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/shape_not_active"
+                android:background="@drawable/ll_inactive"
                 android:ems="10"
                 android:gravity="center"
                 android:paddingTop="0dp"

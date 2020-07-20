@@ -1,4 +1,4 @@
-package com.example.shopsmart.activities;
+package com.example.shopsmart.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

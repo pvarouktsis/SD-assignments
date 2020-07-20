@@ -1,4 +1,4 @@
-package com.example.shopsmart.fragments.home;
+package com.example.shopsmart.views.fragments.home;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.classes.Product;
-import com.example.shopsmart.helpers.ProductListAdapter;
-import com.example.shopsmart.helpers.VerticalSpaceItemDecoration;
+import com.example.shopsmart.model.Product;
+import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
+import com.example.shopsmart.utils.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,11 +31,11 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HOME_FRAGMENT";
     private static final int VERTICAL_SPACE = 20;
     private ArrayList<Product> products = new ArrayList<>();
+    private LinearLayout llMainContainer;
     private String sInputSearch;
-    private EditText etInputText;
+    private EditText etInputSearch;
     private ImageButton btnSearch;
-    private LinearLayout llFrameSearch;
-    private RecyclerView rv;
+    private RecyclerView rvProductList;
     private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,10 +54,10 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        etInputText = homeView.findViewById(R.id.input_search);
+        etInputSearch = homeView.findViewById(R.id.input_search);
         btnSearch = homeView.findViewById(R.id.button_search);
-        llFrameSearch = homeView.findViewById(R.id.frame_search);
-        rv = homeView.findViewById(R.id.product_list);
+        llMainContainer = homeView.findViewById(R.id.layout_main_container);
+        rvProductList = homeView.findViewById(R.id.product_list);
 
         // on click
         btnSearch.setOnClickListener(searchListener);
@@ -92,32 +92,30 @@ public class HomeFragment extends Fragment {
 
     private void showProducts(View homeView) {
         Log.d(TAG, "showProducts: called");
-
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(llm);
+        rvProductList.setLayoutManager(llm);
         VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
-        rv.addItemDecoration(vsid);
+        rvProductList.addItemDecoration(vsid);
         ProductListAdapter plrv = new ProductListAdapter(getContext(), products);
-        rv.setAdapter(plrv);
-
-        llFrameSearch.setVisibility(View.GONE);
-        rv.setVisibility(View.VISIBLE);
+        rvProductList.setAdapter(plrv);
+        llMainContainer.setVisibility(View.GONE);
+        rvProductList.setVisibility(View.VISIBLE);
     }
 
     private void addProduct(DocumentSnapshot d) {
         Log.d(TAG, "addProduct: called");
         Product p = new Product();
-        p.setProductID(d.getId());
-        p.setProductName(d.getString("name"));
-        p.setProductPrice(d.getDouble("price"));
-        p.setProductImageURL(d.getString("image_url"));
+        p.setId(d.getId());
+        p.setName(d.getString("name"));
+        p.setPrice(d.getDouble("price"));
+        p.setImageURL(d.getString("image_url"));
         products.add(p);
     }
 
 
     private void convertEditTextToString() {
         Log.d(TAG, "convertEditTextToString: called");
-        sInputSearch = etInputText.getText().toString();
+        sInputSearch = etInputSearch.getText().toString();
     }
 
     private View.OnClickListener searchListener = new View.OnClickListener() {

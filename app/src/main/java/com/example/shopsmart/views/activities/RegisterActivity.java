@@ -1,4 +1,4 @@
-package com.example.shopsmart.activities;
+package com.example.shopsmart.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.classes.User;
+import com.example.shopsmart.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

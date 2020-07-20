@@ -1,4 +1,4 @@
-package com.example.shopsmart.fragments.my_order;
+package com.example.shopsmart.views.fragments.my_order;
 
 import android.util.Log;
 

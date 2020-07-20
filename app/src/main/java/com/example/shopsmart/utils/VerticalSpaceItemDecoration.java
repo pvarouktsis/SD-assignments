@@ -1,4 +1,4 @@
-package com.example.shopsmart.helpers;
+package com.example.shopsmart.utils;
 
 import android.graphics.Rect;
 import android.view.View;

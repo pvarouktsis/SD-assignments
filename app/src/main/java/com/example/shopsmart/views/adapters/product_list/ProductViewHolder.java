@@ -1,4 +1,4 @@
-package com.example.shopsmart.helpers;
+package com.example.shopsmart.views.adapters.product_list;
 
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +13,7 @@ import com.example.shopsmart.R;
 public class ProductViewHolder extends RecyclerView.ViewHolder {
     //private static final String TAG="PRODUCT_VIEW_HOLDER";
     private RelativeLayout rlProduct;
+    private RelativeLayout rlProductNormal;
     private RelativeLayout rlProductExpanded;
     private ImageView ivProductImageURL;
     private TextView tvProductName;
@@ -22,7 +23,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 
     public ProductViewHolder(View productView) {
         super(productView);
-        rlProduct = productView.findViewById(R.id.product);
+        rlProduct = productView.findViewById(R.id.layout_product);
+        rlProductNormal = productView.findViewById(R.id.product_normal);
         rlProductExpanded = productView.findViewById(R.id.product_expanded);
         ivProductImageURL = productView.findViewById(R.id.product_image);
         tvProductName = productView.findViewById(R.id.product_name);
@@ -37,6 +39,14 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 
     public void setRLProduct(RelativeLayout rlProduct) {
         this.rlProduct = rlProduct;
+    }
+
+    public RelativeLayout getRLProductNormal() {
+        return rlProductNormal;
+    }
+
+    public void setRLProductNormal(RelativeLayout rlProductNormal) {
+        this.rlProductNormal = rlProductNormal;
     }
 
     public RelativeLayout getRLProductExpanded() {
@@ -71,19 +81,19 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         this.tvProductPrice = tvProductPrice;
     }
 
-    public TextView getTvProductSupermarket() {
+    public TextView getTVProductSupermarket() {
         return tvProductSupermarket;
     }
 
-    public void setTvProductSupermarket(TextView tvProductSupermarket) {
+    public void setTVProductSupermarket(TextView tvProductSupermarket) {
         this.tvProductSupermarket = tvProductSupermarket;
     }
 
-    public Button getButtonExtend() {
+    public Button getBtnExtend() {
         return btnExtend;
     }
 
-    public void setButtonExtend(Button btnExtend) {
+    public void setBtnExtend(Button btnExtend) {
         this.btnExtend = btnExtend;
     }
 }
