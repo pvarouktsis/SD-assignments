@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.model.Product;
+import com.example.shopsmart.models.Product;
 import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
 import com.example.shopsmart.utils.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;

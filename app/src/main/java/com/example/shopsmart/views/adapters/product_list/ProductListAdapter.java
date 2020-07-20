@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.model.Product;
+import com.example.shopsmart.models.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

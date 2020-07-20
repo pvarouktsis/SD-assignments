@@ -1,4 +1,4 @@
-package com.example.shopsmart.model;
+package com.example.shopsmart.models;
 
 public class Product {
     private String id;
