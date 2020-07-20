@@ -4,7 +4,7 @@
 
     <!-- titles -->
     <string name="title_home">home</string>
-    <string name="title_my_order">my order</string>
+    <string name="title_my_cart">my cart</string>
     <string name="title_on_sale">on sale</string>
     <string name="title_my_account">my account</string>
     <string name="title_login">sign in</string>

@@ -1,4 +1,4 @@
-package com.example.shopsmart.views.fragments.my_order;
+package com.example.shopsmart.views.fragments.my_cart;
 
 import android.util.Log;
 
@@ -6,13 +6,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MyOrderViewModel extends ViewModel {
+public class MyCartViewModel extends ViewModel {
     private static final String TAG = "MY_ORDER_VIEW_MODEL";
     private MutableLiveData<String> mText;
 
-    public MyOrderViewModel() {
+    public MyCartViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is \"my order\" fragment");
+        mText.setValue("This is \"my cart\" fragment");
     }
 
     public LiveData<String> getText() {

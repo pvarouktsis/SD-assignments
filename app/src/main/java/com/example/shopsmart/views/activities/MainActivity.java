@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.shopsmart.R;
 import com.example.shopsmart.views.fragments.home.HomeFragment;
 import com.example.shopsmart.views.fragments.my_account.MyAccountFragment;
-import com.example.shopsmart.views.fragments.my_order.MyOrderFragment;
+import com.example.shopsmart.views.fragments.my_cart.MyCartFragment;
 import com.example.shopsmart.views.fragments.on_sale.OnSaleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         f = new HomeFragment();
                         break;
                     case R.id.navigation_my_order:
-                        f = new MyOrderFragment();
+                        f = new MyCartFragment();
                         break;
                     case R.id.navigation_on_sale:
                         f = new OnSaleFragment();

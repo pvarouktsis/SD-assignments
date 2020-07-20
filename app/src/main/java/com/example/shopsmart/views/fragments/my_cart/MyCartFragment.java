@@ -1,4 +1,4 @@
-package com.example.shopsmart.views.fragments.my_order;
+package com.example.shopsmart.views.fragments.my_cart;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,18 +15,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.shopsmart.R;
 
-public class MyOrderFragment extends Fragment {
+public class MyCartFragment extends Fragment {
     private static final String TAG = "MY_ORDER";
-    private MyOrderViewModel myOrderViewModel;
+    private MyCartViewModel myCartViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: called");
-        myOrderViewModel =
-            ViewModelProviders.of(this).get(MyOrderViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_my_order, container, false);
+        myCartViewModel =
+            ViewModelProviders.of(this).get(MyCartViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_my_cart, container, false);
         final TextView textView = root.findViewById(R.id.title_my_order);
-        myOrderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        myCartViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
