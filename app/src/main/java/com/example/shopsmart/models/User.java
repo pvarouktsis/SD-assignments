@@ -1,9 +1,16 @@
 package com.example.shopsmart.models;
 
+import com.google.firebase.firestore.Exclude;
+
+import java.util.ArrayList;
+
 public class User {
+    @Exclude
+    private String id;
     private String username;
     private String email;
     private String password;
+    private ArrayList<Product> cart;
 
     public User() {
         // Required
@@ -13,7 +20,22 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.cart = new ArrayList<>();
     }
+
+    public User(String id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.cart = new ArrayList<>();
+    }
+
+    @Exclude
+    public String getId() { return id; }
+
+    @Exclude
+    public void setId(String id) { this.id = id; }
 
     public String getUsername() {
         return username;
@@ -38,4 +60,9 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public ArrayList<Product> getCart() { return cart; }
+
+    public void setCart(ArrayList<Product> cart) { this.cart = cart; }
+
 }

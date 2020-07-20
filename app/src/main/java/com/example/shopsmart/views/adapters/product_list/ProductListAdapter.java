@@ -44,7 +44,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
         // initialize view of product
         Picasso.get().load(products.get(position).getImageURL()).into(holder.getIVProductImageURL()); // printing image
         holder.getTVProductName().setText(products.get(position).getName());
-        holder.getTVProductPrice().setText(products.get(position).getPriceToString());
+        holder.getTVProductPrice().setText(products.get(position).getPriceToStringWithEuroSymbol());
 
         // expand view of product
         final boolean isExpanded = (expandedPosition == position);

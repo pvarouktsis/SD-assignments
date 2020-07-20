@@ -10,18 +10,17 @@ public class Product {
         // Required
     }
 
-    public Product(String id,
-                   String name,
-                   Double price,
-                   String imageURL) {
-        this.id = id;
+    public Product(String name, Double price, String imageURL) {
         this.name = name;
         this.price = price;
         this.imageURL = imageURL;
     }
 
-    public String getPriceToString() {
-        return Double.toString(price) + " \u20ac"; // \u20ac is for euro sign
+    public Product(String id, String name, Double price, String imageURL) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.imageURL = imageURL;
     }
 
     public String getId() {
@@ -48,12 +47,16 @@ public class Product {
         this.price = price;
     }
 
-    public String getImageURL() {
-        return imageURL;
-    }
+    public String getImageURL() { return imageURL; }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getPriceToString() { return Double.toString(price); }
+
+    public String getPriceToStringWithEuroSymbol() {
+        return Double.toString(price) + " \u20ac"; // \u20ac is for euro sign
     }
 
 }
