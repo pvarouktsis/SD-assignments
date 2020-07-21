@@ -63,6 +63,7 @@
 
         <Button
             android:id="@+id/button_extend"
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_below="@id/product_price"
@@ -74,15 +75,14 @@
             android:layout_marginBottom="0dp"
             android:background="@drawable/ic_down_arrow"
             android:gravity="center"
-            android:padding="20dp"
-            android:visibility="visible" />
+            android:padding="20dp" />
 
     </RelativeLayout>
 
     <!-- expanded product layout, default gone -->
     <RelativeLayout
         android:id="@+id/product_expanded"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -108,6 +108,7 @@
 
         <Button
             android:id="@+id/button_add"
+            android:visibility="visible"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_below="@id/product_supermarket"
@@ -121,6 +122,24 @@
             android:text="@string/product_button_add"
             android:textAllCaps="false"
             android:textColor="@color/green"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button_remove"
+            android:visibility="gone"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/product_supermarket"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/ll_remove_button"
+            android:paddingTop="0dp"
+            android:paddingBottom="7dp"
+            android:text="@string/product_button_remove"
+            android:textAllCaps="false"
+            android:textColor="@color/red"
             android:textSize="16sp" />
 
     </RelativeLayout>

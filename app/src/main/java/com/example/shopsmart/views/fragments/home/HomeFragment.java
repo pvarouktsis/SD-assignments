@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
         rvProductList.setLayoutManager(llm);
         VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
         rvProductList.addItemDecoration(vsid);
-        ProductListAdapter plrv = new ProductListAdapter(getContext(), products);
+        ProductListAdapter plrv = new ProductListAdapter(getContext(), products, TAG);
         rvProductList.setAdapter(plrv);
         llHomeContainer.setVisibility(View.GONE);
         rlProductList.setVisibility(View.VISIBLE);

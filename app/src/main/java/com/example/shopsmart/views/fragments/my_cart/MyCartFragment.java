@@ -24,7 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyCartFragment extends Fragment {
-    private static final String TAG = "MY_ORDER";
+    private static final String TAG = "MY_CART";
     private static final int VERTICAL_SPACE = 20;
     private User user;
     private RelativeLayout rlProductList;
@@ -86,7 +86,7 @@ public class MyCartFragment extends Fragment {
         rvProductList.setLayoutManager(llm);
         VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
         rvProductList.addItemDecoration(vsid);
-        ProductListAdapter plrv = new ProductListAdapter(getContext(), user.getCart());
+        ProductListAdapter plrv = new ProductListAdapter(getContext(), user.getCart(), TAG);
         rvProductList.setAdapter(plrv);
     }
 }

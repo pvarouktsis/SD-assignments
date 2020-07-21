@@ -28,14 +28,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     private User user;
     private Context context;
     private ArrayList<Product> products = new ArrayList<>();
+    private String tag;
     private int expandedPosition = -1;
     private int previousExpandedPosition = -1;
     private FirebaseAuth fa;
     private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
-    public ProductListAdapter(Context context, ArrayList<Product> products) {
+    public ProductListAdapter(Context context, ArrayList<Product> products, String tag) {
         this.context = context;
         this.products = products;
+        this.tag = tag;
     }
 
     @NonNull
@@ -67,6 +69,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
         final boolean isExpanded = (expandedPosition == position);
         holder.getRLProductExpanded().setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand product based on current state
         holder.getBtnExtend().setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
+
+        if (tag.equals("MY_CART")) {
+            holder.getBtnAdd().setVisibility(View.GONE);
+            holder.getBtnRemove().setVisibility(View.VISIBLE);
+        } else {
+            holder.getBtnAdd().setVisibility(View.VISIBLE);
+            holder.getBtnRemove().setVisibility(View.GONE);
+        }
+
         holder.getRLProduct().setActivated(isExpanded);
 
         if (isExpanded) {
@@ -92,6 +103,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
                 addProductToCart(products.get(position));
             }
         });
+
+        // remove product
+        holder.getBtnRemove().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeProductFromCart(position);
+            }
+        });
     }
 
     @Override
@@ -109,16 +128,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
             .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    user = documentSnapshot.toObject(User.class);
                     Log.d(TAG, "getUserTask: succeeded");
+                    user = documentSnapshot.toObject(User.class);
                 }
             })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "getUserTask: failed");
-            }
-        });
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "getUserTask: failed");
+                }
+            });
     }
 
     private void addProductToCart(Product product) {
@@ -129,4 +148,21 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
             .document(fu.getUid())
             .set(user, SetOptions.merge());
     }
+
+    private void removeProductFromCart(int position) {
+        Log.d(TAG, "removeProductFromCart: called");
+        FirebaseUser fu = fa.getCurrentUser();
+        user.getCart().remove(position);
+        ffdb.collection("users")
+            .document(fu.getUid())
+            .set(user, SetOptions.merge());
+
+        refreshProducts();
+    }
+
+    private void refreshProducts() {
+        products = user.getCart();
+        notifyDataSetChanged();
+    }
+
 }
