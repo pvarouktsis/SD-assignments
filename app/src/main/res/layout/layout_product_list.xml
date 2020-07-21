@@ -1,18 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_product_list"
-    android:visibility="visible"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent" >
+    android:background="@color/transparent"
+    android:visibility="visible">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_list"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/layout_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="80dp"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout_product_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:id="@+id/title_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/ll_active"
+                android:gravity="center"
+                android:paddingTop="0dp"
+                android:paddingBottom="5dp"
+                android:text="@string/title_default"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button_filter"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/title_fragment"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/ll_active"
+                android:gravity="center"
+                android:paddingTop="0dp"
+                android:paddingBottom="5dp"
+                android:text="@string/title_filter"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_no_products"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/button_filter"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/ll_active"
+                android:gravity="center"
+                android:paddingTop="0dp"
+                android:paddingBottom="5dp"
+                android:text="@string/title_no_products"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/button_filter"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="70dp" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

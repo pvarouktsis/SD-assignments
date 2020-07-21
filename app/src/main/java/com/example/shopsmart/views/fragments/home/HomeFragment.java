@@ -5,10 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.Product;
-import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
 import com.example.shopsmart.utils.VerticalSpaceItemDecoration;
+import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -37,6 +39,9 @@ public class HomeFragment extends Fragment {
     private EditText etInputSearch;
     private ImageButton btnSearch;
     private RelativeLayout rlProductList;
+    private TextView tvTitle;
+    private Button btnFilter;
+    private TextView tvNoProducts;
     private RecyclerView rvProductList;
     private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
@@ -60,10 +65,17 @@ public class HomeFragment extends Fragment {
         btnSearch = homeView.findViewById(R.id.button_search);
         llHomeContainer = homeView.findViewById(R.id.layout_home_container);
         rlProductList = homeView.findViewById(R.id.layout_product_list);
+        tvTitle = homeView.findViewById(R.id.title_fragment);
+        btnFilter = homeView.findViewById(R.id.button_filter);
+        tvNoProducts = homeView.findViewById(R.id.tv_no_products);
         rvProductList = homeView.findViewById(R.id.product_list);
 
         // initalize visibility
         rlProductList.setVisibility(View.GONE);
+        tvNoProducts.setVisibility(View.GONE);
+
+        // initialize title
+        tvTitle.setText(R.string.title_home);
 
         // on click
         btnSearch.setOnClickListener(searchListener);
@@ -98,12 +110,16 @@ public class HomeFragment extends Fragment {
 
     private void showProducts(View homeView) {
         Log.d(TAG, "showProducts: called");
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        rvProductList.setLayoutManager(llm);
-        VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
-        rvProductList.addItemDecoration(vsid);
-        ProductListAdapter plrv = new ProductListAdapter(getContext(), products, TAG);
-        rvProductList.setAdapter(plrv);
+        if (products.isEmpty()) {
+            tvNoProducts.setVisibility(View.VISIBLE);
+        } else {
+            LinearLayoutManager llm = new LinearLayoutManager(getContext());
+            rvProductList.setLayoutManager(llm);
+            VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
+            rvProductList.addItemDecoration(vsid);
+            ProductListAdapter plrv = new ProductListAdapter(getContext(), products, TAG);
+            rvProductList.setAdapter(plrv);
+        }
         llHomeContainer.setVisibility(View.GONE);
         rlProductList.setVisibility(View.VISIBLE);
     }

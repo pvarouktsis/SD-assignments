@@ -3,6 +3,7 @@
     <string name="app_name">ShopSmart</string>
 
     <!-- titles -->
+    <string name="title_default">none</string>
     <string name="title_home">home</string>
     <string name="title_my_cart">my cart</string>
     <string name="title_on_sale">on sale</string>
@@ -10,6 +11,8 @@
     <string name="title_login">sign in</string>
     <string name="title_logout">sign out</string>
     <string name="title_register">sign up</string>
+    <string name="title_filter">filter</string>
+    <string name="title_no_products">there are no products</string>
 
     <!-- input text -->
     <string name="input_username">username</string>

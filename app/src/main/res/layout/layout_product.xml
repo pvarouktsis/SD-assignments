@@ -82,7 +82,7 @@
     <!-- expanded product layout, default gone -->
     <RelativeLayout
         android:id="@+id/product_expanded"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
