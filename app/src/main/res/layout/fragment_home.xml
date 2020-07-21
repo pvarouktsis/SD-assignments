@@ -9,7 +9,7 @@
 
     <!-- main frame -->
     <LinearLayout
-        android:id="@+id/layout_main_container"
+        android:id="@+id/layout_home_container"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,14 +80,7 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_list"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="80dp"
-        android:scrollbars="vertical" />
+    <include
+        layout="@layout/layout_product_list" />
 
 </RelativeLayout>

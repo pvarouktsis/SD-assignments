@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ public class OnSaleFragment extends Fragment {
     private static final String TAG = "ON_SALE_FRAGMENT";
     private static final int VERTICAL_SPACE = 20;
     private ArrayList<Product> products = new ArrayList<>();
+    private RelativeLayout rlProductList;
     private RecyclerView rvProductList;
     private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
@@ -50,6 +52,7 @@ public class OnSaleFragment extends Fragment {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
+        rlProductList = onSaleView.findViewById(R.id.layout_product_list);
         rvProductList = onSaleView.findViewById(R.id.product_list);
     }
 

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bnv = findViewById(R.id.layout_bottom_navbar);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
 
-        // initialize Firebase
+        // initialize firebase
         fa = FirebaseAuth.getInstance();
     }
 

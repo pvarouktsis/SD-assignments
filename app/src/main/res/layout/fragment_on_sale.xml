@@ -7,13 +7,7 @@
     android:background="@color/transparent"
     tools:context=".views.activities.MainActivity" >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="80dp"
-        android:scrollbars="vertical" />
+    <include
+        layout="@layout/layout_product_list" />
 
 </RelativeLayout>

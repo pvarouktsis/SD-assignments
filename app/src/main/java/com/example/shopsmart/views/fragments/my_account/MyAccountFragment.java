@@ -31,7 +31,7 @@ public class MyAccountFragment extends Fragment {
         View myAccountView = inflater.inflate(R.layout.fragment_my_account, container, false);
         initializeUIComponents(myAccountView);
 
-        // initialize Firebase
+        // initialize firebase
         fa = FirebaseAuth.getInstance();
 
         return myAccountView;

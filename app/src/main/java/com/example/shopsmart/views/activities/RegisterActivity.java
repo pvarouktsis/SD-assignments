@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnLogin;
     private FirebaseAuth fa;
-    private FirebaseFirestore ffdb;
+    private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         initializeUIComponents();
 
-        // initialize Firebase
+        // initialize firebase
         fa = FirebaseAuth.getInstance();
-        ffdb = FirebaseFirestore.getInstance();
     }
 
     @Override

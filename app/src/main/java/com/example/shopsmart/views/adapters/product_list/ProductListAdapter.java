@@ -31,7 +31,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     private int expandedPosition = -1;
     private int previousExpandedPosition = -1;
     private FirebaseAuth fa;
-    private FirebaseFirestore ffdb;
+    private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     public ProductListAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
@@ -50,7 +50,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
 
         // initialize firebase
         fa = FirebaseAuth.getInstance();
-        ffdb = FirebaseFirestore.getInstance();
 
         return pvh;
     }

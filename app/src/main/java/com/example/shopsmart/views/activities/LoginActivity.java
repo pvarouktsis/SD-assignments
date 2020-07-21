@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initializeUIComponents();
 
-        // initialize Firebase
+        // initialize firebase
         fa = FirebaseAuth.getInstance();
     }
 

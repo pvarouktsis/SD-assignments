@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,10 +32,11 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HOME_FRAGMENT";
     private static final int VERTICAL_SPACE = 20;
     private ArrayList<Product> products = new ArrayList<>();
-    private LinearLayout llMainContainer;
+    private LinearLayout llHomeContainer;
     private String sInputSearch;
     private EditText etInputSearch;
     private ImageButton btnSearch;
+    private RelativeLayout rlProductList;
     private RecyclerView rvProductList;
     private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
@@ -56,8 +58,12 @@ public class HomeFragment extends Fragment {
         // initialize components
         etInputSearch = homeView.findViewById(R.id.input_search);
         btnSearch = homeView.findViewById(R.id.button_search);
-        llMainContainer = homeView.findViewById(R.id.layout_main_container);
+        llHomeContainer = homeView.findViewById(R.id.layout_home_container);
+        rlProductList = homeView.findViewById(R.id.layout_product_list);
         rvProductList = homeView.findViewById(R.id.product_list);
+
+        // initalize visibility
+        rlProductList.setVisibility(View.GONE);
 
         // on click
         btnSearch.setOnClickListener(searchListener);
@@ -98,8 +104,8 @@ public class HomeFragment extends Fragment {
         rvProductList.addItemDecoration(vsid);
         ProductListAdapter plrv = new ProductListAdapter(getContext(), products);
         rvProductList.setAdapter(plrv);
-        llMainContainer.setVisibility(View.GONE);
-        rvProductList.setVisibility(View.VISIBLE);
+        llHomeContainer.setVisibility(View.GONE);
+        rlProductList.setVisibility(View.VISIBLE);
     }
 
     private void addProduct(DocumentSnapshot d) {
