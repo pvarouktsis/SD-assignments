@@ -20,6 +20,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     private TextView tvProductPrice;
     private TextView tvProductSupermarket;
     private Button btnExtend;
+    private Button btnAdd;
 
     public ProductViewHolder(View productView) {
         super(productView);
@@ -31,6 +32,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         tvProductPrice = productView.findViewById(R.id.product_price);
         tvProductSupermarket = productView.findViewById(R.id.product_supermarket);
         btnExtend = productView.findViewById(R.id.button_extend);
+        btnAdd = productView.findViewById(R.id.button_add);
     }
 
     public RelativeLayout getRLProduct() {
@@ -96,4 +98,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     public void setBtnExtend(Button btnExtend) {
         this.btnExtend = btnExtend;
     }
+
+    public Button getBtnAdd() { return btnAdd; }
+
+    public void setBtnAdd(Button btnAdd) { this.btnAdd = btnAdd; }
+
 }

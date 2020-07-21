@@ -1,5 +1,7 @@
 package com.example.shopsmart.models;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Product {
     private String id;
     private String name;
@@ -53,8 +55,10 @@ public class Product {
         this.imageURL = imageURL;
     }
 
+    @Exclude
     public String getPriceToString() { return Double.toString(price); }
 
+    @Exclude
     public String getPriceToStringWithEuroSymbol() {
         return Double.toString(price) + " \u20ac"; // \u20ac is for euro sign
     }

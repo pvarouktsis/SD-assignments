@@ -11,16 +11,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.Product;
+import com.example.shopsmart.models.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     private static final String TAG = "PRODUCT_LIST_ADAPTER";
+    private User user;
     private Context context;
     private ArrayList<Product> products = new ArrayList<>();
     private int expandedPosition = -1;
     private int previousExpandedPosition = -1;
+    private FirebaseAuth fa;
+    private FirebaseFirestore ffdb;
 
     public ProductListAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
@@ -31,9 +42,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: called");
+
+        // initialize ui
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.layout_product, parent, false);
         ProductViewHolder pvh = new ProductViewHolder(view);
+
+        // initialize firebase
+        fa = FirebaseAuth.getInstance();
+        ffdb = FirebaseFirestore.getInstance();
+
         return pvh;
     }
 
@@ -64,11 +82,52 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
                 notifyItemChanged(position);
             }
         });
+
+        // get user
+        getUser();
+
+        // add product
+        holder.getBtnAdd().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProductToCart(products.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount: called");
         return products.size();
+    }
+
+    private void getUser() {
+        Log.d(TAG, "getUser: called");
+        FirebaseUser fu = fa.getCurrentUser();
+        ffdb.collection("users")
+            .document(fu.getUid())
+            .get()
+            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    user = documentSnapshot.toObject(User.class);
+                    Log.d(TAG, "getUserTask: succeeded");
+                }
+            })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "getUserTask: failed");
+            }
+        });
+    }
+
+    private void addProductToCart(Product product) {
+        Log.d(TAG, "addProductToCart: called");
+        FirebaseUser fu = fa.getCurrentUser();
+        user.getCart().add(product);
+        ffdb.collection("users")
+            .document(fu.getUid())
+            .set(user, SetOptions.merge());
     }
 }

@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -93,12 +92,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void writeUser() {
         Log.d(TAG, "writeUser: called");
+        FirebaseUser fu = fa.getCurrentUser();
         ffdb.collection("users")
-            .add(user)
-            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            .document(fu.getUid())
+            .set(user)
+            .addOnSuccessListener(new OnSuccessListener<Object>() {
                 @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.d(TAG, "writeUser: succeeded" + documentReference.getId());
+                public void onSuccess(Object o) {
+                    Log.d(TAG, "writeUser: succeeded");
                 }
             })
             .addOnFailureListener(new OnFailureListener() {
