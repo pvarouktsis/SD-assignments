@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,11 +56,11 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        etUsername = findViewById(R.id.input_username);
-        etEmail = findViewById(R.id.input_email);
-        etPassword = findViewById(R.id.input_password);
-        btnRegister = findViewById(R.id.button_register);
-        btnLogin = findViewById(R.id.button_login);
+        etUsername = findViewById(R.id.et_username);
+        etEmail = findViewById(R.id.et_email);
+        etPassword = findViewById(R.id.et_password);
+        btnRegister = findViewById(R.id.btn_register);
+        btnLogin = findViewById(R.id.btn_login);
 
         // on click
         btnRegister.setOnClickListener(registerListener);
@@ -76,12 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "createUserWithEmailAndPasswordTask: succeeded");
+                        Log.d(TAG, "registerUser: succeeded");
                         FirebaseUser fu = fa.getCurrentUser();
-                        writeUser();
+                        writeUser(fu);
                         updateUI(fu);
                     } else {
-                        Log.w(TAG, "createUserWithEmailAndPasswordTask: failure", task.getException());
+                        Log.w(TAG, "registerUser: failed", task.getException());
                         Toast.makeText(RegisterActivity.this, "sign up failed", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -89,22 +87,19 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void writeUser() {
+    private void writeUser(FirebaseUser fu) {
         Log.d(TAG, "writeUser: called");
-        FirebaseUser fu = fa.getCurrentUser();
         ffdb.collection("users")
             .document(fu.getUid())
             .set(user)
-            .addOnSuccessListener(new OnSuccessListener<Object>() {
+            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<Void>() {
                 @Override
-                public void onSuccess(Object o) {
-                    Log.d(TAG, "writeUser: succeeded");
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "writeUser: failure");
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "writeUser: succeeded");
+                    } else {
+                        Log.w(TAG, "writeUser: failed");
+                    }
                 }
             });
     }
@@ -121,21 +116,20 @@ public class RegisterActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            Log.d(TAG, "signInWithEmailAndPassword: succeeded");
-            Toast.makeText(RegisterActivity.this, "sign up succeeded", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "signed up successfully", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }
 
     private void goToMainActivity() {
         Log.d(TAG, "goToMainActivity: called");
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         finish();
     }
 
     private void goToLoginActivity() {
         Log.d(TAG, "goToLoginActivity: called");
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         finish();
     }
 

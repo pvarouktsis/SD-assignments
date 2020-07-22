@@ -41,7 +41,7 @@ public class MyAccountFragment extends Fragment {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        btnLogout = v.findViewById(R.id.button_logout);
+        btnLogout = v.findViewById(R.id.btn_logout);
 
         // on click
         btnLogout.setOnClickListener(logoutListener);

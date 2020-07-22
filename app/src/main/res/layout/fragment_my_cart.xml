@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_my_cart"
+    android:id="@+id/rl_my_cart_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="false"
     android:background="@color/transparent"
-    tools:context=".views.activities.MainActivity" >
+    android:gravity="center_horizontal"
+    tools:context=".views.activities.MainActivity">
 
-    <include
-        layout="@layout/layout_product_list" />
+    <include layout="@layout/layout_product_list" />
 
 </RelativeLayout>

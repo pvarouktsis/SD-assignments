@@ -53,10 +53,10 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, "initializeComponents: called");
 
         // initialize components
-        etEmail = findViewById(R.id.input_email);
-        etPassword = findViewById(R.id.input_password);
-        btnLogin = findViewById(R.id.button_login);
-        btnRegister = findViewById(R.id.button_register);
+        etEmail = findViewById(R.id.et_email);
+        etPassword = findViewById(R.id.et_password);
+        btnLogin = findViewById(R.id.btn_login);
+        btnRegister = findViewById(R.id.btn_register);
 
         // on click
         btnLogin.setOnClickListener(loginListener);
@@ -66,15 +66,15 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         Log.d(TAG, "loginUser: called");
         fa.signInWithEmailAndPassword(sEmail, sPassword)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "signInWithEmailAndPasswordTask: succeeded");
+                        Log.d(TAG, "loginUser: succeeded");
                         FirebaseUser fu = fa.getCurrentUser();
                         updateUI(fu);
                     } else {
-                        Log.w(TAG, "signInWithEmailAndPasswordTask: failed", task.getException());
+                        Log.w(TAG, "loginUser: failed", task.getException());
                         Toast.makeText(LoginActivity.this, "sign in failed", Toast.LENGTH_SHORT).show();
                     }
 
@@ -91,21 +91,20 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            Log.d(TAG, "signInWithEmailAndPassword: succeeded");
-            Toast.makeText(LoginActivity.this, "sign in succeeded", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "signed in successfully", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }
 
     private void goToMainActivity() {
         Log.d(TAG, "goToMainActivity: called");
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }
 
     private void goToRegisterActivity() {
         Log.d(TAG, "goToRegisterActivity: called");
-        startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         finish();
     }
 

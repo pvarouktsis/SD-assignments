@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_product"
+    android:id="@+id/rl_product"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ll_active"
-    android:gravity="top"
-    android:padding="20dp" >
+    android:gravity="center"
+    android:padding="20dp"
+    android:visibility="visible">
 
-    <!-- normal product layout, default visible -->
+    <!-- standard product layout, default visible -->
     <RelativeLayout
-        android:id="@+id/product_normal"
+        android:id="@+id/rl_product_standard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top" >
+        android:gravity="center"
+        android:visibility="visible">
 
         <ImageView
-            android:id="@+id/product_image"
+            android:id="@+id/iv_product_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="false"
             android:maxWidth="100dp"
             android:maxHeight="100dp" />
 
         <TextView
-            android:id="@+id/product_name"
+            android:id="@+id/tv_product_name"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@id/product_image"
-            android:layout_toRightOf="@id/product_image"
+            android:layout_toEndOf="@id/iv_product_image"
+            android:layout_toRightOf="@id/iv_product_image"
             android:ellipsize="marquee"
             android:gravity="center_vertical"
             android:singleLine="true"
@@ -42,18 +49,22 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/tv_product_price"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_below="@+id/product_name"
+            android:layout_below="@+id/tv_product_name"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@id/product_image"
-            android:layout_toRightOf="@id/product_image"
+            android:layout_toEndOf="@id/iv_product_image"
+            android:layout_toRightOf="@id/iv_product_image"
             android:ellipsize="marquee"
             android:gravity="center_vertical"
             android:singleLine="true"
@@ -62,42 +73,51 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/button_extend"
-            android:visibility="gone"
+            android:id="@+id/btn_extend"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_below="@id/product_price"
+            android:layout_below="@id/tv_product_price"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/ic_down_arrow"
             android:gravity="center"
-            android:padding="20dp" />
+            android:padding="20dp"
+            android:visibility="visible" />
 
     </RelativeLayout>
 
     <!-- expanded product layout, default gone -->
     <RelativeLayout
-        android:id="@+id/product_expanded"
-        android:visibility="gone"
+        android:id="@+id/rl_product_expanded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="false"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="0dp" >
+        android:layout_marginBottom="0dp"
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/product_supermarket"
+            android:id="@+id/tv_product_supermarket"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginStart="110dp"
             android:layout_marginLeft="110dp"
             android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="0dp"
             android:ellipsize="marquee"
             android:gravity="center_vertical"
@@ -107,40 +127,46 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/button_add"
-            android:visibility="visible"
+            android:id="@+id/btn_add"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_below="@id/product_supermarket"
+            android:layout_below="@id/tv_product_supermarket"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/ll_add_button"
+            android:gravity="center"
             android:paddingTop="0dp"
             android:paddingBottom="7dp"
             android:text="@string/product_button_add"
             android:textAllCaps="false"
             android:textColor="@color/green"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <Button
-            android:id="@+id/button_remove"
-            android:visibility="gone"
+            android:id="@+id/btn_remove"
             android:layout_width="90dp"
             android:layout_height="40dp"
-            android:layout_below="@id/product_supermarket"
+            android:layout_below="@id/tv_product_supermarket"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/ll_remove_button"
+            android:gravity="center"
             android:paddingTop="0dp"
             android:paddingBottom="7dp"
             android:text="@string/product_button_remove"
             android:textAllCaps="false"
             android:textColor="@color/red"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

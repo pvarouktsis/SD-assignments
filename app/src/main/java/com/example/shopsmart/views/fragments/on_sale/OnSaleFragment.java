@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,7 +33,9 @@ public class OnSaleFragment extends Fragment {
     private static final String TAG = "ON_SALE_FRAGMENT";
     private static final int VERTICAL_SPACE = 20;
     private ArrayList<Product> products = new ArrayList<>();
-    private RelativeLayout rlProductList;
+    private RelativeLayout rlOnSale;
+    private ScrollView svProductListContainer;
+    private RelativeLayout rlProductListContainer;
     private TextView tvTitle;
     private Button btnFilter;
     private TextView tvNoProducts;
@@ -57,17 +61,21 @@ public class OnSaleFragment extends Fragment {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        rlProductList = onSaleView.findViewById(R.id.layout_product_list);
-        tvTitle = onSaleView.findViewById(R.id.title_fragment);
-        btnFilter = onSaleView.findViewById(R.id.button_filter);
+        rlOnSale = onSaleView.findViewById(R.id.rl_on_sale_container);
+        svProductListContainer = onSaleView.findViewById(R.id.sv_product_list_container);
+        rlProductListContainer = onSaleView.findViewById(R.id.rl_product_list_container);
+        tvTitle = onSaleView.findViewById(R.id.tv_title);
+        btnFilter = onSaleView.findViewById(R.id.btn_filter);
         tvNoProducts = onSaleView.findViewById(R.id.tv_no_products);
-        rvProductList = onSaleView.findViewById(R.id.product_list);
+        rvProductList = onSaleView.findViewById(R.id.rv_product_list);
+
+        //initialize visibility
+        svProductListContainer.setVisibility(View.VISIBLE);
+        tvNoProducts.setVisibility(View.GONE);
+        rvProductList.setVisibility(View.VISIBLE);
 
         //initialize title
         tvTitle.setText(R.string.title_on_sale);
-
-        //initialize visibility
-        tvNoProducts.setVisibility(View.GONE);
     }
 
     private void readProducts(final View onSaleView) {
@@ -78,32 +86,19 @@ public class OnSaleFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
+                        Log.d(TAG, "readProducts: succeeded");
                         for (QueryDocumentSnapshot d : task.getResult()) {
                             if (!d.getId().equals("prototype")) { // if it is NOT the prototype document
                                 addProduct(d);
                             }
                         }
-                        Log.d(TAG, "retrieveProductsFromFirestore: succeeded");
                         showProducts(onSaleView);
                     } else {
-                        Log.w(TAG, "retrieveProductsFromFirestore: failed", task.getException());
+                        Log.w(TAG, "readProducts: failed", task.getException());
+                        Toast.makeText(getContext(), "loading products failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-    }
-
-    private void showProducts(View onSaleView) {
-        Log.d(TAG, "showProducts: called");
-        if (products.isEmpty()) {
-            tvNoProducts.setVisibility(View.VISIBLE);
-        } else {
-            LinearLayoutManager llm = new LinearLayoutManager(getContext());
-            rvProductList.setLayoutManager(llm);
-            VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
-            rvProductList.addItemDecoration(vsid);
-            ProductListAdapter plrv = new ProductListAdapter(getContext(), products, TAG);
-            rvProductList.setAdapter(plrv);
-        }
     }
 
     private void addProduct(DocumentSnapshot d) {
@@ -114,6 +109,30 @@ public class OnSaleFragment extends Fragment {
         p.setPrice(d.getDouble("price"));
         p.setImageURL(d.getString("image_url"));
         products.add(p);
+    }
+
+    private void showProducts(View homeView) {
+        Log.d(TAG, "showProducts: called");
+
+        // check if any products
+        if (products.isEmpty()) {
+            tvNoProducts.setVisibility(View.VISIBLE);
+            rvProductList.setVisibility(View.GONE);
+        } else {
+            tvNoProducts.setVisibility(View.GONE);
+            rvProductList.setVisibility(View.VISIBLE);
+            setProductListAdapter();
+        }
+    }
+
+    private void setProductListAdapter() {
+        Log.d(TAG, "setProductListAdapter: called");
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rvProductList.setLayoutManager(llm);
+        VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
+        rvProductList.addItemDecoration(vsid);
+        ProductListAdapter plrv = new ProductListAdapter(getContext(), products, TAG);
+        rvProductList.setAdapter(plrv);
     }
 
 }

@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_register"
+    android:id="@+id/rl_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/aqua"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".views.activities.RegisterActivity" >
+    tools:context=".views.activities.RegisterActivity">
 
     <!-- main frame -->
-    <LinearLayout
-        android:id="@+id/layout_register_container"
+    <RelativeLayout
+        android:id="@+id/rl_register_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        android:padding="20dp" >
+        android:padding="20dp">
 
         <!-- ShopSmart logo -->
-        <LinearLayout
-            android:id="@+id/shopsmart_logo"
+        <RelativeLayout
+            android:id="@+id/rl_shopsmart_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:gravity="center"
-            android:orientation="horizontal" >
+            android:gravity="center">
 
-            <include
-                layout="@layout/layout_shopsmart_logo" />
+            <include layout="@layout/layout_shopsmart_logo" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <!-- register form -->
-        <LinearLayout
-            android:id="@+id/register_form"
+        <RelativeLayout
+            android:id="@+id/rl_register_form"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/rl_shopsmart_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:gravity="center">
 
             <EditText
-                android:id="@+id/input_username"
+                android:id="@+id/et_username"
                 android:layout_width="260dp"
                 android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="false"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/ll_active"
@@ -60,9 +60,12 @@
                 android:paddingBottom="5dp" />
 
             <EditText
-                android:id="@+id/input_email"
+                android:id="@+id/et_email"
                 android:layout_width="260dp"
                 android:layout_height="60dp"
+                android:layout_below="@id/et_username"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="false"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/ll_active"
@@ -76,9 +79,12 @@
                 android:paddingBottom="5dp" />
 
             <EditText
-                android:id="@+id/input_password"
+                android:id="@+id/et_password"
                 android:layout_width="260dp"
                 android:layout_height="60dp"
+                android:layout_below="@id/et_email"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="false"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/ll_active"
@@ -92,11 +98,13 @@
                 android:paddingBottom="5dp" />
 
             <Button
-                android:id="@+id/button_register"
+                android:id="@+id/btn_register"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_below="@id/et_password"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="false"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/ll_active"
                 android:ems="10"
@@ -108,10 +116,12 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button_login"
+                android:id="@+id/btn_login"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
-                android:layout_gravity="center"
+                android:layout_below="@id/btn_register"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="false"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/ll_inactive"
@@ -123,8 +133,8 @@
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

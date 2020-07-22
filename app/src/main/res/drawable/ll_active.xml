@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- shadow -->
     <item>
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <!-- size relative to actual -->
             <size
                 android:width="260dp"
@@ -14,11 +14,11 @@
     </item>
 
     <!-- top -->
-    <item android:bottom="5dp" >
-        <shape android:shape="rectangle" >
+    <item android:bottom="5dp">
+        <shape android:shape="rectangle">
             <size
-                android:width="60dp"
-                android:height="10dp" />
+                android:width="260dp"
+                android:height="60dp" />
             <solid android:color="@color/white" />
             <corners android:radius="30dp" />
         </shape>

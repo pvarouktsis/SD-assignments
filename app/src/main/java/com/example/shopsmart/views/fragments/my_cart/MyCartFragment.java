@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,8 +20,8 @@ import com.example.shopsmart.R;
 import com.example.shopsmart.models.User;
 import com.example.shopsmart.utils.VerticalSpaceItemDecoration;
 import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,7 +31,9 @@ public class MyCartFragment extends Fragment {
     private static final String TAG = "MY_CART";
     private static final int VERTICAL_SPACE = 20;
     private User user;
-    private RelativeLayout rlProductList;
+    private RelativeLayout rlMyCart;
+    private ScrollView svProductListContainer;
+    private RelativeLayout rlProductListContainer;
     private TextView tvTitle;
     private Button btnFilter;
     private TextView tvNoProducts;
@@ -59,14 +63,18 @@ public class MyCartFragment extends Fragment {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        rlProductList = myCartView.findViewById(R.id.layout_product_list);
-        tvTitle = myCartView.findViewById(R.id.title_fragment);
-        btnFilter = myCartView.findViewById(R.id.button_filter);
+        rlMyCart = myCartView.findViewById(R.id.rl_my_cart_container);
+        svProductListContainer = myCartView.findViewById(R.id.sv_product_list_container);
+        rlProductListContainer = myCartView.findViewById(R.id.rl_product_list_container);
+        tvTitle = myCartView.findViewById(R.id.tv_title);
+        btnFilter = myCartView.findViewById(R.id.btn_filter);
         tvNoProducts = myCartView.findViewById(R.id.tv_no_products);
-        rvProductList = myCartView.findViewById(R.id.product_list);
+        rvProductList = myCartView.findViewById(R.id.rv_product_list);
 
         // initialize visibility
+        svProductListContainer.setVisibility(View.VISIBLE);
         tvNoProducts.setVisibility(View.GONE);
+        rvProductList.setVisibility(View.VISIBLE);
 
         // initialize title
         tvTitle.setText(R.string.title_my_cart);
@@ -78,33 +86,43 @@ public class MyCartFragment extends Fragment {
         ffdb.collection("users")
             .document(fu.getUid())
             .get()
-            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Log.d(TAG, "getUserTask: succeeded");
-                    user = documentSnapshot.toObject(User.class);
-                    showCart();
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "getUserTask: failed");
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "getUser: succeeded");
+                        DocumentSnapshot d = task.getResult();
+                        user = d.toObject(User.class);
+                        showCart();
+                    } else {
+                        Log.w(TAG, "getUser: failed", task.getException());
+                        Toast.makeText(getContext(), "loading cart failed", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
     }
 
     private void showCart() {
         Log.d(TAG, "showCart: called");
+
+        // check if any products
         if (user.getCart().isEmpty()) {
             tvNoProducts.setVisibility(View.VISIBLE);
+            rvProductList.setVisibility(View.GONE);
         } else {
-            LinearLayoutManager llm = new LinearLayoutManager(getContext());
-            rvProductList.setLayoutManager(llm);
-            VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
-            rvProductList.addItemDecoration(vsid);
-            ProductListAdapter plrv = new ProductListAdapter(getContext(), user.getCart(), TAG);
-            rvProductList.setAdapter(plrv);
+            tvNoProducts.setVisibility(View.GONE);
+            rvProductList.setVisibility(View.VISIBLE);
+            setProductListAdapter();
         }
+    }
+
+    private void setProductListAdapter() {
+        Log.d(TAG, "setProductListAdapter: called");
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rvProductList.setLayoutManager(llm);
+        VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
+        rvProductList.addItemDecoration(vsid);
+        ProductListAdapter plrv = new ProductListAdapter(getContext(), user.getCart(), TAG);
+        rvProductList.setAdapter(plrv);
     }
 }

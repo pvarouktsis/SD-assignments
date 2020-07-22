@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replace(R.id.layout_main_container, new HomeFragment());
+        replace(R.id.fl_main_container, new HomeFragment());
 
         // initialize bottom navigation bar
-        BottomNavigationView bnv = findViewById(R.id.layout_bottom_navbar);
+        BottomNavigationView bnv = findViewById(R.id.bottom_navbar_view);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
 
         // initialize firebase
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToLoginActivity() {
         Log.d(TAG, "goToLoginActivity: called");
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
     }
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         return false;
                 }
-                replace(R.id.layout_main_container, f);
+                replace(R.id.fl_main_container, f);
                 return true;
             }
         };

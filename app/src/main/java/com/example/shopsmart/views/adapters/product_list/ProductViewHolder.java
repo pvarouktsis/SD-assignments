@@ -15,7 +15,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     private RelativeLayout rlProduct;
     private RelativeLayout rlProductNormal;
     private RelativeLayout rlProductExpanded;
-    private ImageView ivProductImageURL;
+    private ImageView ivProductImage;
     private TextView tvProductName;
     private TextView tvProductPrice;
     private TextView tvProductSupermarket;
@@ -25,16 +25,16 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 
     public ProductViewHolder(View productView) {
         super(productView);
-        rlProduct = productView.findViewById(R.id.layout_product);
-        rlProductNormal = productView.findViewById(R.id.product_normal);
-        rlProductExpanded = productView.findViewById(R.id.product_expanded);
-        ivProductImageURL = productView.findViewById(R.id.product_image);
-        tvProductName = productView.findViewById(R.id.product_name);
-        tvProductPrice = productView.findViewById(R.id.product_price);
-        tvProductSupermarket = productView.findViewById(R.id.product_supermarket);
-        btnExtend = productView.findViewById(R.id.button_extend);
-        btnAdd = productView.findViewById(R.id.button_add);
-        btnRemove = productView.findViewById(R.id.button_remove);
+        rlProduct = productView.findViewById(R.id.rl_product);
+        rlProductNormal = productView.findViewById(R.id.rl_product_standard);
+        rlProductExpanded = productView.findViewById(R.id.rl_product_expanded);
+        ivProductImage = productView.findViewById(R.id.iv_product_image);
+        tvProductName = productView.findViewById(R.id.tv_product_name);
+        tvProductPrice = productView.findViewById(R.id.tv_product_price);
+        tvProductSupermarket = productView.findViewById(R.id.tv_product_supermarket);
+        btnExtend = productView.findViewById(R.id.btn_extend);
+        btnAdd = productView.findViewById(R.id.btn_add);
+        btnRemove = productView.findViewById(R.id.btn_remove);
     }
 
     public RelativeLayout getRLProduct() {
@@ -62,11 +62,11 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     public ImageView getIVProductImageURL() {
-        return ivProductImageURL;
+        return ivProductImage;
     }
 
     public void setIVProductImageURL(ImageView ivProductImageURL) {
-        this.ivProductImageURL = ivProductImageURL;
+        this.ivProductImage = ivProductImageURL;
     }
 
     public TextView getTVProductName() {

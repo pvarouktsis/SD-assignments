@@ -3,6 +3,7 @@ package com.example.shopsmart.models;
 import com.google.firebase.firestore.Exclude;
 
 public class Product {
+    @Exclude
     private String id;
     private String name;
     private Double price;
@@ -25,10 +26,12 @@ public class Product {
         this.imageURL = imageURL;
     }
 
+    @Exclude
     public String getId() {
         return id;
     }
 
+    @Exclude
     public void setId(String id) {
         this.id = id;
     }

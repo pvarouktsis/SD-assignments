@@ -1,86 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_home"
+    android:id="@+id/rl_home_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentTop="false"
+    android:layout_alignParentBottom="false"
+    android:background="@color/transparent"
     android:gravity="center"
-    tools:context=".views.activities.MainActivity" >
+    tools:context=".views.activities.MainActivity">
 
-    <!-- main frame -->
-    <LinearLayout
-        android:id="@+id/layout_home_container"
-        android:visibility="visible"
+    <RelativeLayout
+        android:id="@+id/rl_search_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_centerInParent="true"
         android:gravity="center"
-        android:orientation="vertical"
+        android:paddingStart="20dp"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
+        android:paddingEnd="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="140dp" >
+        android:paddingBottom="140dp"
+        android:visibility="visible">
 
-        <!-- ShopSmart logo -->
-        <LinearLayout
-            android:id="@+id/shopsmart_logo"
+        <RelativeLayout
+            android:id="@+id/rl_shopsmart_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:gravity="center"
-            android:orientation="horizontal" >
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:gravity="center">
 
-            <include
-                layout="@layout/layout_shopsmart_logo" />
+            <include layout="@layout/layout_shopsmart_logo" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <!-- search form -->
         <RelativeLayout
-            android:id="@+id/search_form"
-            android:layout_width="350dp"
-            android:layout_height="match_parent"
+            android:id="@+id/rl_search_form"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_shopsmart_logo"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
-            android:padding="5dp" >
+            android:gravity="center">
 
             <EditText
-                android:id="@+id/input_search"
+                android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:layout_centerInParent="true"
                 android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="@string/input_search"
                 android:inputType="textFilter"
-                android:paddingStart="30dp"
-                android:paddingLeft="30dp"
+                android:paddingStart="40dp"
+                android:paddingLeft="40dp"
                 android:paddingTop="0dp"
-                android:paddingEnd="30dp"
-                android:paddingRight="60dp"
+                android:paddingEnd="80dp"
+                android:paddingRight="80dp"
                 android:paddingBottom="5dp" />
 
             <ImageButton
-                android:id="@+id/button_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:id="@+id/ibtn_search"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignTop="@id/et_search"
+                android:layout_alignBottom="@id/et_search"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="-2dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
-                android:background="#00000000"
-                android:padding="20dp"
+                android:background="@color/transparent"
+                android:paddingStart='20dp'
+                android:paddingLeft='20dp'
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="22dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_search" />
 
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <include
-        layout="@layout/layout_product_list" />
+    <include layout="@layout/layout_product_list" />
 
 </RelativeLayout>

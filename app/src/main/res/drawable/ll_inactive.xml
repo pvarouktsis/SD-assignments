@@ -17,8 +17,8 @@
     <item android:bottom="5dp" >
         <shape android:shape="rectangle" >
             <size
-                android:width="60dp"
-                android:height="10dp" />
+                android:width="260dp"
+                android:height="60dp" />
             <solid android:color="@color/aqua" />
             <corners android:radius="30dp" />
             <stroke

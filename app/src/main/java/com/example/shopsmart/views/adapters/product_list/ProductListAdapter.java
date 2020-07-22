@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.Product;
 import com.example.shopsmart.models.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +28,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
     private static final String TAG = "PRODUCT_LIST_ADAPTER";
     private User user;
     private Context context;
-    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Product> products;
     private String tag;
     private int expandedPosition = -1;
     private int previousExpandedPosition = -1;
@@ -67,15 +68,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
 
         // expand view of product
         final boolean isExpanded = (expandedPosition == position);
-        holder.getRLProductExpanded().setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand product based on current state
+        holder.getRLProductExpanded().setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand or contract product based on current state
         holder.getBtnExtend().setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
 
         if (tag.equals("MY_CART")) {
             holder.getBtnAdd().setVisibility(View.GONE);
             holder.getBtnRemove().setVisibility(View.VISIBLE);
         } else {
-            holder.getBtnAdd().setVisibility(View.VISIBLE);
             holder.getBtnRemove().setVisibility(View.GONE);
+            holder.getBtnAdd().setVisibility(View.VISIBLE);
         }
 
         holder.getRLProduct().setActivated(isExpanded);
@@ -125,42 +126,53 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
         ffdb.collection("users")
             .document(fu.getUid())
             .get()
-            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Log.d(TAG, "getUserTask: succeeded");
-                    user = documentSnapshot.toObject(User.class);
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "getUserTask: failed");
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "getUser: succeeded");
+                        DocumentSnapshot d = task.getResult();
+                        user = d.toObject(User.class);
+                    } else {
+                        Log.w(TAG, "getUser: failed", task.getException());
+                    }
                 }
             });
     }
 
     private void addProductToCart(Product product) {
         Log.d(TAG, "addProductToCart: called");
+
+        // add product to user's cart
         FirebaseUser fu = fa.getCurrentUser();
         user.getCart().add(product);
         ffdb.collection("users")
             .document(fu.getUid())
             .set(user, SetOptions.merge());
+
+        // toast for product added
+        Toast.makeText(context, "product added", Toast.LENGTH_SHORT).show();
     }
 
     private void removeProductFromCart(int position) {
         Log.d(TAG, "removeProductFromCart: called");
+
+        // remove product from user's cart
         FirebaseUser fu = fa.getCurrentUser();
         user.getCart().remove(position);
         ffdb.collection("users")
             .document(fu.getUid())
             .set(user, SetOptions.merge());
 
-        refreshProducts();
+        // toast for product removed
+        Toast.makeText(context, "product removed", Toast.LENGTH_SHORT).show();
+
+        // refresh products of user's cart
+        refreshCart();
     }
 
-    private void refreshProducts() {
+    private void refreshCart() {
+        Log.d(TAG, "refreshCart: called");
         products = user.getCart();
         notifyDataSetChanged();
     }
