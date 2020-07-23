@@ -44,7 +44,7 @@
             android:ellipsize="marquee"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="@string/product_name"
+            android:text="@string/text_product_name"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -68,7 +68,7 @@
             android:ellipsize="marquee"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="@string/product_price"
+            android:text="@string/text_product_price"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -122,7 +122,7 @@
             android:ellipsize="marquee"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="@string/product_supermarket"
+            android:text="@string/text_product_supermarket"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -141,7 +141,7 @@
             android:gravity="center"
             android:paddingTop="0dp"
             android:paddingBottom="7dp"
-            android:text="@string/product_button_add"
+            android:text="@string/text_product_button_add"
             android:textAllCaps="false"
             android:textColor="@color/green"
             android:textSize="16sp"
@@ -162,7 +162,7 @@
             android:gravity="center"
             android:paddingTop="0dp"
             android:paddingBottom="7dp"
-            android:text="@string/product_button_remove"
+            android:text="@string/text_product_button_remove"
             android:textAllCaps="false"
             android:textColor="@color/red"
             android:textSize="16sp"

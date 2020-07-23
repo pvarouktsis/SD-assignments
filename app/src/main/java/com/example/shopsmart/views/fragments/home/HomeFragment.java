@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         rvProductList.setVisibility(View.VISIBLE);
 
         // initialize title
-        tvTitle.setText(R.string.title_home);
+        tvTitle.setText(R.string.text_home);
 
         // on click
         ibtnSearch.setOnClickListener(searchListener);

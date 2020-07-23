@@ -75,7 +75,7 @@ public class OnSaleFragment extends Fragment {
         rvProductList.setVisibility(View.VISIBLE);
 
         //initialize title
-        tvTitle.setText(R.string.title_on_sale);
+        tvTitle.setText(R.string.text_on_sale);
     }
 
     private void readProducts(final View onSaleView) {

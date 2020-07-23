@@ -52,7 +52,7 @@
                 android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:hint="@string/input_email"
+                android:hint="@string/text_user_email"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="30dp"
                 android:paddingTop="0dp"
@@ -71,7 +71,7 @@
                 android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:hint="@string/input_password"
+                android:hint="@string/text_user_password"
                 android:inputType="textPassword"
                 android:paddingLeft="30dp"
                 android:paddingTop="0dp"
@@ -92,7 +92,7 @@
                 android:gravity="center"
                 android:paddingTop="0dp"
                 android:paddingBottom="5dp"
-                android:text="@string/title_login"
+                android:text="@string/text_user_login"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 
@@ -110,7 +110,7 @@
                 android:gravity="center"
                 android:paddingTop="0dp"
                 android:paddingBottom="5dp"
-                android:text="@string/title_register"
+                android:text="@string/text_user_register"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 

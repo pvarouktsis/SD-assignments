@@ -77,7 +77,7 @@ public class MyCartFragment extends Fragment {
         rvProductList.setVisibility(View.VISIBLE);
 
         // initialize title
-        tvTitle.setText(R.string.title_my_cart);
+        tvTitle.setText(R.string.text_my_cart);
     }
 
     private void getUser() {

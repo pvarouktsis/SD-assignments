@@ -53,7 +53,7 @@
                 android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:hint="@string/input_search"
+                android:hint="@string/text_product_search"
                 android:inputType="textFilter"
                 android:paddingStart="40dp"
                 android:paddingLeft="40dp"

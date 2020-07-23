@@ -20,12 +20,12 @@
         android:gravity="center"
         android:paddingTop="0dp"
         android:paddingBottom="5dp"
-        android:text="@string/title_my_account"
+        android:text="@string/text_my_account"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btn_logout"
+        android:id="@+id/btn_user_edit"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_below="@id/tv_title_my_account"
@@ -39,10 +39,49 @@
         android:paddingEnd="40dp"
         android:paddingRight="40dp"
         android:paddingBottom="5dp"
-        android:text="@string/title_logout"
+        android:text="@string/text_user_edit"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="normal" />
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_user_delete"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/btn_user_edit"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/ll_active"
+        android:gravity="center_vertical"
+        android:paddingStart="40dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="5dp"
+        android:text="@string/text_user_delete"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_user_logout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/btn_user_delete"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/ll_active"
+        android:gravity="center_vertical"
+        android:paddingStart="40dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="5dp"
+        android:text="@string/text_user_logout"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 </RelativeLayout>

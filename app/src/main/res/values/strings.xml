@@ -2,29 +2,28 @@
     <!-- app's name -->
     <string name="app_name">ShopSmart</string>
 
-    <!-- titles -->
-    <string name="title_default">none</string>
-    <string name="title_home">home</string>
-    <string name="title_my_cart">my cart</string>
-    <string name="title_on_sale">on sale</string>
-    <string name="title_my_account">my account</string>
-    <string name="title_login">sign in</string>
-    <string name="title_logout">sign out</string>
-    <string name="title_register">sign up</string>
-    <string name="title_filter">filter</string>
-    <string name="title_no_products">there are no products</string>
-
-    <!-- input text -->
-    <string name="input_username">username</string>
-    <string name="input_email">email</string>
-    <string name="input_password">password</string>
-    <string name="input_search">search</string>
-
-    <!-- product's attributes -->
-    <string name="product_name">product_name</string>
-    <string name="product_price">product_price</string>
-    <string name="product_supermarket">product_supermarket</string>
-    <string name="product_button_add">add</string>
-    <string name="product_button_remove">remove</string>
+    <!-- texts -->
+    <string name="text_default">none</string>
+    <string name="text_home">home</string>
+    <string name="text_my_cart">my cart</string>
+    <string name="text_on_sale">on sale</string>
+    <string name="text_my_account">my account</string>
+    <string name="text_user_username">username</string>
+    <string name="text_user_email">email</string>
+    <string name="text_user_password">password</string>
+    <string name="text_user_login">sign in</string>
+    <string name="text_user_logout">sign out</string>
+    <string name="text_user_register">sign up</string>
+    <string name="text_user_update">update</string>
+    <string name="text_user_edit">edit your account</string>
+    <string name="text_user_delete">delete your account</string>
+    <string name="text_product_search">search</string>
+    <string name="text_product_filter">filter</string>
+    <string name="text_product_name">product_name</string>
+    <string name="text_product_price">product_price</string>
+    <string name="text_product_supermarket">product_supermarket</string>
+    <string name="text_product_button_add">add</string>
+    <string name="text_product_button_remove">remove</string>
+    <string name="text_no_products">there are no products</string>
 
 </resources>
