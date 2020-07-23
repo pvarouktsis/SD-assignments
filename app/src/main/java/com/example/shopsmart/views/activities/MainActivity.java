@@ -32,13 +32,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         replace(R.id.fl_main_container, new HomeFragment());
+        initializeUIComponents();
+
+        // initialize firebase
+        fa = FirebaseAuth.getInstance();
+    }
+
+    private void initializeUIComponents() {
+        Log.d(TAG, "initializeUIComponents: called");
 
         // initialize bottom navigation bar
         BottomNavigationView bnv = findViewById(R.id.bottom_navbar_view);
         bnv.setOnNavigationItemSelectedListener(navigationListener);
-
-        // initialize firebase
-        fa = FirebaseAuth.getInstance();
     }
 
     @Override
