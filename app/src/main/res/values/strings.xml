@@ -23,6 +23,7 @@
     <string name="text_product_price">product_price</string>
     <string name="text_product_supermarket">product_supermarket</string>
     <string name="text_product_button_add">add</string>
+    <string name="text_product_button_add_extended">add product to your cart</string>
     <string name="text_product_button_remove">remove</string>
     <string name="text_no_products">there are no products</string>
 

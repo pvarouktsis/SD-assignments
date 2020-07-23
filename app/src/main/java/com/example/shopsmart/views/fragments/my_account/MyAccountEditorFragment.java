@@ -18,6 +18,8 @@ import com.example.shopsmart.models.User;
 import com.example.shopsmart.views.activities.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -80,7 +82,7 @@ public class MyAccountEditorFragment extends Fragment {
                         Log.d(TAG, "getUser: succeeded");
                         DocumentSnapshot d = task.getResult();
                         user = d.toObject(User.class);
-                        updateUser();
+                        updateUsername();
                     } else {
                         Log.w(TAG, "getUser: failed", task.getException());
                     }
@@ -88,15 +90,15 @@ public class MyAccountEditorFragment extends Fragment {
             });
     }
 
-    private void updateUser() {
+    private void updateUsername() {
         Log.d(TAG, "updateUser: called");
         if (!sUsername.isEmpty()) {
             user.setUsername(sUsername);
         }
-        updateUserEmailFromFirebaseAuthentication();
+        updateEmail();
     }
 
-    private void updateUserEmailFromFirebaseAuthentication() {
+    private void updateEmail() {
         Log.d(TAG, "updateUserEmailFromFirebaseAuthentication: called");
         FirebaseUser fu = fa.getCurrentUser();
         if (!sEmail.isEmpty()) {
@@ -111,15 +113,15 @@ public class MyAccountEditorFragment extends Fragment {
                             Log.w(TAG, "updateEmail: failed", task.getException());
                             Toast.makeText(getContext(), "update account failed", Toast.LENGTH_SHORT).show();
                         }
-                        updateUserPasswordFromFirebaseAuthentication();
+                        updatePassword();
                     }
                 });
         } else {
-            updateUserPasswordFromFirebaseAuthentication();
+            updatePassword();
         }
     }
 
-    private void updateUserPasswordFromFirebaseAuthentication() {
+    private void updatePassword() {
         Log.d(TAG, "updateUserPasswordFromFirebaseAuthentication: called");
         FirebaseUser fu = fa.getCurrentUser();
         if (!sPassword.isEmpty()) {
@@ -153,10 +155,28 @@ public class MyAccountEditorFragment extends Fragment {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "writeUser: succeeded");
-                        updateUI();
+                        reauthenticateUser();
                     } else {
                         Log.w(TAG, "writeUser: failed", task.getException());
                         Toast.makeText(getContext(), "update account failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+    }
+
+    private void reauthenticateUser() {
+        Log.d(TAG, "reauthenticateUser: called");
+        FirebaseUser fu = FirebaseAuth.getInstance().getCurrentUser();
+        AuthCredential credential = EmailAuthProvider.getCredential(sEmail, sPassword);
+        fu.reauthenticate(credential)
+            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "reauthendicateUser: succeeded");
+                        updateUI();
+                    } else {
+                        Log.w(TAG, "reauthendicateUser: failed", task.getException());
                     }
                 }
             });
