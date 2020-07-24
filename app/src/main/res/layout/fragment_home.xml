@@ -4,8 +4,6 @@
     android:id="@+id/rl_home_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentTop="false"
-    android:layout_alignParentBottom="false"
     android:background="@color/transparent"
     android:gravity="center"
     tools:context=".views.activities.MainActivity">
@@ -14,15 +12,13 @@
         android:id="@+id/rl_search_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center"
         android:paddingStart="20dp"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
         android:paddingEnd="20dp"
         android:paddingRight="20dp"
-        android:paddingBottom="140dp"
-        android:visibility="visible">
+        android:paddingBottom="140dp">
 
         <RelativeLayout
             android:id="@+id/rl_shopsmart_logo"
@@ -39,8 +35,9 @@
         <RelativeLayout
             android:id="@+id/rl_search_form"
             android:layout_width="360dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_below="@id/rl_shopsmart_logo"
+            android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="0dp"
             android:gravity="center">
@@ -48,8 +45,7 @@
             <EditText
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_centerInParent="true"
+                android:layout_height="match_parent"
                 android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
@@ -85,7 +81,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
-    <include layout="@layout/layout_product_list" />
 
 </RelativeLayout>

@@ -2,7 +2,9 @@ package com.example.shopsmart.models;
 
 import com.google.firebase.firestore.Exclude;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     @Exclude
     private String id;
     private String name;

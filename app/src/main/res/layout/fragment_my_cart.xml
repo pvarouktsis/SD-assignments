@@ -4,12 +4,8 @@
     android:id="@+id/rl_my_cart_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentBottom="false"
     android:background="@color/transparent"
-    android:gravity="center_horizontal"
+    android:gravity="top"
     tools:context=".views.activities.MainActivity">
-
-    <include layout="@layout/layout_product_list" />
 
 </RelativeLayout>

@@ -10,6 +10,4 @@
     android:gravity="center_horizontal"
     tools:context=".views.activities.MainActivity">
 
-    <include layout="@layout/layout_product_list" />
-
 </RelativeLayout>

@@ -71,7 +71,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductViewHolder> 
         holder.getRLProductExpanded().setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand or contract product based on current state
         holder.getBtnExtend().setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
 
-        if (tag.equals("MY_CART")) {
+        if (tag.equals("MY_CART_F")) {
             holder.getBtnAdd().setVisibility(View.GONE);
             holder.getBtnRemove().setVisibility(View.VISIBLE);
         } else {
