@@ -18,10 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String TAG = "REGISTER_ACTIVITY";
+    private static final String TAG = "REGISTER_A";
     private User user;
     private EditText etUsername;
     private EditText etEmail;
@@ -76,18 +77,37 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "registerUser: succeeded");
                         FirebaseUser fu = fa.getCurrentUser();
-                        writeUser(fu);
-                        updateUI(fu);
+                        setProfileUser(fu);
                     } else {
                         Log.w(TAG, "registerUser: failed", task.getException());
-                        Toast.makeText(RegisterActivity.this, "sign up failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Sign up failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
     }
 
-    private void writeUser(FirebaseUser fu) {
+    private void setProfileUser(final FirebaseUser fu) {
+        Log.d(TAG, "setProfileUser: called");
+
+        UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
+            .setDisplayName(user.getUsername())
+            .build();
+
+        fu.updateProfile(profile)
+            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "setProfileUser: succeeded");
+                        writeUser(fu);
+                    } else {
+                        Log.w(TAG, "registerUser: failed", task.getException());
+                    }
+                }
+            });
+    }
+
+    private void writeUser(final FirebaseUser fu) {
         Log.d(TAG, "writeUser: called");
         ffdb.collection("users")
             .document(fu.getUid())
@@ -97,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "writeUser: succeeded");
+                        updateUI(fu);
                     } else {
                         Log.w(TAG, "writeUser: failed");
                     }
@@ -104,19 +125,10 @@ public class RegisterActivity extends AppCompatActivity {
             });
     }
 
-    private void createUser() {
-        Log.d(TAG, "createUser: called");
-        user = new User(
-            etUsername.getText().toString().trim(),
-            etEmail.getText().toString().trim(),
-            etPassword.getText().toString().trim()
-        );
-    }
-
     private void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            Toast.makeText(RegisterActivity.this, "signed up successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "Signed up successfully", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }
@@ -133,10 +145,15 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    private void createUser() {
+        Log.d(TAG, "createUser: called");
+        user = new User(
+            etUsername.getText().toString().trim(),
+            etEmail.getText().toString().trim(),
+            etPassword.getText().toString().trim()
+        );
+    }
 
-    /*
-     * Register's button OnClickListener
-     */
     private View.OnClickListener registerListener =
         new View.OnClickListener() {
             @Override
@@ -147,9 +164,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
-    /*
-     * Login's button OnClickListener
-     */
     private View.OnClickListener loginListener =
         new View.OnClickListener() {
             @Override

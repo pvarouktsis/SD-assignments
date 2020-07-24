@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.views.fragments.HomeFragment;
-import com.example.shopsmart.views.fragments.my_account.MyAccountFragment;
+import com.example.shopsmart.views.fragments.MyAccountFragment;
 import com.example.shopsmart.views.fragments.MyCartFragment;
 import com.example.shopsmart.views.fragments.OnSaleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MAIN_ACTIVITY";
+    private static final String TAG = "MAIN_A";
     private FirebaseAuth fa;
 
     @Override
@@ -65,13 +65,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "goToLoginActivity: called");
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
-    }
-
-    private void add(int currentID, Fragment fragment) {
-        Log.d(TAG, "add: called");
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(currentID, fragment).commit();
     }
 
     private void replace(int currentID, Fragment fragment) {

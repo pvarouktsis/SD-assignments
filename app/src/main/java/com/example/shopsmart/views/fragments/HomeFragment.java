@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
                         showProducts();
                     } else {
                         Log.w(TAG, "searchProducts: failed", task.getException());
-                        Toast.makeText(getActivity(), "loading products failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Loading products failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

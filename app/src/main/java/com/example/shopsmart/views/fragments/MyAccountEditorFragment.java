@@ -1,8 +1,9 @@
-package com.example.shopsmart.views.fragments.my_account;
+package com.example.shopsmart.views.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyAccountEditorFragment extends Fragment {
     private static final String TAG = "MY_ACCOUNT_EDITOR_F";
-    private static final String NONE = "";
     private User user;
     private String sUsername;
     private String sEmail;
@@ -51,6 +51,11 @@ public class MyAccountEditorFragment extends Fragment {
         // initialize firebase
         fa = FirebaseAuth.getInstance();
 
+        // show Toast
+        Toast toast = Toast.makeText(getActivity(), "Fill in all the fields", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
+
         return myAccountEditorView;
     }
 
@@ -66,8 +71,6 @@ public class MyAccountEditorFragment extends Fragment {
         // on click
         btnUpdate.setOnClickListener(updateListener);
     }
-
-    // TODO
 
     private void getUser() {
         Log.d(TAG, "getUser: called");
@@ -90,12 +93,16 @@ public class MyAccountEditorFragment extends Fragment {
             });
     }
 
+    // TODO
     private void updateUsername() {
         Log.d(TAG, "updateUser: called");
         if (!sUsername.isEmpty()) {
             user.setUsername(sUsername);
+            updateEmail();
+        } else {
+            //updateEmail();
         }
-        updateEmail();
+
     }
 
     private void updateEmail() {
@@ -111,13 +118,13 @@ public class MyAccountEditorFragment extends Fragment {
                             user.setEmail(sEmail);
                         } else {
                             Log.w(TAG, "updateEmail: failed", task.getException());
-                            Toast.makeText(getContext(), "update account failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Update account failed", Toast.LENGTH_SHORT).show();
                         }
                         updatePassword();
                     }
                 });
         } else {
-            updatePassword();
+            //updatePassword();
         }
     }
 
@@ -134,13 +141,13 @@ public class MyAccountEditorFragment extends Fragment {
                             user.setPassword(sPassword);
                         } else {
                             Log.w(TAG, "updatePassword: failed", task.getException());
-                            Toast.makeText(getContext(), "update account failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Update account failed", Toast.LENGTH_SHORT).show();
                         }
                         writeUser();
                     }
                 });
         } else {
-            writeUser();
+            //writeUser();
         }
     }
 
@@ -158,7 +165,7 @@ public class MyAccountEditorFragment extends Fragment {
                         reauthenticateUser();
                     } else {
                         Log.w(TAG, "writeUser: failed", task.getException());
-                        Toast.makeText(getContext(), "update account failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Update account failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -186,7 +193,7 @@ public class MyAccountEditorFragment extends Fragment {
         Log.d(TAG, "updateUI: called");
         FirebaseUser fu = fa.getCurrentUser();
         if (fu != null) {
-            Toast.makeText(getContext(), "updated account successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Updated account successfully", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }

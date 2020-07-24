@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- shadow -->
-    <item>
+    <item android:top="5dp">
         <shape android:shape="rectangle">
             <!-- size relative to actual -->
             <size

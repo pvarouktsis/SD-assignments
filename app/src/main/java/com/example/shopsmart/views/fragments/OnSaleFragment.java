@@ -65,7 +65,7 @@ public class OnSaleFragment extends Fragment {
                         showProducts();
                     } else {
                         Log.w(TAG, "readProducts: failed", task.getException());
-                        Toast.makeText(getActivity(), "loading products failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Loading products failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

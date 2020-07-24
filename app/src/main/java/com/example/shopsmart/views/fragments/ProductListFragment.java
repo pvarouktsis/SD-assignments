@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.Product;
 import com.example.shopsmart.utils.VerticalSpaceItemDecoration;
-import com.example.shopsmart.views.adapters.product_list.ProductListAdapter;
+import com.example.shopsmart.views.adapters.ProductListAdapter;
+import com.example.shopsmart.views.adapters.ProductListAdapterFactory;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class ProductListFragment extends Fragment {
         Log.d(TAG, "onCreateView: called");
 
         // initialize ui
-        View productListView = inflater.inflate(R.layout.layout_product_list, container, false);
+        View productListView = inflater.inflate(R.layout.fragment_product_list, container, false);
         initializeUIComponents(productListView);
         getTagFromBundle();
         getProducts();
@@ -68,7 +69,8 @@ public class ProductListFragment extends Fragment {
             tvNoProducts.setVisibility(View.VISIBLE);
             rvProductList.setVisibility(View.GONE);
         } else {
-            // visibility is default
+            rvProductList.setVisibility(View.VISIBLE);
+            tvNoProducts.setVisibility(View.GONE);
             setProductListAdapter();
         }
     }
@@ -81,7 +83,8 @@ public class ProductListFragment extends Fragment {
         rvProductList.setLayoutManager(llm);
         VerticalSpaceItemDecoration vsid = new VerticalSpaceItemDecoration(VERTICAL_SPACE);
         rvProductList.addItemDecoration(vsid);
-        ProductListAdapter plrv = new ProductListAdapter(getContext(), products, tag);
+        ProductListAdapterFactory plrvf = new ProductListAdapterFactory();
+        ProductListAdapter plrv = plrvf.initializeProductListAdapter(getActivity(), products, tag);
         rvProductList.setAdapter(plrv);
     }
 }

@@ -66,7 +66,7 @@ public class MyCartFragment extends Fragment {
                         showCart();
                     } else {
                         Log.w(TAG, "getUser: failed", task.getException());
-                        Toast.makeText(getActivity(), "loading cart failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Loading cart failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

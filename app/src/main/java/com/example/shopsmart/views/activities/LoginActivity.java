@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shopsmart.R;
+import com.example.shopsmart.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,9 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private final static String TAG = "LOGIN_ACTIVITY";
-    private String sEmail;
-    private String sPassword;
+    private final static String TAG = "LOGIN_A";
+    private User user;
     private EditText etEmail;
     private EditText etPassword;
     private Button btnLogin;
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginUser() {
         Log.d(TAG, "loginUser: called");
-        fa.signInWithEmailAndPassword(sEmail, sPassword)
+        fa.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -75,23 +75,17 @@ public class LoginActivity extends AppCompatActivity {
                         updateUI(fu);
                     } else {
                         Log.w(TAG, "loginUser: failed", task.getException());
-                        Toast.makeText(LoginActivity.this, "sign in failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
                     }
 
                 }
             });
     }
 
-    private void convertEditTextToString() {
-        Log.d(TAG, "convertEditTextToString: called");
-        sEmail = etEmail.getText().toString().trim();
-        sPassword = etPassword.getText().toString().trim();
-    }
-
     private void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            Toast.makeText(LoginActivity.this, "signed in successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
             goToMainActivity();
         }
     }
@@ -108,22 +102,24 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    /*
-     * Login's button OnClickListener
-     */
+    private void createUser() {
+        Log.d(TAG, "createUser: called");
+        user = new User(
+            etEmail.getText().toString().trim(),
+            etPassword.getText().toString().trim()
+        );
+    }
+
     private View.OnClickListener loginListener =
         new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "loginListener: called");
-                convertEditTextToString();
+                createUser();
                 loginUser();
             }
         };
 
-    /*
-     * Register's button OnClickListener
-     */
     private View.OnClickListener registerListener =
         new View.OnClickListener() {
             @Override
