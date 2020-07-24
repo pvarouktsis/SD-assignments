@@ -1,7 +1,6 @@
 <resources>
     <!-- app's name -->
     <string name="app_name">ShopSmart</string>
-
     <!-- texts -->
     <string name="text_default">None</string>
     <string name="text_home">Home</string>
@@ -27,5 +26,4 @@
     <string name="text_product_button_remove">Remove</string>
     <string name="text_no_products">There are no products</string>
     <string name="text_please_wait">Please wait...</string>
-
 </resources>

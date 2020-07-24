@@ -21,8 +21,6 @@
             android:id="@+id/rl_shopsmart_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
             android:gravity="center">
 
             <include layout="@layout/layout_shopsmart_logo" />
@@ -46,7 +44,7 @@
                 android:layout_width="260dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-
+                android:layout_centerVertical="false"
                 android:background="@drawable/ll_active"
                 android:ems="10"
                 android:gravity="center_vertical"
