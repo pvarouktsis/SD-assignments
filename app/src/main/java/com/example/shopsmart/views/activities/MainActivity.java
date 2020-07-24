@@ -12,10 +12,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.views.fragments.home.HomeFragment;
+import com.example.shopsmart.views.fragments.HomeFragment;
 import com.example.shopsmart.views.fragments.my_account.MyAccountFragment;
-import com.example.shopsmart.views.fragments.my_cart.MyCartFragment;
-import com.example.shopsmart.views.fragments.on_sale.OnSaleFragment;
+import com.example.shopsmart.views.fragments.MyCartFragment;
+import com.example.shopsmart.views.fragments.OnSaleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
