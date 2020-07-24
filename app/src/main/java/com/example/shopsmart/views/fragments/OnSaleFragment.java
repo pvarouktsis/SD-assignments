@@ -38,7 +38,7 @@ public class OnSaleFragment extends Fragment {
         initializeUIComponents(onSaleView);
 
         // read and show products
-        readProducts(onSaleView);
+        readProducts();
 
         return onSaleView;
     }
@@ -48,7 +48,7 @@ public class OnSaleFragment extends Fragment {
         // do nothing
     }
 
-    private void readProducts(final View onSaleView) {
+    private void readProducts() {
         Log.d(TAG, "readProducts: called");
         ffdb.collection("products")
             .get()
@@ -82,7 +82,7 @@ public class OnSaleFragment extends Fragment {
     }
 
     private void showProducts() {
-        Log.d(TAG, "showCart: called");
+        Log.d(TAG, "showProducts: called");
 
         // initialize ProductListFragment
         Fragment f = new ProductListFragment();

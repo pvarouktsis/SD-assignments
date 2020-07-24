@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         ibtnSearch.setOnClickListener(searchListener);
     }
 
-    private void searchProducts(final View homeView) {
+    private void searchProducts() {
         Log.d(TAG, "searchProducts: called");
 
         // TODO
@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment {
         public void onClick(View homeView) {
             Log.d(TAG, "searchListener: called");
             convertEditTextToString();
-            searchProducts(homeView);
+            searchProducts();
         }
     };
 
