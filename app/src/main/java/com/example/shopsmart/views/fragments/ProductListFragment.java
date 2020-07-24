@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,12 +20,12 @@ import com.example.shopsmart.views.adapters.ProductListAdapterFactory;
 import java.util.ArrayList;
 
 public class ProductListFragment extends Fragment {
-    private static final String TAG = "PRODUCT_LIST_F";
-    private static final int VERTICAL_SPACE = 20;
-    private ArrayList<Product> products;
-    private String tag;
-    private TextView tvNoProducts;
-    private RecyclerView rvProductList;
+    protected static final String TAG = "PRODUCT_LIST_F";
+    protected static final int VERTICAL_SPACE = 20;
+    protected ArrayList<Product> products;
+    protected String tag;
+    protected TextView tvNoProducts;
+    protected RecyclerView rvProductList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -43,7 +42,7 @@ public class ProductListFragment extends Fragment {
         return productListView;
     }
 
-    private void initializeUIComponents(View productListView) {
+    protected void initializeUIComponents(View productListView) {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
@@ -51,17 +50,17 @@ public class ProductListFragment extends Fragment {
         rvProductList = productListView.findViewById(R.id.rv_product_list);
     }
 
-    private void getTagFromBundle() {
+    protected void getTagFromBundle() {
         Log.d(TAG, "getTag: called");
         tag = getArguments().getString("tag");
     }
 
-    private void getProducts() {
+    protected void getProducts() {
         Log.d(TAG, "getProducts: called");
         products = (ArrayList<Product>) getArguments().getSerializable("products");
     }
 
-    private void showProducts() {
+    protected void showProducts() {
         Log.d(TAG, "showProducts: called");
 
         // check if any products
@@ -75,7 +74,7 @@ public class ProductListFragment extends Fragment {
         }
     }
 
-    private void setProductListAdapter() {
+    protected void setProductListAdapter() {
         Log.d(TAG, "setProductListAdapter: called");
 
         // set ProductListAdapter

@@ -2,6 +2,7 @@ package com.example.shopsmart.views.adapters;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +100,7 @@ public class MyCartProductListAdapter extends ProductListAdapter {
             .set(user, SetOptions.merge());
 
         // toast for product removed
-        Toast.makeText(activity, "Product removed", Toast.LENGTH_SHORT).show();
+        showToast("Product removed");
 
         // refresh products of user's cart
         refreshCart();
@@ -113,5 +114,11 @@ public class MyCartProductListAdapter extends ProductListAdapter {
             tvNoProducts.setVisibility(View.VISIBLE);
             rvProductList.setVisibility(View.GONE);
         }
+    }
+
+    protected void showToast(String message) {
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
     }
 }

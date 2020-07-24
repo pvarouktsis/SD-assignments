@@ -1,21 +1,15 @@
 package com.example.shopsmart.views.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
-import com.example.shopsmart.views.activities.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,12 +17,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyAccountFragment extends Fragment {
-    private static final String TAG = "MY_ACCOUNT_F";
-    private Button btnUserEdit;
-    private Button btnUserDelete;
-    private Button btnUserLogout;
-    private FirebaseAuth fa;
-    private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
+    protected static final String TAG = "MY_ACCOUNT_F";
+    protected Button btnUserEdit;
+    protected Button btnUserDelete;
+    protected Button btnUserLogout;
+    protected FirebaseAuth fa;
+    protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -45,7 +39,7 @@ public class MyAccountFragment extends Fragment {
         return myAccountView;
     }
 
-    private void initializeUIComponents(View myAccountView) {
+    protected void initializeUIComponents(View myAccountView) {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
@@ -62,7 +56,7 @@ public class MyAccountFragment extends Fragment {
     // TODO
     // if user is deleted from firebase firestore but cannot be deleted
     // from firebase authentication
-    private void deleteUserFromFirebaseFirestore() {
+    protected void deleteUserFromFirebaseFirestore() {
         Log.d(TAG, "deleteUserFromFirebaseFirestore: called");
         FirebaseUser fu = fa.getCurrentUser();
         ffdb.collection("users")
@@ -76,13 +70,13 @@ public class MyAccountFragment extends Fragment {
                         deleteUserFromFirebaseAuthentication();
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseFirestore: failed", task.getException());
-                        Toast.makeText(getActivity(), "Delete account failed", Toast.LENGTH_SHORT).show();
+                        showToast("Delete account failed");
                     }
                 }
             });
     }
 
-    private void deleteUserFromFirebaseAuthentication() {
+    protected void deleteUserFromFirebaseAuthentication() {
         Log.d(TAG, "deleteUserFromFirebaseAuthentication: called");
         FirebaseUser fu = fa.getCurrentUser();
         fu.delete()
@@ -91,26 +85,26 @@ public class MyAccountFragment extends Fragment {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "deleteUserFromFirebaseAuthentication: succeeded");
-                        Toast.makeText(getActivity(), "Deleted account successfully", Toast.LENGTH_SHORT).show();
+                        showToast("Deleted account successfully");
                         updateUI();
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseAuthentication: failed", task.getException());
-                        Toast.makeText(getActivity(), "Delete account failed", Toast.LENGTH_SHORT).show();
+                        showToast("Delete account failed");
                     }
                 }
             });
 
     }
 
-    private void logoutUser() {
+    protected void logoutUser() {
         Log.d(TAG, "logoutUser: called");
         fa.signOut();
         Log.d(TAG, "logoutUser: succeeded");
-        Toast.makeText(getActivity(), "Signed out successfully", Toast.LENGTH_SHORT).show();
+        showToast("Signed out successfully");
         updateUI();
     }
 
-    private void updateUI() {
+    protected void updateUI() {
         Log.d(TAG, "updateUI: called");
         FirebaseUser fu = fa.getCurrentUser();
         if (fu == null) {
@@ -118,19 +112,7 @@ public class MyAccountFragment extends Fragment {
         }
     }
 
-    private void goToMainActivity() {
-        Log.d(TAG, "goToMainActivity: called");
-        startActivity(new Intent(getContext(), MainActivity.class));
-    }
-
-    private void replace(int currentID, Fragment fragment) {
-        Log.d(TAG, "replace: called");
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(currentID, fragment).commit();
-    }
-
-    private View.OnClickListener editUserListener =
+    protected View.OnClickListener editUserListener =
         new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +122,7 @@ public class MyAccountFragment extends Fragment {
             }
         };
 
-    private View.OnClickListener deleteUserListener =
+    protected View.OnClickListener deleteUserListener =
         new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +131,7 @@ public class MyAccountFragment extends Fragment {
             }
         };
 
-    private View.OnClickListener logoutUserListener =
+    protected View.OnClickListener logoutUserListener =
         new View.OnClickListener() {
             @Override
             public void onClick(View v) {

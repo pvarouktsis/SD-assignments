@@ -1,15 +1,12 @@
 package com.example.shopsmart.views.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.User;
@@ -21,16 +18,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class RegisterActivity extends AppCompatActivity {
-    private static final String TAG = "REGISTER_A";
-    private User user;
-    private EditText etUsername;
-    private EditText etEmail;
-    private EditText etPassword;
-    private Button btnRegister;
-    private Button btnLogin;
-    private FirebaseAuth fa;
-    private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
+public class RegisterActivity extends Activity {
+    protected static final String TAG = "REGISTER_A";
+    protected User user;
+    protected EditText etUsername;
+    protected EditText etEmail;
+    protected EditText etPassword;
+    protected Button btnRegister;
+    protected Button btnLogin;
+    protected FirebaseAuth fa;
+    protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         updateUI(fu);
     }
 
-    private void initializeUIComponents() {
+    protected void initializeUIComponents() {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
@@ -68,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(loginListener);
     }
 
-    private void registerUser() {
+    protected void registerUser() {
         Log.d(TAG, "registerUser: called");
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -80,13 +77,13 @@ public class RegisterActivity extends AppCompatActivity {
                         setProfileUser(fu);
                     } else {
                         Log.w(TAG, "registerUser: failed", task.getException());
-                        Toast.makeText(RegisterActivity.this, "Sign up failed", Toast.LENGTH_SHORT).show();
+                        showToast(RegisterActivity.this, "Sign up failed");
                     }
                 }
             });
     }
 
-    private void setProfileUser(final FirebaseUser fu) {
+    protected void setProfileUser(final FirebaseUser fu) {
         Log.d(TAG, "setProfileUser: called");
 
         UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
@@ -107,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
             });
     }
 
-    private void writeUser(final FirebaseUser fu) {
+    protected void writeUser(final FirebaseUser fu) {
         Log.d(TAG, "writeUser: called");
         ffdb.collection("users")
             .document(fu.getUid())
@@ -125,27 +122,15 @@ public class RegisterActivity extends AppCompatActivity {
             });
     }
 
-    private void updateUI(FirebaseUser fu) {
+    protected void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            Toast.makeText(RegisterActivity.this, "Signed up successfully", Toast.LENGTH_SHORT).show();
-            goToMainActivity();
+            showToast(RegisterActivity.this,"Signed up successfully");
+            goToMainActivity(RegisterActivity.this);
         }
     }
 
-    private void goToMainActivity() {
-        Log.d(TAG, "goToMainActivity: called");
-        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-        finish();
-    }
-
-    private void goToLoginActivity() {
-        Log.d(TAG, "goToLoginActivity: called");
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-        finish();
-    }
-
-    private void createUser() {
+    protected void createUser() {
         Log.d(TAG, "createUser: called");
         user = new User(
             etUsername.getText().toString().trim(),
@@ -154,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
         );
     }
 
-    private View.OnClickListener registerListener =
+    protected View.OnClickListener registerListener =
         new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,12 +149,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
-    private View.OnClickListener loginListener =
+    protected View.OnClickListener loginListener =
         new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "loginListener: called");
-                goToLoginActivity();
+                goToLoginActivity(RegisterActivity.this);
             }
         };
 

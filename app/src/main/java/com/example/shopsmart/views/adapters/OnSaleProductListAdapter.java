@@ -2,6 +2,7 @@ package com.example.shopsmart.views.adapters;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,12 @@ public class OnSaleProductListAdapter extends ProductListAdapter {
             .set(user, SetOptions.merge());
 
         // toast for product added
-        Toast.makeText(activity, "Product added", Toast.LENGTH_SHORT).show();
+        showToast("Product add");
+    }
+
+    protected void showToast(String message) {
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
     }
 }

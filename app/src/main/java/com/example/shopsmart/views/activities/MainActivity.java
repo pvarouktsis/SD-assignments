@@ -1,15 +1,11 @@
 package com.example.shopsmart.views.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.views.fragments.HomeFragment;
@@ -20,9 +16,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MAIN_A";
-    private FirebaseAuth fa;
+public class MainActivity extends Activity {
+    protected static final String TAG = "MAIN_A";
+    protected FirebaseAuth fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
         fa = FirebaseAuth.getInstance();
     }
 
-    private void initializeUIComponents() {
-        Log.d(TAG, "initializeUIComponents: called");
-
-        // initialize bottom navigation bar
-        BottomNavigationView bnv = findViewById(R.id.bottom_navbar_view);
-        bnv.setOnNavigationItemSelectedListener(navigationListener);
-    }
-
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart: called");
@@ -54,27 +42,22 @@ public class MainActivity extends AppCompatActivity {
         updateUI(fu);
     }
 
-    private void updateUI(FirebaseUser fu) {
+    protected void initializeUIComponents() {
+        Log.d(TAG, "initializeUIComponents: called");
+
+        // initialize bottom navigation bar
+        BottomNavigationView bnv = findViewById(R.id.bottom_navbar_view);
+        bnv.setOnNavigationItemSelectedListener(navigationListener);
+    }
+
+    protected void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu == null) {
-            goToLoginActivity();
+            goToLoginActivity(MainActivity.this);
         }
     }
 
-    private void goToLoginActivity() {
-        Log.d(TAG, "goToLoginActivity: called");
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        finish();
-    }
-
-    private void replace(int currentID, Fragment fragment) {
-        Log.d(TAG, "replace: called");
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(currentID, fragment).commit();
-    }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
+    protected BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
         new BottomNavigationView.OnNavigationItemSelectedListener() {
             Fragment f = null;
             @Override

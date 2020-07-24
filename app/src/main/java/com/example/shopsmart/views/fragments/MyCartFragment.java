@@ -5,12 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.User;
@@ -22,10 +18,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyCartFragment extends Fragment {
-    private static final String TAG = "MY_CART_F";
-    private User user;
-    private FirebaseAuth fa;
-    private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
+    protected static final String TAG = "MY_CART_F";
+    protected User user;
+    protected FirebaseAuth fa;
+    protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -45,12 +41,12 @@ public class MyCartFragment extends Fragment {
         return myCartView;
     }
 
-    private void initializeUIComponents(View myCartView) {
+    protected void initializeUIComponents(View myCartView) {
         Log.d(TAG, "initializeUIComponents: called");
         // do nothing
     }
 
-    private void getUser() {
+    protected void getUser() {
         Log.d(TAG, "getUser: called");
         FirebaseUser fu = fa.getCurrentUser();
         ffdb.collection("users")
@@ -66,13 +62,13 @@ public class MyCartFragment extends Fragment {
                         showCart();
                     } else {
                         Log.w(TAG, "getUser: failed", task.getException());
-                        Toast.makeText(getActivity(), "Loading cart failed", Toast.LENGTH_SHORT).show();
+                        showToast("Loading cart failed");
                     }
                 }
             });
     }
 
-    private void showCart() {
+    protected void showCart() {
         Log.d(TAG, "showCart: called");
 
         // initialize ProductListFragment
@@ -86,14 +82,5 @@ public class MyCartFragment extends Fragment {
 
         // replace fragment
         replace(R.id.fl_main_container, f);
-    }
-
-    private void replace(int cid, Fragment f) {
-        Log.d(TAG, "replace: called");
-        if (getActivity() != null) {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(cid, f).commit();
-        }
     }
 }

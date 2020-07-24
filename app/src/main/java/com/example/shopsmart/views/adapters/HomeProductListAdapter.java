@@ -2,6 +2,7 @@ package com.example.shopsmart.views.adapters;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import androidx.annotation.NonNull;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.Product;
-import com.example.shopsmart.utils.ToastItemDecoration;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.SetOptions;
@@ -98,6 +98,12 @@ public class HomeProductListAdapter extends ProductListAdapter {
             .set(user, SetOptions.merge());
 
         // toast for product added
-        ToastItemDecoration.makeText(activity, "Product added", Toast.LENGTH_SHORT).show();
+        showToast("Product added");
+    }
+
+    protected void showToast(String message) {
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
     }
 }

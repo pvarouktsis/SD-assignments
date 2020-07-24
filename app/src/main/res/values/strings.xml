@@ -26,5 +26,6 @@
     <string name="text_product_button_add_extended">Add product to your cart</string>
     <string name="text_product_button_remove">Remove</string>
     <string name="text_no_products">There are no products</string>
+    <string name="text_please_wait">Please wait...</string>
 
 </resources>

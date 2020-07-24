@@ -5,12 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
 import com.example.shopsmart.models.Product;
@@ -24,9 +20,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class OnSaleFragment extends Fragment {
-    private static final String TAG = "ON_SALE_F";
-    private ArrayList<Product> products = new ArrayList<>();
-    private FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
+    protected static final String TAG = "ON_SALE_F";
+    protected ArrayList<Product> products = new ArrayList<>();
+    protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -43,12 +39,12 @@ public class OnSaleFragment extends Fragment {
         return onSaleView;
     }
 
-    private void initializeUIComponents(View onSaleView) {
+    protected void initializeUIComponents(View onSaleView) {
         Log.d(TAG, "initializeUIComponents: called");
         // do nothing
     }
 
-    private void readProducts() {
+    protected void readProducts() {
         Log.d(TAG, "readProducts: called");
         ffdb.collection("products")
             .get()
@@ -65,13 +61,13 @@ public class OnSaleFragment extends Fragment {
                         showProducts();
                     } else {
                         Log.w(TAG, "readProducts: failed", task.getException());
-                        Toast.makeText(getActivity(), "Loading products failed", Toast.LENGTH_SHORT).show();
+                        showToast("Loading products failed");
                     }
                 }
             });
     }
 
-    private void addProduct(DocumentSnapshot d) {
+    protected void addProduct(DocumentSnapshot d) {
         Log.d(TAG, "addProduct: called");
         Product p = new Product();
         p.setId(d.getId());
@@ -81,7 +77,7 @@ public class OnSaleFragment extends Fragment {
         products.add(p);
     }
 
-    private void showProducts() {
+    protected void showProducts() {
         Log.d(TAG, "showProducts: called");
 
         // initialize ProductListFragment
@@ -95,14 +91,5 @@ public class OnSaleFragment extends Fragment {
 
         // replace fragment
         replace(R.id.fl_main_container, f);
-    }
-
-    private void replace(int cid, Fragment f) {
-        Log.d(TAG, "replace: called");
-        if (getActivity() != null) {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(cid, f).commit();
-        }
     }
 }

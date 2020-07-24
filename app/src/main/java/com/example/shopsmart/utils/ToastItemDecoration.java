@@ -3,10 +3,11 @@ package com.example.shopsmart.utils;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.view.Gravity;
 import android.widget.Toast;
 
 public class ToastItemDecoration extends Toast {
+
+
     /**
      * Construct an empty Toast object.  You must call {@link #setView} before you
      * can call {@link #show}.
@@ -16,6 +17,5 @@ public class ToastItemDecoration extends Toast {
      */
     public ToastItemDecoration(Context context) {
         super(context);
-        setGravity(Gravity.BOTTOM, 0, 200);
     }
 }

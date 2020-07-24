@@ -110,7 +110,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     /*
      * ProductViewHolder class
      */
-     protected class ProductViewHolder extends RecyclerView.ViewHolder {
+    protected class ProductViewHolder extends RecyclerView.ViewHolder {
         protected RelativeLayout rlProduct;
         protected RelativeLayout rlProductStandard;
         protected RelativeLayout rlProductExpanded;
