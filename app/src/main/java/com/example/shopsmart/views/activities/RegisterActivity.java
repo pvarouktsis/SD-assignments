@@ -28,6 +28,7 @@ public class RegisterActivity extends Activity {
     protected Button btnLogin;
     protected FirebaseAuth fa;
     protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
+    protected int errorCode = 0;        // if errorCode < 7 then something went wrong
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +41,6 @@ public class RegisterActivity extends Activity {
 
         // initialize firebase
         fa = FirebaseAuth.getInstance();
-    }
-
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "onStart: called");
-        super.onStart();
-        FirebaseUser fu = fa.getCurrentUser();
-        updateUI(fu);
     }
 
     protected void initializeUIComponents() {
@@ -72,18 +65,20 @@ public class RegisterActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "registerUser: succeeded");
+                        Log.d(TAG, "createUserWithEmailAndPassword: succeeded");
+                        errorCode += 1;
                         FirebaseUser fu = fa.getCurrentUser();
                         setProfileUser(fu);
                     } else {
-                        Log.w(TAG, "registerUser: failed", task.getException());
-                        showToast(RegisterActivity.this, "Sign up failed");
+                        Log.w(TAG, "createUserWithEmailAndPassword: failed", task.getException());
+                        FirebaseUser fu = fa.getCurrentUser();
+                        updateUI(fu);
                     }
                 }
             });
     }
 
-    protected void setProfileUser(final FirebaseUser fu) {
+    protected void setProfileUser(FirebaseUser fu) {
         Log.d(TAG, "setProfileUser: called");
 
         UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
@@ -95,16 +90,20 @@ public class RegisterActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "setProfileUser: succeeded");
+                        Log.d(TAG, "updateProfile: succeeded");
+                        errorCode += 2;
+                        FirebaseUser fu = fa.getCurrentUser();
                         writeUser(fu);
                     } else {
-                        Log.w(TAG, "registerUser: failed", task.getException());
+                        Log.w(TAG, "updateProfile: failed", task.getException());
+                        FirebaseUser fu = fa.getCurrentUser();
+                        updateUI(fu);
                     }
                 }
             });
     }
 
-    protected void writeUser(final FirebaseUser fu) {
+    protected void writeUser(FirebaseUser fu) {
         Log.d(TAG, "writeUser: called");
         ffdb.collection("users")
             .document(fu.getUid())
@@ -114,9 +113,13 @@ public class RegisterActivity extends Activity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "writeUser: succeeded");
+                        errorCode += 4;
+                        FirebaseUser fu = fa.getCurrentUser();
                         updateUI(fu);
                     } else {
                         Log.w(TAG, "writeUser: failed");
+                        FirebaseUser fu = fa.getCurrentUser();
+                        updateUI(fu);
                     }
                 }
             });
@@ -124,9 +127,13 @@ public class RegisterActivity extends Activity {
 
     protected void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
+        Log.d(TAG, "error: " + errorCode);
         if (fu != null) {
             showToast(RegisterActivity.this,"Signed up successfully");
             goToMainActivity(RegisterActivity.this);
+        } else {
+            showToast(RegisterActivity.this, "Sign up failed");
+            goToRegisterActivity(RegisterActivity.this);
         }
     }
 

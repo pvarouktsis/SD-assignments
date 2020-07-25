@@ -25,15 +25,15 @@ public abstract class Activity extends AppCompatActivity {
         finish();
     }
 
-    protected void goToRegisterActivity(Activity activity) {
-        Log.d(TAG, "goToRegisterActivity: called");
-        startActivity(new Intent(activity, RegisterActivity.class));
-        finish();
-    }
-
     protected void goToLoginActivity(Activity activity) {
         Log.d(TAG, "goToLoginActivity: called");
         startActivity(new Intent(activity, LoginActivity.class));
+        finish();
+    }
+
+    protected void goToRegisterActivity(Activity activity) {
+        Log.d(TAG, "goToRegisterActivity: called");
+        startActivity(new Intent(activity, RegisterActivity.class));
         finish();
     }
 

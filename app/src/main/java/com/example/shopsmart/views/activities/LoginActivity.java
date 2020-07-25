@@ -38,14 +38,6 @@ public class LoginActivity extends Activity {
         fa = FirebaseAuth.getInstance();
     }
 
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "onStart: called");
-        super.onStart();
-        FirebaseUser fu = fa.getCurrentUser();
-        updateUI(fu);
-    }
-
     protected void initializeUIComponents() {
         Log.d(TAG, "initializeComponents: called");
 
@@ -67,13 +59,13 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "loginUser: succeeded");
+                        Log.d(TAG, "signInWithEmailAndPassword: succeeded");
                         FirebaseUser fu = fa.getCurrentUser();
-                        dismissLoading();
                         updateUI(fu);
                     } else {
-                        Log.w(TAG, "loginUser: failed", task.getException());
-                        showToast(LoginActivity.this,"Sign in failed");
+                        Log.w(TAG, "signInWithEmailAndPassword: failed", task.getException());
+                        FirebaseUser fu = fa.getCurrentUser();
+                        updateUI(fu);
                     }
 
                 }
@@ -85,10 +77,11 @@ public class LoginActivity extends Activity {
         if (fu != null) {
             showToast(LoginActivity.this,"Signed in successfully");
             goToMainActivity(LoginActivity.this);
+        } else {
+            showToast(LoginActivity.this,"Sign in failed");
+            goToLoginActivity(LoginActivity.this);
         }
     }
-
-
 
     protected void createUser() {
         Log.d(TAG, "createUser: called");
@@ -103,7 +96,6 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "loginListener: called");
-                showLoading(LoginActivity.this);
                 createUser();
                 loginUser();
             }
