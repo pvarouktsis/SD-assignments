@@ -54,9 +54,7 @@ public class OnSaleFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "readProducts: succeeded");
                         for (QueryDocumentSnapshot d : task.getResult()) {
-                            if (!d.getId().equals("prototype")) { // if it is NOT the prototype document
-                                addProduct(d);
-                            }
+                            addProduct(d);
                         }
                         showProducts();
                     } else {

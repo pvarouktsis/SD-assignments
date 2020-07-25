@@ -24,7 +24,7 @@
         android:paddingEnd="40dp"
         android:paddingRight="40dp"
         android:paddingBottom="5dp"
-        android:text="@string/text_user_edit"
+        android:text="@string/text_user_update_long"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -44,7 +44,7 @@
         android:paddingEnd="40dp"
         android:paddingRight="40dp"
         android:paddingBottom="5dp"
-        android:text="@string/text_user_delete"
+        android:text="@string/text_user_delete_long"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp" />

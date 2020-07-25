@@ -112,12 +112,12 @@ public class RegisterActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "writeUser: succeeded");
+                        Log.d(TAG, "writeUserInFirebaseFirestore: succeeded");
                         errorCode += 4;
                         FirebaseUser fu = fa.getCurrentUser();
                         updateUI(fu);
                     } else {
-                        Log.w(TAG, "writeUser: failed");
+                        Log.w(TAG, "writeUserInFirebaseFirestore: failed");
                         FirebaseUser fu = fa.getCurrentUser();
                         updateUI(fu);
                     }
@@ -125,13 +125,18 @@ public class RegisterActivity extends Activity {
             });
     }
 
+    // TODO
+    // manage errorCode
+
     protected void updateUI(FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
-        Log.d(TAG, "error: " + errorCode);
+        Log.d(TAG, "errorCode: " + errorCode);
         if (fu != null) {
+            Log.d(TAG, "registerUser: succeeded");
             showToast(RegisterActivity.this,"Signed up successfully");
             goToMainActivity(RegisterActivity.this);
         } else {
+            Log.d(TAG, "registerUser: failed");
             showToast(RegisterActivity.this, "Sign up failed");
             goToRegisterActivity(RegisterActivity.this);
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_my_account_editor_container"
+    android:id="@+id/rl_my_account_delete_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/aqua"
@@ -28,7 +28,7 @@
 
     <!-- register form -->
     <RelativeLayout
-        android:id="@+id/rl_register_form"
+        android:id="@+id/rl_delete_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_shopsmart_logo"
@@ -39,30 +39,11 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/et_username"
-            android:layout_width="260dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="false"
-            android:background="@drawable/ll_active"
-            android:ems="10"
-            android:gravity="center_vertical"
-            android:hint="@string/text_user_username"
-            android:inputType="textPersonName"
-            android:paddingLeft="30dp"
-            android:paddingTop="0dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp" />
-
-        <EditText
             android:id="@+id/et_email"
             android:layout_width="260dp"
             android:layout_height="60dp"
-            android:layout_below="@id/et_username"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="false"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="0dp"
             android:background="@drawable/ll_active"
             android:ems="10"
             android:gravity="center_vertical"
@@ -93,7 +74,7 @@
             android:paddingBottom="5dp" />
 
         <Button
-            android:id="@+id/btn_update"
+            android:id="@+id/btn_delete"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_below="@id/et_password"
@@ -106,7 +87,7 @@
             android:gravity="center"
             android:paddingTop="0dp"
             android:paddingBottom="5dp"
-            android:text="@string/text_user_update"
+            android:text="@string/text_user_delete_short"
             android:textAllCaps="false"
             android:textSize="18sp" />
 

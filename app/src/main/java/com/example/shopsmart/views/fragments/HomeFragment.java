@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
     protected EditText etSearch;
     protected ImageButton ibtnSearch;
     protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
-    
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,9 +67,7 @@ public class HomeFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "searchProducts: succeeded");
                         for (QueryDocumentSnapshot d : task.getResult()) {
-                            if (!d.getId().equals("prototype")) { // if it is NOT the prototype document
-                                addProduct(d);
-                            }
+                            addProduct(d);
                         }
                         showProducts();
                     } else {

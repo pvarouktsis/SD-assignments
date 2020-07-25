@@ -13,9 +13,10 @@
     <string name="text_user_login">Sign in</string>
     <string name="text_user_logout">Sign out</string>
     <string name="text_user_register">Sign up</string>
-    <string name="text_user_update">Update</string>
-    <string name="text_user_edit">Edit your account</string>
-    <string name="text_user_delete">Delete your account</string>
+    <string name="text_user_update_short">Update</string>
+    <string name="text_user_update_long">Update your account</string>
+    <string name="text_user_delete_short">Delete</string>
+    <string name="text_user_delete_long">Delete your account</string>
     <string name="text_product_search">Search</string>
     <string name="text_product_filter">Filter</string>
     <string name="text_product_name">Product_name</string>

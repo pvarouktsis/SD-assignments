@@ -64,4 +64,10 @@ public abstract class Activity extends AppCompatActivity {
         toast.setGravity(Gravity.BOTTOM, 0, 200);
         toast.show();
     }
+
+    protected void showToastLong(Activity activity, String message) {
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
+    }
 }
