@@ -58,6 +58,9 @@ public class RegisterActivity extends Activity {
         btnLogin.setOnClickListener(loginListener);
     }
 
+    // TODO
+    // sync register methods
+
     protected void registerUser() {
         Log.d(TAG, "registerUser: called");
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
@@ -71,14 +74,13 @@ public class RegisterActivity extends Activity {
                         setProfileUser(fu);
                     } else {
                         Log.w(TAG, "createUserWithEmailAndPassword: failed", task.getException());
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null;
                     }
                 }
             });
     }
 
-    protected void setProfileUser(FirebaseUser fu) {
+    protected void setProfileUser(final FirebaseUser fu) {
         Log.d(TAG, "setProfileUser: called");
 
         UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
@@ -92,18 +94,16 @@ public class RegisterActivity extends Activity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "updateProfile: succeeded");
                         errorCode += 2;
-                        FirebaseUser fu = fa.getCurrentUser();
                         writeUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null
                     }
                 }
             });
     }
 
-    protected void writeUser(FirebaseUser fu) {
+    protected void writeUser(final FirebaseUser fu) {
         Log.d(TAG, "writeUser: called");
         ffdb.collection("users")
             .document(fu.getUid())
@@ -114,26 +114,21 @@ public class RegisterActivity extends Activity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "writeUserInFirebaseFirestore: succeeded");
                         errorCode += 4;
-                        FirebaseUser fu = fa.getCurrentUser();
                         updateUI(fu);
                     } else {
                         Log.w(TAG, "writeUserInFirebaseFirestore: failed");
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null
                     }
                 }
             });
     }
 
-    // TODO
-    // manage errorCode
-
-    protected void updateUI(FirebaseUser fu) {
+    protected void updateUI(final FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         Log.d(TAG, "errorCode: " + errorCode);
         if (fu != null) {
             Log.d(TAG, "registerUser: succeeded");
-            showToast(RegisterActivity.this,"Signed up successfully");
+            showToast(RegisterActivity.this, "Signed up successfully");
             goToMainActivity(RegisterActivity.this);
         } else {
             Log.d(TAG, "registerUser: failed");

@@ -62,6 +62,7 @@ public class MyCartFragment extends Fragment {
                         showCart();
                     } else {
                         Log.w(TAG, "getUser: failed", task.getException());
+                        user = null;
                         showToast("Loading cart failed");
                     }
                 }
@@ -83,4 +84,5 @@ public class MyCartFragment extends Fragment {
         // replace fragment
         replace(R.id.fl_main_container, f);
     }
+
 }

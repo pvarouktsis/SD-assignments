@@ -117,4 +117,5 @@ public class HomeFragment extends Fragment {
             searchProducts();
         }
     };
+
 }

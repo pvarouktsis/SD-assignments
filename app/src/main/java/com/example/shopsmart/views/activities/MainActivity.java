@@ -27,8 +27,8 @@ public class MainActivity extends Activity {
         // initialize ui
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replace(R.id.fl_main_container, new HomeFragment());
         initializeUIComponents();
+        initializeFragment();
 
         // initialize firebase
         fa = FirebaseAuth.getInstance();
@@ -50,10 +50,18 @@ public class MainActivity extends Activity {
         bnv.setOnNavigationItemSelectedListener(navigationListener);
     }
 
-    protected void updateUI(FirebaseUser fu) {
+    protected void initializeFragment() {
+        Log.d(TAG, "initializeFragment: called");
+
+        // initialize fragment
+        Fragment f = new HomeFragment();
+        replace(R.id.fl_main_container, f);
+    }
+
+    protected void updateUI(final FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            showToast(MainActivity.this, "Welcome " + fu.getDisplayName());
+            showToast(MainActivity.this, "Welcome: " + fu.getDisplayName());
         } else {
             goToLoginActivity(MainActivity.this);
         }

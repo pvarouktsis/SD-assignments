@@ -2,11 +2,9 @@ package com.example.shopsmart.views.adapters;
 
 import android.app.Activity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -116,9 +114,4 @@ public class MyCartProductListAdapter extends ProductListAdapter {
         }
     }
 
-    protected void showToast(String message) {
-        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
-        toast.show();
-    }
 }

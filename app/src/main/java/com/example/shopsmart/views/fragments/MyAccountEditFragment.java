@@ -64,7 +64,7 @@ public class MyAccountEditFragment extends Fragment {
     }
 
     // TODO
-    // synchronize update methods
+    // synch update methods
 
     protected void updateUser() {
         Log.d(TAG, "updateUser: called");
@@ -72,7 +72,7 @@ public class MyAccountEditFragment extends Fragment {
         updateEmail(fu);
     }
 
-    protected void updateEmail(FirebaseUser fu) {
+    protected void updateEmail(final FirebaseUser fu) {
         Log.d(TAG, "updateEmail: called");
         fu.updateEmail(user.getEmail())
             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -81,7 +81,6 @@ public class MyAccountEditFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "updateEmail: succeeded");
                         errorCode += 1;
-                        FirebaseUser fu = fa.getCurrentUser();
                         updatePassword(fu);
                     } else {
                         Log.w(TAG, "updateEmail: failed", task.getException());
@@ -91,7 +90,7 @@ public class MyAccountEditFragment extends Fragment {
             });
     }
 
-    protected void updatePassword(FirebaseUser fu) {
+    protected void updatePassword(final FirebaseUser fu) {
         Log.d(TAG, "updatePassword: called");
         fu.updatePassword(user.getPassword())
             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -100,7 +99,6 @@ public class MyAccountEditFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "updatePassword: succeeded");
                         errorCode += 2;
-                        FirebaseUser fu = fa.getCurrentUser();
                         updateUsername(fu);
                     } else {
                         Log.w(TAG, "updatePassword: failed", task.getException());
@@ -110,7 +108,7 @@ public class MyAccountEditFragment extends Fragment {
             });
     }
 
-    protected void updateUsername(FirebaseUser fu) {
+    protected void updateUsername(final FirebaseUser fu) {
         Log.d(TAG, "updateUser: called");
 
         UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
@@ -124,7 +122,6 @@ public class MyAccountEditFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "updateProfile: succeeded");
                         errorCode += 4;
-                        FirebaseUser fu = fa.getCurrentUser();
                         reauthenticateUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
@@ -134,7 +131,7 @@ public class MyAccountEditFragment extends Fragment {
             });
     }
 
-    protected void reauthenticateUser(FirebaseUser fu) {
+    protected void reauthenticateUser(final FirebaseUser fu) {
         Log.d(TAG, "reauthenticateUser: called");
         AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), user.getPassword());
         fu.reauthenticate(credential)
@@ -182,4 +179,5 @@ public class MyAccountEditFragment extends Fragment {
             updateUser();
         }
     };
+
 }

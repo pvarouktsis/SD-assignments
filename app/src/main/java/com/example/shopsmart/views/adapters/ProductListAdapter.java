@@ -2,6 +2,7 @@ package com.example.shopsmart.views.adapters;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -102,9 +104,22 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                         user = d.toObject(User.class);
                     } else {
                         Log.w(TAG, "getUser: failed", task.getException());
+                        user = null;
                     }
                 }
             });
+    }
+
+    protected void showToast(String message) {
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
+    }
+
+    protected void showToastLong(String message) {
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 200);
+        toast.show();
     }
 
     /*
@@ -136,4 +151,5 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             btnRemove = productView.findViewById(R.id.btn_remove);
         }
     }
+
 }

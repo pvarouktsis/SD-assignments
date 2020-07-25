@@ -86,4 +86,5 @@ public class ProductListFragment extends Fragment {
         ProductListAdapter plrv = plrvf.initializeProductListAdapter(getActivity(), products, tag);
         rvProductList.setAdapter(plrv);
     }
+
 }

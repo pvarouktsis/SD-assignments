@@ -2,11 +2,9 @@ package com.example.shopsmart.views.adapters;
 
 import android.app.Activity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -62,8 +60,6 @@ public class OnSaleProductListAdapter extends ProductListAdapter {
         final boolean isExpanded = (expandedPosition == position);
         pvh.rlProductExpanded.setVisibility(isExpanded ? View.VISIBLE : View.GONE); // expand or contract product based on current state
         pvh.btnExtend.setVisibility(!isExpanded ? View.VISIBLE : View.GONE); // remove extend_button based on current state
-        pvh.btnAdd.setVisibility(View.VISIBLE);
-        pvh.btnRemove.setVisibility(View.GONE);
 
         pvh.rlProduct.setActivated(isExpanded);
 
@@ -103,9 +99,4 @@ public class OnSaleProductListAdapter extends ProductListAdapter {
         showToast("Product add");
     }
 
-    protected void showToast(String message) {
-        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
-        toast.show();
-    }
 }

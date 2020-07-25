@@ -61,4 +61,5 @@ public abstract class Fragment extends androidx.fragment.app.Fragment {
         toast.setGravity(Gravity.BOTTOM, 0, 200);
         toast.show();
     }
+
 }

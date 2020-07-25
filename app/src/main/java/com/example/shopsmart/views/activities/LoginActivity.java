@@ -24,6 +24,7 @@ public class LoginActivity extends Activity {
     protected Button btnLogin;
     protected Button btnRegister;
     protected FirebaseAuth fa;
+    protected int errorCode = 0;        // if errorCode < 1 then something went wrong
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,24 +61,26 @@ public class LoginActivity extends Activity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "signInWithEmailAndPassword: succeeded");
+                        errorCode += 1;
                         FirebaseUser fu = fa.getCurrentUser();
                         updateUI(fu);
                     } else {
                         Log.w(TAG, "signInWithEmailAndPassword: failed", task.getException());
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null;
                     }
 
                 }
             });
     }
 
-    protected void updateUI(FirebaseUser fu) {
+    protected void updateUI(final FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
+            Log.d(TAG, "loginUser: succeeded");
             showToast(LoginActivity.this,"Signed in successfully");
             goToMainActivity(LoginActivity.this);
         } else {
+            Log.d(TAG, "loginUser: failed");
             showToast(LoginActivity.this,"Sign in failed");
             goToLoginActivity(LoginActivity.this);
         }

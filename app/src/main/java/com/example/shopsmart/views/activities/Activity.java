@@ -70,4 +70,5 @@ public abstract class Activity extends AppCompatActivity {
         toast.setGravity(Gravity.BOTTOM, 0, 200);
         toast.show();
     }
+
 }

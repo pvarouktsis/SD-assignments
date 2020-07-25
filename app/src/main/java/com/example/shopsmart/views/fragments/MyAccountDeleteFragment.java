@@ -59,11 +59,17 @@ public class MyAccountDeleteFragment extends Fragment {
     }
 
     // TODO
-    // synchronize delete methods
+    // synch delete methods
 
-    protected void reauthenticateUser() {
-        Log.d(TAG, "reauthenticateUser: called");
+
+    protected void deleteUser() {
+        Log.d(TAG, "deleteUser: called");
         FirebaseUser fu = fa.getCurrentUser();
+        reauthenticateUser(fu);
+    }
+
+    protected void reauthenticateUser(final FirebaseUser fu) {
+        Log.d(TAG, "reauthenticateUser: called");
         AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), user.getPassword());
         fu.reauthenticate(credential)
             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -71,23 +77,17 @@ public class MyAccountDeleteFragment extends Fragment {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "reauthendicateUser: succeeded");
-                        FirebaseUser fu = fa.getCurrentUser();
-                        deleteUser(fu);
+                        errorCode += 1;
+                        deleteUserFromFirebaseFirestore(fu);
                     } else {
                         Log.w(TAG, "reauthendicateUser: failed", task.getException());
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null
                     }
                 }
             });
     }
 
-    protected void deleteUser(FirebaseUser fu) {
-        Log.d(TAG, "deleteUser: called");
-        deleteUserFromFirebaseFirestore(fu);
-    }
-
-    protected void deleteUserFromFirebaseFirestore(FirebaseUser fu) {
+    protected void deleteUserFromFirebaseFirestore(final FirebaseUser fu) {
         Log.d(TAG, "deleteUserFromFirebaseFirestore: called");
         ffdb.collection("users")
             .document(fu.getUid())
@@ -97,19 +97,17 @@ public class MyAccountDeleteFragment extends Fragment {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "deleteUserFromFirebaseFirestore: succeeded");
-                        errorCode += 1;
-                        FirebaseUser fu = fa.getCurrentUser();
+                        errorCode += 2;
                         deleteUserFromFirebaseAuthentication(fu);
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseFirestore: failed", task.getException());
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null
                     }
                 }
             });
     }
 
-    protected void deleteUserFromFirebaseAuthentication(FirebaseUser fu) {
+    protected void deleteUserFromFirebaseAuthentication(final FirebaseUser fu) {
         Log.d(TAG, "deleteUserFromFirebaseAuthentication: called");
         fu.delete()
             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -117,19 +115,17 @@ public class MyAccountDeleteFragment extends Fragment {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "deleteUserFromFirebaseAuthentication: succeeded");
-                        errorCode += 2;
-                        FirebaseUser fu = fa.getCurrentUser();
+                        errorCode += 4;
                         updateUI(fu);
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseAuthentication: failed", task.getException());
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
+                        updateUI(null); // fu = null
                     }
                 }
             });
     }
 
-    protected void updateUI(FirebaseUser fu) {
+    protected void updateUI(final FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         Log.d(TAG, "errorCode: " + errorCode);
         if (fu == null) {
@@ -156,7 +152,8 @@ public class MyAccountDeleteFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "deleteUserListener: called");
                 createUser();
-                reauthenticateUser();
+                deleteUser();
             }
         };
+
 }

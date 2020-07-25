@@ -90,4 +90,5 @@ public class OnSaleFragment extends Fragment {
         // replace fragment
         replace(R.id.fl_main_container, f);
     }
+
 }
