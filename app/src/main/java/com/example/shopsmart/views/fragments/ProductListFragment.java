@@ -46,7 +46,7 @@ public class ProductListFragment extends Fragment {
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        tvNoProducts = productListView.findViewById(R.id.tv_no_products);
+        tvNoProducts = productListView.findViewById(R.id.tv_product_none);
         rvProductList = productListView.findViewById(R.id.rv_product_list);
     }
 
