@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
                         showProducts();
                     } else {
                         Log.w(TAG, "searchProducts: failed", task.getException());
+                        dismissLoading();
                         showToast("Loading products failed");
                     }
                 }
@@ -100,6 +101,9 @@ public class HomeFragment extends Fragment {
         b.putSerializable("products", products);
         f.setArguments(b);
 
+        // dismiss loading
+        dismissLoading();
+
         // replace fragment
         replace(R.id.fl_main_container, f);
     }
@@ -113,6 +117,11 @@ public class HomeFragment extends Fragment {
         @Override
         public void onClick(View homeView) {
             Log.d(TAG, "searchListener: called");
+
+            // show loading
+            showLoading();
+
+            // process
             convertEditTextToString();
             searchProducts();
         }

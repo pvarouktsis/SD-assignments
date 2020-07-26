@@ -1,6 +1,7 @@
 # TODO
 
 - Implement progress dialog
+- Implement cursor
 - Implement appropriate messages
 
 ---

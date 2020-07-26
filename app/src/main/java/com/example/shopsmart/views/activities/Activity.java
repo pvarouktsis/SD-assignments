@@ -37,6 +37,13 @@ public abstract class Activity extends AppCompatActivity {
         finish();
     }
 
+    protected void add(int currentID, Fragment fragment) {
+        Log.d(TAG, "replace: called");
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(currentID, fragment).commit();
+    }
+
     protected void replace(int currentID, Fragment fragment) {
         Log.d(TAG, "replace: called");
         FragmentManager fm = getSupportFragmentManager();
@@ -46,8 +53,9 @@ public abstract class Activity extends AppCompatActivity {
 
     protected void showLoading(Activity activity) {
         Log.d(TAG, "showLoading: called");
-        if (progressDialog == null)
+        if (progressDialog == null) {
             progressDialog = new ProgressDialog(activity);
+        }
         progressDialog.setMessage(getString(R.string.text_please_wait));
         progressDialog.setCancelable(false);
         progressDialog.show();
@@ -55,17 +63,20 @@ public abstract class Activity extends AppCompatActivity {
 
     protected void dismissLoading() {
         Log.d(TAG, "dismissLoading: called");
-        if (progressDialog != null)
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
+        }
     }
 
     protected void showToast(Activity activity, String message) {
+        Log.d(TAG, "showToast: called");
         Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.BOTTOM, 0, 200);
         toast.show();
     }
 
     protected void showToastLong(Activity activity, String message) {
+        Log.d(TAG, "showToastLong: called");
         Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 200);
         toast.show();
