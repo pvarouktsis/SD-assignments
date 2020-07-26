@@ -28,7 +28,7 @@ public class MyAccountDeleteFragment extends Fragment {
     protected Button btnDelete;
     protected FirebaseAuth fa;
     protected FirebaseFirestore ffdb = FirebaseFirestore.getInstance();
-    protected int errorCode = 0;        // if errorCode < 3 then something went wrong
+    protected int errorCode = 0;        // if errorCode < 7 then something went wrong
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -61,7 +61,6 @@ public class MyAccountDeleteFragment extends Fragment {
     // TODO
     // synch delete methods
 
-
     protected void deleteUser() {
         Log.d(TAG, "deleteUser: called");
         FirebaseUser fu = fa.getCurrentUser();
@@ -81,7 +80,7 @@ public class MyAccountDeleteFragment extends Fragment {
                         deleteUserFromFirebaseFirestore(fu);
                     } else {
                         Log.w(TAG, "reauthendicateUser: failed", task.getException());
-                        updateUI(null); // fu = null
+                        updateUI();
                     }
                 }
             });
@@ -101,7 +100,7 @@ public class MyAccountDeleteFragment extends Fragment {
                         deleteUserFromFirebaseAuthentication(fu);
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseFirestore: failed", task.getException());
-                        updateUI(null); // fu = null
+                        updateUI();
                     }
                 }
             });
@@ -116,23 +115,22 @@ public class MyAccountDeleteFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "deleteUserFromFirebaseAuthentication: succeeded");
                         errorCode += 4;
-                        updateUI(fu);
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseAuthentication: failed", task.getException());
-                        updateUI(null); // fu = null
                     }
+                    updateUI();
                 }
             });
     }
 
-    protected void updateUI(final FirebaseUser fu) {
+    protected void updateUI() {
         Log.d(TAG, "updateUI: called");
         Log.d(TAG, "errorCode: " + errorCode);
-        if (fu == null) {
+        if (errorCode == 7) {
             Log.d(TAG, "deleteUser: succeeded");
             showToast("Deleted account successfully");
             goToMainActivity();
-        } else {
+        } else if (errorCode < 7) {
             Log.d(TAG, "deleteUser: failed");
             showToast("Delete account failed");
         }

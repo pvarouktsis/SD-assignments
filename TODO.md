@@ -1,11 +1,11 @@
 # TODO
 
-User: cart stores only product id
-MyAccountFragment: reauthentication problem
-MyAccountEditorFragment: reauthentication problem
-polymorphism etc
+- Implement progress dialog
+- Implement appropriate messages
 
------------
-button add product
-find supermarket and best price
-values
+---
+
+- Implement functionality of filter button in ProductListFragment
+- Implement add product button in MyCartFragment
+- Implement find best price button of products in My cart by supermarket
+- Implement API with supermarkets
