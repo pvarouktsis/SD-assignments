@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,6 +43,9 @@ public class MyAccountDeleteFragment extends Fragment {
 
         // initialize firebase
         fa = FirebaseAuth.getInstance();
+
+        // show toast
+        showToast("Validate your account details");
 
         return myAccountDeleteView;
     }
@@ -80,6 +85,7 @@ public class MyAccountDeleteFragment extends Fragment {
                         deleteUserFromFirebaseFirestore(fu);
                     } else {
                         Log.w(TAG, "reauthendicateUser: failed", task.getException());
+                        showMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -100,6 +106,7 @@ public class MyAccountDeleteFragment extends Fragment {
                         deleteUserFromFirebaseAuthentication(fu);
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseFirestore: failed", task.getException());
+                        showMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -117,10 +124,24 @@ public class MyAccountDeleteFragment extends Fragment {
                         errorCode += 4;
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseAuthentication: failed", task.getException());
+                        showMessage(task.getException());
                     }
                     updateUI();
                 }
             });
+    }
+
+    protected void showMessage(Exception exception) {
+        Log.d(TAG, "showMessage: called");
+        try {
+            throw exception;
+        } catch (FirebaseAuthInvalidCredentialsException e) {
+            showToast("Authentication failed");
+        } catch (FirebaseAuthException e) {
+            showToast("Delete account failed");
+        } catch (Exception e) {
+            showToast("Delete account failed");
+        }
     }
 
     protected void updateUI() {
@@ -133,7 +154,7 @@ public class MyAccountDeleteFragment extends Fragment {
             goToMainActivity();
         } else if (errorCode < 7) {
             Log.d(TAG, "deleteUser: failed");
-            showToast("Delete account failed");
+            // TODO
         }
     }
 

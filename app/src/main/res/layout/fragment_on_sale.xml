@@ -4,10 +4,8 @@
     android:id="@+id/rl_on_sale_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentBottom="false"
     android:background="@color/transparent"
-    android:gravity="center_horizontal"
+    android:gravity="top"
     tools:context=".views.activities.MainActivity">
 
 </RelativeLayout>
