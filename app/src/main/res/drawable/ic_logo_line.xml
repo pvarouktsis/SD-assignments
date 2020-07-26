@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
     <!-- shopping cart -->
     <item
         android:width="400dp"
         android:height="400dp"
         android:drawable="@drawable/ic_logo_cart"
         android:gravity="center_vertical" />
-
     <!-- line -->
     <item
         android:width="15dp"

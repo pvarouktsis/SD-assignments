@@ -74,7 +74,7 @@ public class OnSaleFragment extends Fragment {
         Product p = new Product();
         p.setId(d.getId());
         p.setName(d.getString("name"));
-        p.setPrice(d.getDouble("price"));
+        p.setPrice(d.getLong("price"));
         p.setImageURL(d.getString("image_url"));
         products.add(p);
     }
