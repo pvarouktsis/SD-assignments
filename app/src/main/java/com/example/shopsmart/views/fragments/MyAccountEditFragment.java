@@ -185,6 +185,7 @@ public class MyAccountEditFragment extends Fragment {
         } else if (errorCode < 15) {
             Log.d(TAG, "updateUser: failed");
             // TODO
+            // sync or cancel edit process
         }
     }
 

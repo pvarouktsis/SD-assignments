@@ -62,9 +62,6 @@ public class RegisterActivity extends Activity {
         btnLogin.setOnClickListener(loginListener);
     }
 
-    // TODO
-    // sync register methods
-
     protected void registerUser() {
         Log.d(TAG, "registerUser: called");
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
@@ -78,7 +75,7 @@ public class RegisterActivity extends Activity {
                         setProfileUser(fu);
                     } else {
                         Log.w(TAG, "createUserWithEmailAndPassword: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -102,7 +99,7 @@ public class RegisterActivity extends Activity {
                         writeUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -122,15 +119,15 @@ public class RegisterActivity extends Activity {
                         errorCode += 4;
                     } else {
                         Log.w(TAG, "writeUserInFirebaseFirestore: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                     }
                     updateUI();
                 }
             });
     }
 
-    protected void showMessage(Exception exception) {
-        Log.d(TAG, "showMessage: called");
+    protected void showErrorMessage(Exception exception) {
+        Log.d(TAG, "showErrorMessage: called");
         try {
             throw exception;
         } catch (FirebaseAuthUserCollisionException e) {
@@ -157,6 +154,7 @@ public class RegisterActivity extends Activity {
         } else if (errorCode < 7) {
             Log.d(TAG, "registerUser: failed");
             // TODO
+            // sync or cancel register process
         }
     }
 

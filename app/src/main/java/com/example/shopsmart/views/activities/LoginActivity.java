@@ -65,14 +65,14 @@ public class LoginActivity extends Activity {
                         errorCode += 1;
                     } else {
                         Log.w(TAG, "signInWithEmailAndPassword: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                     }
                     updateUI();
                 }
             });
     }
 
-    protected void showMessage(Exception exception) {
+    protected void showErrorMessage(Exception exception) {
         Log.d(TAG, "showMessage: called");
         try {
             throw exception;

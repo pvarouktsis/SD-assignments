@@ -155,6 +155,7 @@ public class MyAccountDeleteFragment extends Fragment {
         } else if (errorCode < 7) {
             Log.d(TAG, "deleteUser: failed");
             // TODO
+            // sync or cancel delete process
         }
     }
 
