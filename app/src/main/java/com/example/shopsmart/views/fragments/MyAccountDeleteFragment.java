@@ -63,9 +63,6 @@ public class MyAccountDeleteFragment extends Fragment {
         btnDelete.setOnClickListener(deleteListener);
     }
 
-    // TODO
-    // synch delete methods
-
     protected void deleteUser() {
         Log.d(TAG, "deleteUser: called");
         FirebaseUser fu = fa.getCurrentUser();

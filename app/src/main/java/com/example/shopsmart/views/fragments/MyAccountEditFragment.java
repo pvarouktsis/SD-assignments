@@ -67,9 +67,6 @@ public class MyAccountEditFragment extends Fragment {
         btnUpdate.setOnClickListener(updateListener);
     }
 
-    // TODO
-    // synch update methods
-
     protected void updateUser() {
         Log.d(TAG, "updateUser: called");
         FirebaseUser fu = fa.getCurrentUser();
@@ -185,7 +182,7 @@ public class MyAccountEditFragment extends Fragment {
         } else if (errorCode < 15) {
             Log.d(TAG, "updateUser: failed");
             // TODO
-            // sync or cancel edit process
+            // sync or cancel update process
         }
     }
 
