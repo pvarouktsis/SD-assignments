@@ -111,15 +111,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     protected void showToast(String message) {
-        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
-        toast.show();
-    }
-
-    protected void showToastLong(String message) {
-        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
-        toast.show();
+        Log.d(TAG, "showToast: called");
+        if (message.length() < 20) {
+            Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 200);
+            toast.show();
+        } else {
+            Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.BOTTOM, 0, 200);
+            toast.show();
+        }
     }
 
     /*

@@ -96,7 +96,7 @@ public class OnSaleProductListAdapter extends ProductListAdapter {
             .set(user, SetOptions.merge());
 
         // toast for product added
-        showToast("Product add");
+        showToast("Product added");
     }
 
 }
