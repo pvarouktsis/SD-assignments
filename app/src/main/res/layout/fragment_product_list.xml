@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_product_list_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top">
+
+    <RelativeLayout
+        android:id="@+id/rl_product_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:gravity="top">
+
+        <Button
+            android:id="@+id/btn_filter"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/ll_active"
+            android:gravity="center"
+            android:paddingTop="0dp"
+            android:paddingBottom="5dp"
+            android:text="@string/text_product_filter"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_no_products"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@id/btn_filter"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/ll_active"
+            android:gravity="center"
+            android:paddingTop="0dp"
+            android:paddingBottom="5dp"
+            android:text="@string/text_product_none"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_filter"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="70dp"
+            android:visibility="visible" />
+
+        <!--
+        <Button
+            android:id="@+id/btn_product_add_extended"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/rv_product_list"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/ll_active"
+            android:gravity="center"
+            android:paddingTop="0dp"
+            android:paddingBottom="5dp"
+            android:text="@string/text_product_button_add_extended"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone" />
+        -->
+
+    </RelativeLayout>
+
+</ScrollView>

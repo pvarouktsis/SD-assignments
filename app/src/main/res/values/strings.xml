@@ -1,24 +1,30 @@
 <resources>
     <!-- app's name -->
     <string name="app_name">ShopSmart</string>
-
-    <!-- titles -->
-    <string name="title_home">home</string>
-    <string name="title_my_order">my order</string>
-    <string name="title_on_sale">on sale</string>
-    <string name="title_my_account">my account</string>
-    <string name="title_login">sign in</string>
-    <string name="title_logout">sign out</string>
-    <string name="title_register">sign up</string>
-
-    <!-- input text -->
-    <string name="input_username">username</string>
-    <string name="input_email">email</string>
-    <string name="input_password">password</string>
-    <string name="input_search">search</string>
-
-    <!-- product's attributes -->
-    <string name="product_name">product_name</string>
-    <string name="product_price">product_price</string>
-
+    <!-- texts -->
+    <string name="text_default">None</string>
+    <string name="text_home">Home</string>
+    <string name="text_my_cart">My cart</string>
+    <string name="text_on_sale">On sale</string>
+    <string name="text_my_account">My account</string>
+    <string name="text_user_username">Username</string>
+    <string name="text_user_email">Email</string>
+    <string name="text_user_password">Password</string>
+    <string name="text_user_login">Sign in</string>
+    <string name="text_user_logout">Sign out</string>
+    <string name="text_user_register">Sign up</string>
+    <string name="text_user_update_short">Update</string>
+    <string name="text_user_update_long">Update your account</string>
+    <string name="text_user_delete_short">Delete</string>
+    <string name="text_user_delete_long">Delete your account</string>
+    <string name="text_product_search">Search</string>
+    <string name="text_product_filter">Filter</string>
+    <string name="text_product_name">Product_name</string>
+    <string name="text_product_price">Product_price</string>
+    <string name="text_product_supermarket">Product_supermarket</string>
+    <string name="text_product_button_add">Add</string>
+    <string name="text_product_button_add_extended">Add product to your cart</string>
+    <string name="text_product_button_remove">Remove</string>
+    <string name="text_product_none">There are no products</string>
+    <string name="text_please_wait">Please wait...</string>
 </resources>

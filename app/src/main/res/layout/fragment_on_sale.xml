@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/on_sale_fragment"
+    android:id="@+id/rl_on_sale_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="false"
     android:background="@color/transparent"
-    tools:context=".activities.MainActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="80dp"
-        android:clipToPadding="false" />
+    android:gravity="center_horizontal"
+    tools:context=".views.activities.MainActivity">
 
 </RelativeLayout>

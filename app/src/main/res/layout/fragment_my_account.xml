@@ -1,51 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_account_fragment"
+    android:id="@+id/rl_my_account_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="false"
+    android:background="@color/transparent"
+    android:gravity="center_horizontal"
+    tools:context=".views.activities.MainActivity">
 
-    <!-- main frame -->
-    <LinearLayout
-        android:id="@+id/list_my_account_fragment"
+    <Button
+        android:id="@+id/btn_user_edit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/ll_active"
+        android:gravity="center_vertical"
+        android:paddingStart="40dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="5dp"
+        android:text="@string/text_user_update_long"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/title_my_account_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/shape_active"
-            android:gravity="center"
-            android:paddingTop="0dp"
-            android:paddingBottom="5dp"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="@string/title_my_account" />
+    <Button
+        android:id="@+id/btn_user_delete"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/btn_user_edit"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/ll_active"
+        android:gravity="center_vertical"
+        android:paddingStart="40dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="5dp"
+        android:text="@string/text_user_delete_long"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/button_logout"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/shape_active"
-            android:gravity="center_vertical"
-            android:paddingTop="0dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:textAllCaps="false"
-            android:textStyle="normal"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="@string/title_logout" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_user_logout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/btn_user_delete"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/ll_active"
+        android:gravity="center_vertical"
+        android:paddingStart="40dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="5dp"
+        android:text="@string/text_user_logout"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
 </RelativeLayout>
