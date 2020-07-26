@@ -14,7 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends Activity {
     protected final static String TAG = "LOGIN_A";
@@ -62,27 +61,24 @@ public class LoginActivity extends Activity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "signInWithEmailAndPassword: succeeded");
                         errorCode += 1;
-                        FirebaseUser fu = fa.getCurrentUser();
-                        updateUI(fu);
                     } else {
                         Log.w(TAG, "signInWithEmailAndPassword: failed", task.getException());
-                        updateUI(null); // fu = null;
                     }
-
+                    updateUI();
                 }
             });
     }
 
-    protected void updateUI(final FirebaseUser fu) {
+    protected void updateUI() {
         Log.d(TAG, "updateUI: called");
-        if (fu != null) {
+        dismissLoading();
+        if (errorCode == 1) {
             Log.d(TAG, "loginUser: succeeded");
             showToast(LoginActivity.this,"Signed in successfully");
             goToMainActivity(LoginActivity.this);
-        } else {
+        } else if (errorCode < 1) {
             Log.d(TAG, "loginUser: failed");
             showToast(LoginActivity.this,"Sign in failed");
-            goToLoginActivity(LoginActivity.this);
         }
     }
 
@@ -99,6 +95,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "loginListener: called");
+                showLoading(LoginActivity.this);
                 createUser();
                 loginUser();
             }

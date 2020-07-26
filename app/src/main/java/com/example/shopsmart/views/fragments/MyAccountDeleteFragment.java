@@ -126,6 +126,7 @@ public class MyAccountDeleteFragment extends Fragment {
     protected void updateUI() {
         Log.d(TAG, "updateUI: called");
         Log.d(TAG, "errorCode: " + errorCode);
+        dismissLoading();
         if (errorCode == 7) {
             Log.d(TAG, "deleteUser: succeeded");
             showToast("Deleted account successfully");
@@ -149,6 +150,7 @@ public class MyAccountDeleteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "deleteUserListener: called");
+                showLoading();
                 createUser();
                 deleteUser();
             }

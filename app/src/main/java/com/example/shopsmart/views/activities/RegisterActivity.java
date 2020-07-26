@@ -74,7 +74,7 @@ public class RegisterActivity extends Activity {
                         setProfileUser(fu);
                     } else {
                         Log.w(TAG, "createUserWithEmailAndPassword: failed", task.getException());
-                        updateUI(null); // fu = null;
+                        updateUI();
                     }
                 }
             });
@@ -97,7 +97,7 @@ public class RegisterActivity extends Activity {
                         writeUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
-                        updateUI(null); // fu = null
+                        updateUI();
                     }
                 }
             });
@@ -114,26 +114,25 @@ public class RegisterActivity extends Activity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "writeUserInFirebaseFirestore: succeeded");
                         errorCode += 4;
-                        updateUI(fu);
                     } else {
                         Log.w(TAG, "writeUserInFirebaseFirestore: failed");
-                        updateUI(null); // fu = null
                     }
+                    updateUI();
                 }
             });
     }
 
-    protected void updateUI(final FirebaseUser fu) {
+    protected void updateUI() {
         Log.d(TAG, "updateUI: called");
         Log.d(TAG, "errorCode: " + errorCode);
-        if (fu != null) {
+        dismissLoading();
+        if (errorCode == 7) {
             Log.d(TAG, "registerUser: succeeded");
             showToast(RegisterActivity.this, "Signed up successfully");
             goToMainActivity(RegisterActivity.this);
-        } else {
+        } else if (errorCode < 7) {
             Log.d(TAG, "registerUser: failed");
             showToast(RegisterActivity.this, "Sign up failed");
-            goToRegisterActivity(RegisterActivity.this);
         }
     }
 
@@ -151,6 +150,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "registerListener: called");
+                showLoading(RegisterActivity.this);
                 createUser();
                 registerUser();
             }

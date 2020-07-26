@@ -33,6 +33,9 @@ public class OnSaleFragment extends Fragment {
         View onSaleView = inflater.inflate(R.layout.fragment_on_sale, container, false);
         initializeUIComponents(onSaleView);
 
+        // show loading
+        showLoading();
+
         // read and show products
         readProducts();
 
@@ -59,6 +62,7 @@ public class OnSaleFragment extends Fragment {
                         showProducts();
                     } else {
                         Log.w(TAG, "readProducts: failed", task.getException());
+                        dismissLoading();
                         showToast("Loading products failed");
                     }
                 }
@@ -86,6 +90,9 @@ public class OnSaleFragment extends Fragment {
         b.putString("tag", TAG);
         b.putSerializable("products", products);
         f.setArguments(b);
+
+        //dismiss loading
+        dismissLoading();
 
         // replace fragment
         replace(R.id.fl_main_container, f);

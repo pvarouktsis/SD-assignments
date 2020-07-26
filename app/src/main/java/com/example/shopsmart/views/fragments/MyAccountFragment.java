@@ -60,6 +60,7 @@ public class MyAccountFragment extends Fragment {
 
     protected void updateUI(final FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
+        dismissLoading();
         if (fu == null) {
             Log.d(TAG, "logoutUser: succeeded");
             showToast("Signed out successfully");
@@ -95,6 +96,7 @@ public class MyAccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "logoutUserListener: called");
+                showLoading();
                 logoutUser();
             }
         };

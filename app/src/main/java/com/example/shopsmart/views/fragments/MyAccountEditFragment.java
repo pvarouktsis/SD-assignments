@@ -152,6 +152,7 @@ public class MyAccountEditFragment extends Fragment {
     protected void updateUI() {
         Log.d(TAG, "updateUI: called");
         Log.d(TAG, "errorCode: " + errorCode);
+        dismissLoading();
         if (errorCode == 15) {
             Log.d(TAG, "updateUser: succeeded");
             showToast("Updated account successfully");
@@ -176,6 +177,7 @@ public class MyAccountEditFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Log.d(TAG, "updateListener: called");
+            showLoading();
             createUser();
             updateUser();
         }

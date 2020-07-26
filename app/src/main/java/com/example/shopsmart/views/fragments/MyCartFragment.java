@@ -35,7 +35,10 @@ public class MyCartFragment extends Fragment {
         // initialize firebase
         fa = FirebaseAuth.getInstance();
 
-        // initialize user
+        // show loading
+        showLoading();
+
+        // read user
         getUser();
 
         return myCartView;
@@ -63,6 +66,7 @@ public class MyCartFragment extends Fragment {
                     } else {
                         Log.w(TAG, "getUser: failed", task.getException());
                         user = null;
+                        dismissLoading();
                         showToast("Loading cart failed");
                     }
                 }
@@ -80,6 +84,9 @@ public class MyCartFragment extends Fragment {
         b.putString("tag", TAG);
         b.putSerializable("products", user.getCart());
         f.setArguments(b);
+
+        // dismiss loading
+        dismissLoading();
 
         // replace fragment
         replace(R.id.fl_main_container, f);
