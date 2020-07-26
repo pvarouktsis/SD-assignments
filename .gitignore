@@ -1,3 +1,4 @@
+# Android files
 *.iml
 .gradle
 /local.properties
@@ -15,3 +16,6 @@
 
 # VIM files
 *.sw*
+
+# Google services
+google-services.json
