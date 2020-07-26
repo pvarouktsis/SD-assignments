@@ -69,7 +69,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Log.d(TAG, "initializeUIComponents: called");
 
         // initialize components
-        tvNoProducts = activity.findViewById(R.id.tv_no_products);
+        tvNoProducts = activity.findViewById(R.id.tv_product_none);
         rvProductList = activity.findViewById(R.id.rv_product_list);
     }
 
