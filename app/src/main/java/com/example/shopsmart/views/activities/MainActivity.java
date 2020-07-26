@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
     protected void updateUI(final FirebaseUser fu) {
         Log.d(TAG, "updateUI: called");
         if (fu != null) {
-            showToast(MainActivity.this, "Welcome: " + fu.getDisplayName());
+            showToast(MainActivity.this, "Welcome " + fu.getDisplayName());
         } else {
             goToLoginActivity(MainActivity.this);
         }
