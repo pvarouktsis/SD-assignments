@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/transparent"
     android:gravity="center"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".views.activities.MainActivity">
 
     <RelativeLayout

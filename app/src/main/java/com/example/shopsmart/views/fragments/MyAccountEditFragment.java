@@ -17,6 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,7 +49,7 @@ public class MyAccountEditFragment extends Fragment {
         fa = FirebaseAuth.getInstance();
 
         // show Toast
-        showToastLong("Fill in all the fields");
+        showToast("Please fill in all the fields");
 
         return myAccountEditorView;
     }
@@ -62,9 +66,6 @@ public class MyAccountEditFragment extends Fragment {
         // on click
         btnUpdate.setOnClickListener(updateListener);
     }
-
-    // TODO
-    // synch update methods
 
     protected void updateUser() {
         Log.d(TAG, "updateUser: called");
@@ -84,6 +85,7 @@ public class MyAccountEditFragment extends Fragment {
                         updatePassword(fu);
                     } else {
                         Log.w(TAG, "updateEmail: failed", task.getException());
+                        showMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -102,6 +104,7 @@ public class MyAccountEditFragment extends Fragment {
                         updateUsername(fu);
                     } else {
                         Log.w(TAG, "updatePassword: failed", task.getException());
+                        showMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -125,6 +128,7 @@ public class MyAccountEditFragment extends Fragment {
                         reauthenticateUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
+                        showMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -143,10 +147,28 @@ public class MyAccountEditFragment extends Fragment {
                         errorCode += 8;
                     } else {
                         Log.w(TAG, "reauthenticateUser: failed", task.getException());
+                        showMessage(task.getException());
                     }
                     updateUI();
                 }
             });
+    }
+
+    protected void showMessage(Exception exception) {
+        Log.d(TAG, "showMessage: called");
+        try {
+            throw exception;
+        } catch (FirebaseAuthUserCollisionException e) {
+            showToast("This email already exists");
+        } catch (FirebaseAuthWeakPasswordException e) {
+            showToast("This password is too weak");
+        } catch (FirebaseAuthRecentLoginRequiredException e) {
+            showToast("Please sign in and try again");
+        } catch (FirebaseAuthException e) {
+            showToast("Update account failed");
+        } catch (Exception e) {
+            showToast("Update account failed");
+        }
     }
 
     protected void updateUI() {
@@ -159,8 +181,8 @@ public class MyAccountEditFragment extends Fragment {
             goToMainActivity();
         } else if (errorCode < 15) {
             Log.d(TAG, "updateUser: failed");
-            showToast("Update account failed");
-            showToast("Please sign in and try again");
+            // TODO
+            // sync or cancel update process
         }
     }
 

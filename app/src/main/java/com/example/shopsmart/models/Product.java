@@ -8,20 +8,20 @@ public class Product implements Serializable {
     @Exclude
     private String id;
     private String name;
-    private Double price;
+    private Long price;
     private String imageURL;
 
     public Product() {
         // Required
     }
 
-    public Product(String name, Double price, String imageURL) {
+    public Product(String name, Long price, String imageURL) {
         this.name = name;
         this.price = price;
         this.imageURL = imageURL;
     }
 
-    public Product(String id, String name, Double price, String imageURL) {
+    public Product(String id, String name, Long price, String imageURL) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -50,22 +50,32 @@ public class Product implements Serializable {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public String getImageURL() { return imageURL; }
+    public String getImageURL() {
+        return imageURL;
+    }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
     @Exclude
-    public String getPriceToString() { return Double.toString(price); }
+    public String getPriceToString() {
+        String price = this.price.toString();
+        String integer = price.substring(0, price.length() - 2);
+        String decimal = price.substring(price.length() - 2);
+        return integer + "." + decimal;
+    }
 
     @Exclude
     public String getPriceToStringWithEuroSymbol() {
-        return Double.toString(price) + " \u20ac"; // \u20ac is for euro sign
+        String price = this.price.toString();
+        String integer = price.substring(0, price.length() - 2);
+        String decimal = price.substring(price.length() - 2);
+        return integer + "." + decimal + " \u20ac"; // \u20ac is for euro sign
     }
 
 }

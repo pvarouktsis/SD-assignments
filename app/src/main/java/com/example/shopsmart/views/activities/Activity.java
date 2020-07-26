@@ -70,16 +70,15 @@ public abstract class Activity extends AppCompatActivity {
 
     protected void showToast(Activity activity, String message) {
         Log.d(TAG, "showToast: called");
-        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
-        toast.show();
-    }
-
-    protected void showToastLong(Activity activity, String message) {
-        Log.d(TAG, "showToastLong: called");
-        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.BOTTOM, 0, 200);
-        toast.show();
+        if (message.length() < 20) {
+            Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 200);
+            toast.show();
+        } else {
+            Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.BOTTOM, 0, 200);
+            toast.show();
+        }
     }
 
 }

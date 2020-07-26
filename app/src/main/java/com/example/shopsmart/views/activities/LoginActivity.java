@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 
 public class LoginActivity extends Activity {
     protected final static String TAG = "LOGIN_A";
@@ -63,10 +65,24 @@ public class LoginActivity extends Activity {
                         errorCode += 1;
                     } else {
                         Log.w(TAG, "signInWithEmailAndPassword: failed", task.getException());
+                        showErrorMessage(task.getException());
                     }
                     updateUI();
                 }
             });
+    }
+
+    protected void showErrorMessage(Exception exception) {
+        Log.d(TAG, "showMessage: called");
+        try {
+            throw exception;
+        } catch (FirebaseAuthInvalidCredentialsException e) {
+            showToast(LoginActivity.this, "Authentication failed");
+        } catch (FirebaseAuthException e) {
+            showToast(LoginActivity.this, "Sign in failed");
+        } catch (Exception e) {
+            showToast(LoginActivity.this, "Sign in failed");
+        }
     }
 
     protected void updateUI() {
@@ -78,7 +94,7 @@ public class LoginActivity extends Activity {
             goToMainActivity(LoginActivity.this);
         } else if (errorCode < 1) {
             Log.d(TAG, "loginUser: failed");
-            showToast(LoginActivity.this,"Sign in failed");
+            // TODO
         }
     }
 

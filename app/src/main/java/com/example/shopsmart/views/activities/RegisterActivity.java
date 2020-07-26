@@ -14,9 +14,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class RegisterActivity extends Activity {
     protected static final String TAG = "REGISTER_A";
@@ -58,9 +62,6 @@ public class RegisterActivity extends Activity {
         btnLogin.setOnClickListener(loginListener);
     }
 
-    // TODO
-    // sync register methods
-
     protected void registerUser() {
         Log.d(TAG, "registerUser: called");
         fa.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
@@ -74,6 +75,7 @@ public class RegisterActivity extends Activity {
                         setProfileUser(fu);
                     } else {
                         Log.w(TAG, "createUserWithEmailAndPassword: failed", task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -97,6 +99,7 @@ public class RegisterActivity extends Activity {
                         writeUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -115,11 +118,29 @@ public class RegisterActivity extends Activity {
                         Log.d(TAG, "writeUserInFirebaseFirestore: succeeded");
                         errorCode += 4;
                     } else {
-                        Log.w(TAG, "writeUserInFirebaseFirestore: failed");
+                        Log.w(TAG, "writeUserInFirebaseFirestore: failed", task.getException());
+                        showErrorMessage(task.getException());
                     }
                     updateUI();
                 }
             });
+    }
+
+    protected void showErrorMessage(Exception exception) {
+        Log.d(TAG, "showErrorMessage: called");
+        try {
+            throw exception;
+        } catch (FirebaseAuthUserCollisionException e) {
+            showToast(RegisterActivity.this, "This email already exists");
+        } catch (FirebaseAuthWeakPasswordException e) {
+            showToast(RegisterActivity.this, "This password is too weak");
+        } catch (FirebaseAuthException e) {
+            showToast(RegisterActivity.this, "Sign up failed");
+        } catch (FirebaseFirestoreException e) {
+            showToast(RegisterActivity.this, "Sign up failed");
+        } catch (Exception e) {
+            showToast(RegisterActivity.this, "Sign up failed");
+        }
     }
 
     protected void updateUI() {
@@ -132,7 +153,8 @@ public class RegisterActivity extends Activity {
             goToMainActivity(RegisterActivity.this);
         } else if (errorCode < 7) {
             Log.d(TAG, "registerUser: failed");
-            showToast(RegisterActivity.this, "Sign up failed");
+            // TODO
+            // sync or cancel register process
         }
     }
 
