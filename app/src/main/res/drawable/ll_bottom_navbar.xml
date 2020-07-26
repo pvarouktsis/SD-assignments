@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
     <!-- rounded bottom navbar background -->
     <item>
         <shape android:shape="rectangle">
@@ -14,5 +13,4 @@
                 android:topRightRadius="30dp" />
         </shape>
     </item>
-
 </layer-list>
