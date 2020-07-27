@@ -1,4 +1,4 @@
-# ShopSmart
+# Software Design - ShopSmart
 
 ![ShopSmart_brand_logo](./.resources/ShopSmart_brand_logo.png)
 
