@@ -151,20 +151,30 @@ public class RegisterActivity extends Activity {
             Log.d(TAG, "registerUser: succeeded");
             showToast(RegisterActivity.this, "Signed up successfully");
             goToMainActivity(RegisterActivity.this);
-        } else if (errorCode < 7) {
+        } else if (errorCode > 0 && errorCode < 7) {
             Log.d(TAG, "registerUser: failed");
             // TODO
             // sync or cancel register process
+        } else if (errorCode == 0) {
+            Log.d(TAG, "registerUser: failed");
+            showToast(RegisterActivity.this, "Please fill in all the fields");
         }
     }
 
     protected void createUser() {
         Log.d(TAG, "createUser: called");
-        user = new User(
-            etUsername.getText().toString().trim(),
-            etEmail.getText().toString().trim(),
-            etPassword.getText().toString().trim()
-        );
+        if (etUsername.getText().toString().trim().isEmpty() ||
+            etEmail.getText().toString().trim().isEmpty() ||
+            etPassword.getText().toString().trim().isEmpty()) {
+            user = null;
+            updateUI();
+        } else {
+            user = new User(
+                etUsername.getText().toString().trim(),
+                etEmail.getText().toString().trim(),
+                etPassword.getText().toString().trim()
+            );
+        }
     }
 
     protected View.OnClickListener registerListener =
@@ -174,7 +184,9 @@ public class RegisterActivity extends Activity {
                 Log.d(TAG, "registerListener: called");
                 showLoading(RegisterActivity.this);
                 createUser();
-                registerUser();
+                if (user != null) {
+                    registerUser();
+                }
             }
         };
 

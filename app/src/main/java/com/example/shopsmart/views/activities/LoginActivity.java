@@ -73,7 +73,7 @@ public class LoginActivity extends Activity {
     }
 
     protected void showErrorMessage(Exception exception) {
-        Log.d(TAG, "showMessage: called");
+        Log.d(TAG, "showErrorMessage: called");
         try {
             throw exception;
         } catch (FirebaseAuthInvalidCredentialsException e) {
@@ -90,20 +90,26 @@ public class LoginActivity extends Activity {
         dismissLoading();
         if (errorCode == 1) {
             Log.d(TAG, "loginUser: succeeded");
-            showToast(LoginActivity.this,"Signed in successfully");
+            showToast(LoginActivity.this, "Signed in successfully");
             goToMainActivity(LoginActivity.this);
-        } else if (errorCode < 1) {
+        } else if (errorCode == 0) {
             Log.d(TAG, "loginUser: failed");
-            // TODO
+            showToast(LoginActivity.this, "Please fill in all the fields");
         }
     }
 
     protected void createUser() {
         Log.d(TAG, "createUser: called");
-        user = new User(
-            etEmail.getText().toString().trim(),
-            etPassword.getText().toString().trim()
-        );
+        if (etEmail.getText().toString().trim().isEmpty() ||
+            etPassword.getText().toString().trim().isEmpty()) {
+            user = null;
+            updateUI();
+        } else {
+            user = new User(
+                etEmail.getText().toString().trim(),
+                etPassword.getText().toString().trim()
+            );
+        }
     }
 
     protected View.OnClickListener loginListener =
@@ -113,7 +119,9 @@ public class LoginActivity extends Activity {
                 Log.d(TAG, "loginListener: called");
                 showLoading(LoginActivity.this);
                 createUser();
-                loginUser();
+                if (user != null) {
+                    loginUser();
+                }
             }
         };
 

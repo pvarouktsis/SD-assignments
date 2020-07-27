@@ -85,7 +85,7 @@ public class MyAccountEditFragment extends Fragment {
                         updatePassword(fu);
                     } else {
                         Log.w(TAG, "updateEmail: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -104,7 +104,7 @@ public class MyAccountEditFragment extends Fragment {
                         updateUsername(fu);
                     } else {
                         Log.w(TAG, "updatePassword: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -128,7 +128,7 @@ public class MyAccountEditFragment extends Fragment {
                         reauthenticateUser(fu);
                     } else {
                         Log.w(TAG, "updateProfile: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -147,15 +147,15 @@ public class MyAccountEditFragment extends Fragment {
                         errorCode += 8;
                     } else {
                         Log.w(TAG, "reauthenticateUser: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                     }
                     updateUI();
                 }
             });
     }
 
-    protected void showMessage(Exception exception) {
-        Log.d(TAG, "showMessage: called");
+    protected void showErrorMessage(Exception exception) {
+        Log.d(TAG, "showErrorMessage: called");
         try {
             throw exception;
         } catch (FirebaseAuthUserCollisionException e) {
@@ -179,20 +179,30 @@ public class MyAccountEditFragment extends Fragment {
             Log.d(TAG, "updateUser: succeeded");
             showToast("Updated account successfully");
             goToMainActivity();
-        } else if (errorCode < 15) {
+        } else if (errorCode > 0 && errorCode < 15) {
             Log.d(TAG, "updateUser: failed");
             // TODO
             // sync or cancel update process
+        } else if (errorCode == 0) {
+            Log.d(TAG, "updateUser: failed");
+            showToast("Please fill in all the fields");
         }
     }
 
     protected void createUser() {
         Log.d(TAG, "createUser: called");
-        user = new User(
-            etUsername.getText().toString().trim(),
-            etEmail.getText().toString().trim(),
-            etPassword.getText().toString().trim()
-        );
+        if (etUsername.getText().toString().trim().isEmpty() ||
+            etEmail.getText().toString().trim().isEmpty() ||
+            etPassword.getText().toString().trim().isEmpty()) {
+            user = null;
+            updateUI();
+        } else {
+            user = new User(
+                etUsername.getText().toString().trim(),
+                etEmail.getText().toString().trim(),
+                etPassword.getText().toString().trim()
+            );
+        }
     }
 
     protected View.OnClickListener updateListener = new View.OnClickListener() {
@@ -201,7 +211,9 @@ public class MyAccountEditFragment extends Fragment {
             Log.d(TAG, "updateListener: called");
             showLoading();
             createUser();
-            updateUser();
+            if (user != null) {
+                updateUser();
+            }
         }
     };
 

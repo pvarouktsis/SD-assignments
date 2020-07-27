@@ -82,7 +82,7 @@ public class MyAccountDeleteFragment extends Fragment {
                         deleteUserFromFirebaseFirestore(fu);
                     } else {
                         Log.w(TAG, "reauthendicateUser: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -103,7 +103,7 @@ public class MyAccountDeleteFragment extends Fragment {
                         deleteUserFromFirebaseAuthentication(fu);
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseFirestore: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                         updateUI();
                     }
                 }
@@ -121,15 +121,15 @@ public class MyAccountDeleteFragment extends Fragment {
                         errorCode += 4;
                     } else {
                         Log.w(TAG, "deleteUserFromFirebaseAuthentication: failed", task.getException());
-                        showMessage(task.getException());
+                        showErrorMessage(task.getException());
                     }
                     updateUI();
                 }
             });
     }
 
-    protected void showMessage(Exception exception) {
-        Log.d(TAG, "showMessage: called");
+    protected void showErrorMessage(Exception exception) {
+        Log.d(TAG, "showErrorMessage: called");
         try {
             throw exception;
         } catch (FirebaseAuthInvalidCredentialsException e) {
@@ -149,19 +149,28 @@ public class MyAccountDeleteFragment extends Fragment {
             Log.d(TAG, "deleteUser: succeeded");
             showToast("Deleted account successfully");
             goToMainActivity();
-        } else if (errorCode < 7) {
+        } else if (errorCode > 0 && errorCode < 7) {
             Log.d(TAG, "deleteUser: failed");
             // TODO
             // sync or cancel delete process
+        } else if (errorCode == 0) {
+            Log.d(TAG, "deleteUser: failed");
+            showToast("Please fill in all the fields");
         }
     }
 
     protected void createUser() {
         Log.d(TAG, "createUser: called");
-        user = new User(
-            etEmail.getText().toString().trim(),
-            etPassword.getText().toString().trim()
-        );
+        if (etEmail.getText().toString().trim().isEmpty() ||
+            etPassword.getText().toString().trim().isEmpty()) {
+            user = null;
+            updateUI();
+        } else {
+            user = new User(
+                etEmail.getText().toString().trim(),
+                etPassword.getText().toString().trim()
+            );
+        }
     }
 
     protected View.OnClickListener deleteListener =
@@ -171,7 +180,9 @@ public class MyAccountDeleteFragment extends Fragment {
                 Log.d(TAG, "deleteUserListener: called");
                 showLoading();
                 createUser();
-                deleteUser();
+                if (user != null) {
+                    deleteUser();
+                }
             }
         };
 
