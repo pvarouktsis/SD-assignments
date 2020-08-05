@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends AbstractFragment {
     protected static final String TAG = "HOME_F";
     protected ArrayList<Product> products = new ArrayList<>();
     protected String sSearch;
@@ -93,19 +93,19 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "showProducts: called");
 
         // initialize ProductListFragment
-        Fragment f = new ProductListFragment();
+        AbstractFragment af = new ProductListFragment();
 
         // pass products
         Bundle b = new Bundle();
         b.putString("tag", TAG);
         b.putSerializable("products", products);
-        f.setArguments(b);
+        af.setArguments(b);
 
         // dismiss loading
         dismissLoading();
 
         // replace fragment
-        replace(R.id.fl_main_container, f);
+        replace(R.id.fl_main_container, af);
     }
 
     protected void convertEditTextToString() {

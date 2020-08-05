@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AbstractActivity {
     protected final static String TAG = "LOGIN_A";
     protected User user;
     protected EditText etEmail;

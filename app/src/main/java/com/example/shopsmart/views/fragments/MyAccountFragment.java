@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MyAccountFragment extends Fragment {
+public class MyAccountFragment extends AbstractFragment {
     protected static final String TAG = "MY_ACCOUNT_F";
     protected Button btnUserEdit;
     protected Button btnUserDelete;
@@ -76,8 +76,8 @@ public class MyAccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "editUserListener: called");
-                Fragment f = new MyAccountEditFragment();
-                replace(R.id.fl_main_container, f);
+                AbstractFragment af = new MyAccountEditFragment();
+                replace(R.id.fl_main_container, af);
             }
         };
 
@@ -86,8 +86,8 @@ public class MyAccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "deleteUserListener: called");
-                Fragment f = new MyAccountDeleteFragment();
-                replace(R.id.fl_main_container, f);
+                AbstractFragment af = new MyAccountDeleteFragment();
+                replace(R.id.fl_main_container, af);
             }
         };
 

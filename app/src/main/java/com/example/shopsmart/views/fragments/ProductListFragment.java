@@ -19,7 +19,7 @@ import com.example.shopsmart.views.adapters.ProductListAdapterFactory;
 
 import java.util.ArrayList;
 
-public class ProductListFragment extends Fragment {
+public class ProductListFragment extends AbstractFragment {
     protected static final String TAG = "PRODUCT_LIST_F";
     protected static final int VERTICAL_SPACE = 20;
     protected ArrayList<Product> products;

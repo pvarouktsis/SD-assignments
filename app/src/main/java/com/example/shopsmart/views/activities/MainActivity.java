@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AbstractActivity {
     protected static final String TAG = "MAIN_A";
     protected FirebaseAuth fa;
 
@@ -70,6 +70,7 @@ public class MainActivity extends Activity {
     protected BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
         new BottomNavigationView.OnNavigationItemSelectedListener() {
             Fragment f = null;
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Log.d(TAG, "navigationListener: called");

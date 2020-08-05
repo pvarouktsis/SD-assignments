@@ -22,7 +22,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends AbstractActivity {
     protected static final String TAG = "REGISTER_A";
     protected User user;
     protected EditText etUsername;

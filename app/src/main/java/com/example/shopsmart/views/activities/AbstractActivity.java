@@ -13,27 +13,27 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.shopsmart.R;
 
-public abstract class Activity extends AppCompatActivity {
+public abstract class AbstractActivity extends AppCompatActivity {
     protected static final String TAG = "ACTIVITY";
     protected ProgressDialog progressDialog;
 
     protected abstract void initializeUIComponents();
 
-    protected void goToMainActivity(Activity activity) {
+    protected void goToMainActivity(AbstractActivity aa) {
         Log.d(TAG, "goToMainActivity: called");
-        startActivity(new Intent(activity, MainActivity.class));
+        startActivity(new Intent(aa, MainActivity.class));
         finish();
     }
 
-    protected void goToLoginActivity(Activity activity) {
+    protected void goToLoginActivity(AbstractActivity aa) {
         Log.d(TAG, "goToLoginActivity: called");
-        startActivity(new Intent(activity, LoginActivity.class));
+        startActivity(new Intent(aa, LoginActivity.class));
         finish();
     }
 
-    protected void goToRegisterActivity(Activity activity) {
+    protected void goToRegisterActivity(AbstractActivity aa) {
         Log.d(TAG, "goToRegisterActivity: called");
-        startActivity(new Intent(activity, RegisterActivity.class));
+        startActivity(new Intent(aa, RegisterActivity.class));
         finish();
     }
 
@@ -51,10 +51,10 @@ public abstract class Activity extends AppCompatActivity {
         ft.replace(currentID, fragment).commit();
     }
 
-    protected void showLoading(Activity activity) {
+    protected void showLoading(AbstractActivity aa) {
         Log.d(TAG, "showLoading: called");
         if (progressDialog == null) {
-            progressDialog = new ProgressDialog(activity);
+            progressDialog = new ProgressDialog(aa);
         }
         progressDialog.setMessage(getString(R.string.text_please_wait));
         progressDialog.setCancelable(false);
@@ -68,14 +68,14 @@ public abstract class Activity extends AppCompatActivity {
         }
     }
 
-    protected void showToast(Activity activity, String message) {
+    protected void showToast(AbstractActivity aa, String message) {
         Log.d(TAG, "showToast: called");
         if (message.length() < 20) {
-            Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(aa, message, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM, 0, 200);
             toast.show();
         } else {
-            Toast toast = Toast.makeText(activity, message, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(aa, message, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.BOTTOM, 0, 200);
             toast.show();
         }

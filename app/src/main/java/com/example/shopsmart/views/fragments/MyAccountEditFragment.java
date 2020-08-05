@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MyAccountEditFragment extends Fragment {
+public class MyAccountEditFragment extends AbstractFragment {
     protected static final String TAG = "MY_ACCOUNT_EDITOR_F";
     protected User user;
     protected EditText etUsername;

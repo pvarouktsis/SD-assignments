@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MyAccountDeleteFragment extends Fragment {
+public class MyAccountDeleteFragment extends AbstractFragment {
     protected static final String TAG = "MY_ACCOUNT_DELETE_F";
     protected User user;
     protected EditText etEmail;

@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MyCartFragment extends Fragment {
+public class MyCartFragment extends AbstractFragment {
     protected static final String TAG = "MY_CART_F";
     protected User user;
     protected FirebaseAuth fa;
@@ -77,19 +77,19 @@ public class MyCartFragment extends Fragment {
         Log.d(TAG, "showCart: called");
 
         // initialize ProductListFragment
-        Fragment f = new ProductListFragment();
+        AbstractFragment af = new ProductListFragment();
 
         // pass products
         Bundle b = new Bundle();
         b.putString("tag", TAG);
         b.putSerializable("products", user.getCart());
-        f.setArguments(b);
+        af.setArguments(b);
 
         // dismiss loading
         dismissLoading();
 
         // replace fragment
-        replace(R.id.fl_main_container, f);
+        replace(R.id.fl_main_container, af);
     }
 
 }

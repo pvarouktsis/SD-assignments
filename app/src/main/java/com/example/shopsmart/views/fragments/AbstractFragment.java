@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.shopsmart.R;
 import com.example.shopsmart.views.activities.MainActivity;
 
-public abstract class Fragment extends androidx.fragment.app.Fragment {
+public abstract class AbstractFragment extends androidx.fragment.app.Fragment {
     protected static final String TAG = "FRAGMENT";
     protected ProgressDialog progressDialog;
 
@@ -24,7 +24,7 @@ public abstract class Fragment extends androidx.fragment.app.Fragment {
         startActivity(new Intent(getContext(), MainActivity.class));
     }
 
-    protected void add(int cid, Fragment f) {
+    protected void add(int cid, AbstractFragment f) {
         Log.d(TAG, "replace: called");
         if (getActivity() != null) {
             FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -33,7 +33,7 @@ public abstract class Fragment extends androidx.fragment.app.Fragment {
         }
     }
 
-    protected void replace(int cid, Fragment f) {
+    protected void replace(int cid, AbstractFragment f) {
         Log.d(TAG, "replace: called");
         if (getActivity() != null) {
             FragmentManager fm = getActivity().getSupportFragmentManager();
