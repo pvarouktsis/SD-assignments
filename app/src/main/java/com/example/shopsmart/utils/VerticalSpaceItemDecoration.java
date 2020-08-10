@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
-    //private static final String TAG = "VERTICAL_SPACE_I_D";
+    //private static final String TAG = "VERTICAL_SPACE_ID";
     private final int verticalSpaceHeight;
 
     public VerticalSpaceItemDecoration(int verticalSpaceHeight) {
