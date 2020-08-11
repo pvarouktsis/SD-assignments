@@ -1,6 +1,7 @@
 # TODO
 
-- Implement functionality of filter button in ProductListFragment
-- Implement add product button in MyCartFragment
-- Implement find best price button of products in My cart by supermarket
-- Implement API with supermarkets
+- Implement functionality of "Filter" button in ProductListFragment
+- Implement "Add product" button in MyCartFragment
+- Implement "Find best carts" button in MyCartFragment
+- Implement API to communicate with the supermarkets e.g. Sklavenitis
+
