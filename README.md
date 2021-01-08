@@ -1,6 +1,6 @@
 # Software Design - ShopSmart
 
-![ShopSmart_brand_logo](./.resources/ShopSmart_brand_logo.png)
+![ShopSmart_brand_logo](./.github/ShopSmart_brand_logo.png)
 
 ## Description
 ShopSmart is an Android application for the purpose of "Digital Content
